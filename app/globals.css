@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --marble: #f6f2eb;
+  --marble-deep: #ece6db;
+  --ink: #14110d;
+  --gold: #d4a853;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--marble);
+  color: var(--ink);
+  font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(212, 168, 83, 0.28);
+}
+
+/* Shiny gold text (hero accent words) */
+.shiny-gold {
+  background-image: linear-gradient(
+    110deg,
+    #b8893b 0%,
+    #d4a853 35%,
+    #f3e3ad 50%,
+    #d4a853 65%,
+    #b8893b 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shiny 6s linear infinite;
+}
+@keyframes shiny {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Logo marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-gold {
+    animation: none;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* CTA shine sweep on hover */
+.cta-shine {
+  position: relative;
+  overflow: hidden;
+}
+.cta-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -160%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.cta-shine:hover::after {
+  left: 160%;
+  transition: left 0.7s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-shine:hover::after {
+    left: -160%;
+    transition: none;
+  }
+}
