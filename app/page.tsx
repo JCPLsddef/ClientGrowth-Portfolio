@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
+import Hero from "@/components/ui/herowith-logos";
 import Problem from "@/components/Problem";
 import Reframe from "@/components/Reframe";
 import Proof from "@/components/Proof";
