@@ -1,14 +1,5 @@
 import clsx from "clsx";
-
-// Client Growth proof clients (mirrors the homepage LogoMarquee).
-const CLIENTS = [
-  "Triple W Rentals",
-  "Elite Barbershop",
-  "Culture Barbershop",
-  "Absolute Painting",
-  "Nancy · TX Real Estate",
-  "Centre Dentaire Saint-Élzéar",
-];
+import LogoBar from "@/components/work/LogoBar";
 
 const FUIHeroWithBorders = () => {
   return (
@@ -82,10 +73,13 @@ const FUIHeroWithBorders = () => {
           </div>
         </div>
 
-        {/* Client marquee + proof line */}
+        {/* Client logo bar + proof line */}
         <div className="mx-auto w-full max-w-7xl">
-          <AnimatedClientCloud />
-          <p className="pb-10 text-center text-sm text-[#D4A853]">
+          {/* TODO: swap the business-name wordmarks for real monochrome client logo SVGs (content/work.ts -> client.logo) */}
+          <div className="w-full px-4 pt-10 md:px-8">
+            <LogoBar />
+          </div>
+          <p className="pb-10 pt-8 text-center text-sm text-[#D4A853]">
             $41,085 in 30 days, from $900 in ad spend.{" "}
             <strong className="font-semibold">46x return.</strong>
           </p>
@@ -96,39 +90,3 @@ const FUIHeroWithBorders = () => {
 };
 
 export default FUIHeroWithBorders;
-
-const AnimatedClientCloud = () => {
-  return (
-    <div className="w-full pt-10">
-      <div className="mx-auto w-full px-4 md:px-8">
-        <div
-          className="group relative flex gap-6 overflow-hidden p-2"
-          style={{
-            maskImage:
-              "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)",
-            WebkitMaskImage:
-              "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)",
-          }}
-        >
-          {Array(5)
-            .fill(null)
-            .map((_, index) => (
-              <div
-                key={index}
-                className="flex shrink-0 animate-x-slider flex-row items-center justify-around gap-6"
-              >
-                {CLIENTS.map((name, key) => (
-                  <span
-                    key={key}
-                    className="flex-none whitespace-nowrap px-2 font-display text-base font-semibold tracking-tight text-[#F5F0E8]/55"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
-  );
-};

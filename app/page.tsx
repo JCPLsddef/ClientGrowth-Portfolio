@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/ui/herowith-logos";
+import SocialProof from "@/components/SocialProof";
 import Problem from "@/components/Problem";
 import Reframe from "@/components/Reframe";
 import Proof from "@/components/Proof";
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Nav />
       <Hero />
+      <SocialProof />
       <Problem />
       <Reframe />
       <Proof />
