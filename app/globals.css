@@ -64,20 +64,6 @@ body {
   animation-play-state: paused;
 }
 
-/* Logo cloud horizontal slider (components/ui/herowith-logos) */
-@keyframes x-slider {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    /* one full set of logos + the gap-6 (1.5rem) between sets → seamless loop */
-    transform: translateX(calc(-100% - 1.5rem));
-  }
-}
-.animate-x-slider {
-  animation: x-slider 30s linear infinite;
-}
-
 /* Aurora hero backdrop — drift the animated layer (the ::after of .aurora-layer).
    Defined here (not via the Tailwind config) so it hot-reloads reliably. */
 @keyframes aurora {
@@ -97,9 +83,6 @@ body {
     animation: none;
   }
   .animate-marquee {
-    animation: none;
-  }
-  .animate-x-slider {
     animation: none;
   }
   .aurora-layer::after {
@@ -137,4 +120,10 @@ body {
     left: -160%;
     transition: none;
   }
+}
+
+/* Visible keyboard focus ring for every interactive element (brand gold). */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid #d4a853;
+  outline-offset: 2px;
 }
