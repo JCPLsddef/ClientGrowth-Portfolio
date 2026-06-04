@@ -3,7 +3,7 @@ import KnightLogo from "@/components/KnightLogo";
 
 const NAV_LINKS = [
   { label: "How it works", href: "/#system" },
-  { label: "Results", href: "/#results" },
+  { label: "Work", href: "/#work" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Apply", href: "/#apply" },
 ];
