@@ -120,3 +120,13 @@ export const testimonials: Testimonial[] = [
     placement: "hero",
   },
 ];
+
+// Triple W Rentals case study (/work/triple-w-rentals). The narrative prose
+// lives in the route; these are the assets I will not invent until supplied.
+export const tripleW = {
+  quote: TODO_TEXT, // the owner's quote, in his words
+  quoteName: TODO_TEXT, // the owner's full name
+  loom: TODO_LOOM, // 30s Loom embed URL (https://www.loom.com/embed/<id>)
+  beforeShot: TODO_IMG, // /public/work/triple-w-before.webp
+  afterShot: TODO_IMG, // /public/work/triple-w-after.webp
+};

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MockupFrame from "@/components/work/MockupFrame";
 import SpotlightCard from "@/components/work/SpotlightCard";
 import { isTodo, type WorkClient } from "@/content/work";
@@ -35,21 +36,31 @@ export default function WorkCard({ client }: { client: WorkClient }) {
           >
             {client.result}
           </p>
-          {hasUrl ? (
-            <a
-              href={client.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-[#D4A853] underline-offset-4 hover:underline"
-            >
-              View live site →
-            </a>
-          ) : (
-            <span className="text-sm font-semibold text-[#756D63]">
-              {/* TODO: live site URL (content/work.ts -> client.liveUrl) */}
-              Live site coming
-            </span>
-          )}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {hasUrl ? (
+              <a
+                href={client.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-[#D4A853] underline-offset-4 hover:underline"
+              >
+                View live site →
+              </a>
+            ) : (
+              <span className="text-sm font-semibold text-[#756D63]">
+                {/* TODO: live site URL (content/work.ts -> client.liveUrl) */}
+                Live site coming
+              </span>
+            )}
+            {client.caseStudyHref && (
+              <Link
+                href={client.caseStudyHref}
+                className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 hover:underline"
+              >
+                See the build →
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </SpotlightCard>
