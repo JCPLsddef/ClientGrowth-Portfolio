@@ -52,7 +52,7 @@ const FUIHeroWithBorders = () => {
         </div>
 
         {/* CTAs — solid-gold pill + text link (brand) */}
-        <div className="flex items-center justify-center px-8 py-8 sm:px-24">
+        <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#audit"
@@ -71,6 +71,9 @@ const FUIHeroWithBorders = () => {
               Apply to be a Partner →
             </a>
           </div>
+          <p className="max-w-md text-center text-sm text-[#F5F0E8]/55">
+            Most owners cannot say where they lose customers. After this, you can.
+          </p>
         </div>
 
         {/* Client logo bar + proof line */}

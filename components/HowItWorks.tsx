@@ -9,7 +9,7 @@ const STEPS = [
   {
     n: "2",
     title: "I build your system",
-    body: "Website, visibility, ads, and follow-up, built together and live fast.",
+    body: "Website, visibility, ads, and follow-up, built as one system and live in weeks.",
   },
   {
     n: "3",
