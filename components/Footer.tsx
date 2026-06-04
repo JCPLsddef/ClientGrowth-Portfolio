@@ -4,6 +4,7 @@ import KnightLogo from "@/components/KnightLogo";
 const NAV_LINKS = [
   { label: "How it works", href: "/#system" },
   { label: "Work", href: "/#work" },
+  { label: "For hiring teams", href: "/#how-i-think" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Apply", href: "/#apply" },
 ];

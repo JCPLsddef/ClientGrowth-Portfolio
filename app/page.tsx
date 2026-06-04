@@ -4,6 +4,7 @@ import SocialProof from "@/components/SocialProof";
 import Problem from "@/components/Problem";
 import Reframe from "@/components/Reframe";
 import Proof from "@/components/Proof";
+import HowIThink from "@/components/HowIThink";
 import GrowthSystem from "@/components/GrowthSystem";
 import HowItWorks from "@/components/HowItWorks";
 import Founder from "@/components/Founder";
@@ -22,6 +23,7 @@ export default function Home() {
       <Problem />
       <Reframe />
       <Proof />
+      <HowIThink />
       <GrowthSystem />
       <HowItWorks />
       <Founder />
