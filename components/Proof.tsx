@@ -32,6 +32,23 @@ const RESULTS: Result[] = [
   },
 ];
 
+type Stat = {
+  end?: number;
+  prefix?: string;
+  suffix?: string;
+  staticValue?: string;
+  label: string;
+};
+
+// 46x, $41,085, and 90 count up on scroll; "#1" stays a literal rank
+// (counting "#0 -> #1" would look wrong). Labels are unchanged.
+const STATS: Stat[] = [
+  { end: 46, suffix: "x", label: "Return on ad spend" },
+  { end: 41085, prefix: "$", label: "In 30 days · Triple W" },
+  { end: 90, label: "Clients in 90 days · Elite" },
+  { staticValue: "#1", label: "Impression share · Texas" },
+];
+
 export default function Proof() {
   return (
     <section
@@ -62,54 +79,28 @@ export default function Proof() {
           </p>
         </Reveal>
 
-        <Reveal className="mb-14">
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
-            <div className="text-center">
+        <div className="mx-auto mb-14 grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
+          {STATS.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 0.08} className="text-center">
               <div
-                className="font-display font-extrabold"
-                style={{ fontSize: "clamp(34px, 4.4vw, 54px)", color: "#B8893B" }}
+                className="flex items-center justify-center font-display font-extrabold tabular-nums"
+                style={{
+                  fontSize: "clamp(34px, 4.4vw, 54px)",
+                  color: "#B8893B",
+                  lineHeight: 1.1,
+                  minHeight: "1.2em",
+                }}
               >
-                <CountUp end={46} suffix="x" />
+                {stat.staticValue ?? (
+                  <CountUp end={stat.end!} prefix={stat.prefix} suffix={stat.suffix} />
+                )}
               </div>
               <div className="mt-1 text-xs uppercase tracking-[0.12em] text-ink-soft">
-                Return on ad spend
+                {stat.label}
               </div>
-            </div>
-            <div className="text-center">
-              <div
-                className="font-display font-extrabold"
-                style={{ fontSize: "clamp(34px, 4.4vw, 54px)", color: "#B8893B" }}
-              >
-                <CountUp end={41085} prefix="$" />
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-ink-soft">
-                In 30 days · Triple W
-              </div>
-            </div>
-            <div className="text-center">
-              <div
-                className="font-display font-extrabold"
-                style={{ fontSize: "clamp(34px, 4.4vw, 54px)", color: "#B8893B" }}
-              >
-                <CountUp end={90} />
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-ink-soft">
-                Clients in 90 days · Elite
-              </div>
-            </div>
-            <div className="text-center">
-              <div
-                className="font-display font-extrabold"
-                style={{ fontSize: "clamp(34px, 4.4vw, 54px)", color: "#B8893B" }}
-              >
-                #1
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-[0.12em] text-ink-soft">
-                Impression share · Texas
-              </div>
-            </div>
-          </div>
-        </Reveal>
+            </Reveal>
+          ))}
+        </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {RESULTS.map((r, i) => (
