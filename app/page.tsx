@@ -13,6 +13,7 @@ import RiskReversal from "@/components/RiskReversal";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <MobileStickyCTA />
     </main>
   );
 }

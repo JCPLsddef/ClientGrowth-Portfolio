@@ -93,6 +93,15 @@ export default function Pricing() {
           >
             See if your business qualifies → Apply to be a Partner
           </a>
+          <p className="mt-5 text-sm text-ink-soft">
+            Not ready to apply.{" "}
+            <a
+              href="#audit"
+              className="font-semibold text-ink underline underline-offset-4 transition-colors hover:text-ink-soft"
+            >
+              See what this looks like first.
+            </a>
+          </p>
         </Reveal>
       </div>
     </section>
