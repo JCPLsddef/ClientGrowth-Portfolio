@@ -1,13 +1,13 @@
 import Reveal from "@/components/Reveal";
 import TestimonialCard from "@/components/work/TestimonialCard";
-import { testimonials } from "@/content/work";
+import { testimonialFor } from "@/content/work";
 
 // Social proof band directly under the hero: the first trust hit. One client
 // testimonial sitting right below the hero logo bar. The dark testimonial card
 // reads cleanly against this warm cream band (and matches the cream sections it
 // is reused on later: after the stats and near pricing).
 export default function SocialProof() {
-  const heroTestimonial = testimonials.find((t) => t.placement === "hero");
+  const heroTestimonial = testimonialFor("hero");
   if (!heroTestimonial) return null;
 
   return (

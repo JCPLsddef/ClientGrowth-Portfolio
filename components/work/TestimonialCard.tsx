@@ -1,4 +1,5 @@
 import Image from "next/image";
+import VideoModal from "@/components/work/VideoModal";
 import { isTodo, type Testimonial } from "@/content/work";
 
 type TestimonialCardProps = {
@@ -69,6 +70,18 @@ export default function TestimonialCard({
           <span className="block text-xs text-[#F5F0E8]/55">{business}</span>
         </span>
       </figcaption>
+
+      {testimonial.loom !== undefined && (
+        <div className="mt-5">
+          {/* TODO: 30s Loom embed URL (content/work.ts -> testimonials[].loom) */}
+          <VideoModal
+            src={testimonial.loom}
+            title={`${business}, in their words`}
+            label="Watch the 30s clip"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#D4A853] underline-offset-4 transition-colors hover:underline"
+          />
+        </div>
+      )}
     </figure>
   );
 }

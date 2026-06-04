@@ -110,6 +110,8 @@ export const clients: WorkClient[] = [
   },
 ];
 
+// One testimonial per point of doubt. Business names are real clients; the
+// quote, name, photo, and Loom are left as TODOs to fill, never invented.
 export const testimonials: Testimonial[] = [
   {
     name: TODO_TEXT,
@@ -119,7 +121,37 @@ export const testimonials: Testimonial[] = [
     loom: TODO_LOOM,
     placement: "hero",
   },
+  {
+    name: TODO_TEXT,
+    business: "Elite Barbershop",
+    quote: TODO_TEXT,
+    photo: TODO_IMG,
+    loom: TODO_LOOM,
+    placement: "afterStats",
+  },
+  {
+    name: TODO_TEXT,
+    business: "Texas Real Estate",
+    quote: TODO_TEXT,
+    photo: TODO_IMG,
+    loom: TODO_LOOM,
+    placement: "inWork",
+  },
+  {
+    name: TODO_TEXT,
+    business: "Absolute Painting",
+    quote: TODO_TEXT,
+    photo: TODO_IMG,
+    loom: TODO_LOOM,
+    placement: "nearPricing",
+  },
 ];
+
+export function testimonialFor(
+  placement: TestimonialPlacement,
+): Testimonial | undefined {
+  return testimonials.find((t) => t.placement === placement);
+}
 
 // Triple W Rentals case study (/work/triple-w-rentals). The narrative prose
 // lives in the route; these are the assets I will not invent until supplied.

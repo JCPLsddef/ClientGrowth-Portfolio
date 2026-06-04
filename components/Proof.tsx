@@ -1,6 +1,8 @@
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import WorkGrid from "@/components/work/WorkGrid";
+import TestimonialCard from "@/components/work/TestimonialCard";
+import { testimonialFor } from "@/content/work";
 
 type Stat = {
   end?: number;
@@ -20,6 +22,9 @@ const STATS: Stat[] = [
 ];
 
 export default function Proof() {
+  const afterStats = testimonialFor("afterStats");
+  const inWork = testimonialFor("inWork");
+
   return (
     <section
       id="work"
@@ -74,7 +79,20 @@ export default function Proof() {
           ))}
         </div>
 
+        {afterStats && (
+          <Reveal className="mx-auto mb-12 flex max-w-xl justify-center">
+            <TestimonialCard testimonial={afterStats} />
+          </Reveal>
+        )}
+
         <WorkGrid />
+
+        {inWork && (
+          <Reveal className="mx-auto mt-12 flex max-w-xl justify-center">
+            <TestimonialCard testimonial={inWork} />
+          </Reveal>
+        )}
+
         <Reveal className="mt-12 text-center">
           <a
             href="#audit"
