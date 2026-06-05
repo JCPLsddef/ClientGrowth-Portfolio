@@ -1,23 +1,26 @@
 import Reveal from "@/components/Reveal";
+import WordReveal from "@/components/WordReveal";
 
+// Manifesto beat. Kept deliberately centered as a rhythm break between the
+// left-aligned editorial chapters, with the headline rising in word by word.
 export default function Reframe() {
   return (
     <section className="px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl text-center">
-        <Reveal>
-          <h2
-            className="font-display"
-            style={{
-              fontSize: "clamp(28px, 4vw, 46px)",
-              fontWeight: 800,
-              lineHeight: 1.15,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            You don&apos;t need more marketing. You need to become the obvious
-            choice.
-          </h2>
-        </Reveal>
+        <h2
+          className="font-display"
+          style={{
+            fontSize: "clamp(28px, 4.2vw, 48px)",
+            fontWeight: 800,
+            lineHeight: 1.14,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          <WordReveal
+            text="You don’t need more marketing. You need to become the obvious choice."
+            highlight={["obvious", "choice"]}
+          />
+        </h2>
         <div className="mx-auto mt-8 flex max-w-2xl flex-col gap-6 text-lg leading-relaxed text-ink-soft">
           <Reveal delay={0.05}>
             <p>

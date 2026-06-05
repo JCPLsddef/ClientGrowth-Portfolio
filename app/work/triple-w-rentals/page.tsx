@@ -5,6 +5,9 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
+import Magnetic from "@/components/Magnetic";
+import SectionLabel from "@/components/SectionLabel";
+import SpotlightField from "@/components/SpotlightField";
 import VideoModal from "@/components/work/VideoModal";
 import { tripleW, isTodo } from "@/content/work";
 
@@ -82,12 +85,9 @@ export default function TripleWCaseStudy() {
       <section className="px-6 py-20 sm:py-28" style={{ backgroundColor: "#ECE6DB" }}>
         <div className="mx-auto max-w-3xl">
           <Reveal>
-            <p
-              className="mb-4 text-xs font-bold uppercase tracking-[0.2em]"
-              style={{ color: "#B8893B" }}
-            >
+            <SectionLabel index="01" className="mb-6">
               The problem
-            </p>
+            </SectionLabel>
             <h2
               className="font-display text-ink"
               style={{
@@ -130,70 +130,70 @@ export default function TripleWCaseStudy() {
         className="px-6 py-20 sm:py-28"
         style={{ backgroundColor: "#0D0B09", color: "#F5F0E8" }}
       >
-        <div className="mx-auto max-w-4xl">
-          <Reveal className="max-w-2xl">
-            <p
-              className="mb-4 text-xs font-bold uppercase tracking-[0.2em]"
-              style={{ color: "#D4A853" }}
-            >
-              What I built
-            </p>
-            <h2
-              className="font-display"
-              style={{
-                fontSize: "clamp(28px, 4.2vw, 46px)",
-                fontWeight: 800,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.12,
-              }}
-            >
-              One system, built in the right order.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#F5F0E8]/70">
-              I did not run ads into a weak site and hope. I built the machine
-              first, then turned on the traffic.
-            </p>
-          </Reveal>
+        <SpotlightField className="mx-auto max-w-4xl">
+          <div className="relative z-10">
+            <Reveal className="max-w-2xl">
+              <SectionLabel index="02" tone="dark" className="mb-6">
+                What I built
+              </SectionLabel>
+              <h2
+                className="font-display"
+                style={{
+                  fontSize: "clamp(28px, 4.2vw, 46px)",
+                  fontWeight: 800,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.12,
+                }}
+              >
+                One system, built in the right order.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-[#F5F0E8]/70">
+                I did not run ads into a weak site and hope. I built the machine
+                first, then turned on the traffic.
+              </p>
+            </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {BUILT.map((piece, i) => (
-              <Reveal key={piece.title} delay={(i % 2) * 0.08}>
-                <div
-                  className="h-full rounded-2xl border p-7"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.08)",
-                    backgroundColor: "rgba(255,255,255,0.03)",
-                  }}
-                >
-                  <h3 className="font-display text-xl font-bold">{piece.title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-[#F5F0E8]/65">
-                    {piece.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {BUILT.map((piece, i) => (
+                <Reveal key={piece.title} delay={(i % 2) * 0.08}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition duration-300 hover:-translate-y-1 hover:border-gold/40">
+                    <span className="font-mono text-sm font-bold text-gold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-3 font-display text-xl font-bold">
+                      {piece.title}
+                    </h3>
+                    <p className="mt-2 text-base leading-relaxed text-[#F5F0E8]/65">
+                      {piece.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal className="mt-8">
+              <p className="max-w-2xl text-lg leading-relaxed text-[#F5F0E8]/70">
+                Each piece made the next one stronger. The ads converted because the
+                site was built to close. The spend stayed efficient because the
+                tracking showed exactly where every dollar went.
+              </p>
+            </Reveal>
           </div>
-
-          <Reveal className="mt-8">
-            <p className="max-w-2xl text-lg leading-relaxed text-[#F5F0E8]/70">
-              Each piece made the next one stronger. The ads converted because the
-              site was built to close. The spend stayed efficient because the
-              tracking showed exactly where every dollar went.
-            </p>
-          </Reveal>
-        </div>
+        </SpotlightField>
       </section>
 
       {/* 3. The result */}
       <section className="px-6 py-20 sm:py-28" style={{ backgroundColor: "#ECE6DB" }}>
         <div className="mx-auto max-w-5xl">
-          <Reveal className="text-center">
-            <p
-              className="mb-4 text-xs font-bold uppercase tracking-[0.2em]"
-              style={{ color: "#B8893B" }}
-            >
-              The result
-            </p>
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <span className="font-mono text-xs font-semibold tracking-[0.2em] text-gold-deep">
+                03
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
+                The result
+              </span>
+            </div>
             <h2
               className="font-display text-ink"
               style={{
@@ -207,7 +207,7 @@ export default function TripleWCaseStudy() {
           </Reveal>
 
           <Reveal delay={0.06}>
-            <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 border-y border-ink/10 py-10 sm:grid-cols-3">
               {(
                 [
                   { end: 41085, prefix: "$", label: "Revenue in 30 days" },
@@ -355,15 +355,15 @@ export default function TripleWCaseStudy() {
               I build it once, then improve it every month. If your business is
               good and invisible, that is the exact gap I close.
             </p>
-            <div className="mt-8">
+            <Magnetic className="mt-8 inline-block">
               <Link
                 href="/#audit"
-                className="inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.02]"
+                className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.02]"
                 style={{ backgroundColor: "#D4A853" }}
               >
                 Get your free Visibility Audit
               </Link>
-            </div>
+            </Magnetic>
           </Reveal>
         </div>
       </section>

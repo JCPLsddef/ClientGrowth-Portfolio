@@ -1,7 +1,11 @@
 import Reveal from "@/components/Reveal";
 import AuditForm from "@/components/AuditForm";
+import TestimonialCard from "@/components/work/TestimonialCard";
+import { testimonialFor } from "@/content/work";
 
 export default function FinalCTA() {
+  const finalCta = testimonialFor("finalCta");
+
   return (
     <section
       id="audit"
@@ -35,6 +39,15 @@ export default function FinalCTA() {
             and the fastest path to becoming the obvious choice.
           </p>
         </Reveal>
+
+        {/* Last word before the form is a client's, not mine. Gated: renders
+            nothing until a real quote is supplied in content/work.ts. */}
+        {finalCta && (
+          <Reveal delay={0.12} className="mx-auto mt-10 flex max-w-xl justify-center">
+            <TestimonialCard testimonial={finalCta} />
+          </Reveal>
+        )}
+
         <Reveal delay={0.14}>
           <div id="apply" className="mt-10 scroll-mt-24">
             <AuditForm />

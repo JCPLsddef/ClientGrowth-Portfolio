@@ -41,7 +41,7 @@ export default function MockupFrame({ client }: { client: WorkClient }) {
             alt={`${client.name} website`}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-top"
+            className="object-cover object-top grayscale transition duration-500 group-hover:grayscale-0"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-1 px-4 text-center">

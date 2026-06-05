@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import SectionLabel from "@/components/SectionLabel";
 import UnicornScene from "@/components/UnicornScene";
 
 export default function Founder() {
@@ -55,12 +56,9 @@ export default function Founder() {
         >
           <div className="grid max-w-5xl grid-cols-1 items-center gap-10 md:grid-cols-2">
             <div>
-              <p
-                className="mb-4 text-xs font-semibold uppercase tracking-[0.22em]"
-                style={{ color: "#B8893B" }}
-              >
-                Who you are actually working with
-              </p>
+              <SectionLabel index="06" className="mb-4">
+                Who you&apos;re working with
+              </SectionLabel>
               <h2
                 className="font-display font-extrabold leading-[1.05] tracking-tight text-ink"
                 style={{ fontSize: "clamp(30px, 4.2vw, 50px)" }}

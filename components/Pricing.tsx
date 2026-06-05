@@ -1,4 +1,6 @@
 import Reveal from "@/components/Reveal";
+import Magnetic from "@/components/Magnetic";
+import SectionLabel from "@/components/SectionLabel";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
 
@@ -12,13 +14,17 @@ export default function Pricing() {
       style={{ backgroundColor: "#ECE6DB" }}
     >
       <div className="mx-auto max-w-5xl">
-        <Reveal className="mb-14 text-center">
+        <Reveal className="mb-12 max-w-2xl">
+          <SectionLabel index="07" className="mb-6">
+            Pricing
+          </SectionLabel>
           <h2
             className="font-display"
             style={{
               fontSize: "clamp(30px, 4.5vw, 52px)",
               fontWeight: 800,
               letterSpacing: "-0.025em",
+              lineHeight: 1.1,
             }}
           >
             Premium presence. Without agency prices.
@@ -28,7 +34,7 @@ export default function Pricing() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Reveal>
             <div
-              className="flex h-full flex-col rounded-2xl bg-white p-8"
+              className="flex h-full flex-col rounded-2xl bg-white p-8 transition duration-300 hover:-translate-y-1"
               style={{ border: "1px solid rgba(20,17,13,0.08)" }}
             >
               <h3 className="font-display text-xl font-bold text-ink">
@@ -45,7 +51,7 @@ export default function Pricing() {
           </Reveal>
           <Reveal delay={0.08}>
             <div
-              className="flex h-full flex-col rounded-2xl bg-white p-8"
+              className="flex h-full flex-col rounded-2xl bg-white p-8 transition duration-300 hover:-translate-y-1"
               style={{
                 border: "1px solid rgba(212,168,83,0.5)",
                 boxShadow: "0 12px 44px rgba(212,168,83,0.14)",
@@ -68,10 +74,19 @@ export default function Pricing() {
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-soft">
                 The full Growth Architecture: conversion website, local SEO and
-                GEO, Google Ads, AI follow-up, and weekly optimization. Ad spend
-                goes straight to Google, never to me. 90-day initial term, then
-                month to month. No hidden fees.
+                GEO, Google Ads, AI follow-up, and weekly optimization. 90-day
+                initial term, then month to month. No hidden fees.
               </p>
+              {/* The honest-money trust line, pulled out and given the cool accent. */}
+              <div className="mt-auto flex items-start gap-2.5 border-t border-ink/10 pt-5">
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-azure"
+                />
+                <p className="text-sm font-semibold text-azure-deep">
+                  Ad spend goes straight to Google, never to me.
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -86,13 +101,15 @@ export default function Pricing() {
             I run a maximum of three Partnership clients at a time. When the seats
             are full, the waitlist opens.
           </p>
-          <a
-            href="#apply"
-            className="cta-shine mt-6 inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
-            style={{ backgroundColor: "#D4A853" }}
-          >
-            See if your business qualifies → Apply to be a Partner
-          </a>
+          <Magnetic className="mt-6 inline-block">
+            <a
+              href="#apply"
+              className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
+              style={{ backgroundColor: "#D4A853" }}
+            >
+              See if your business qualifies → Apply to be a Partner
+            </a>
+          </Magnetic>
           <p className="mt-5 text-sm text-ink-soft">
             Not ready to apply.{" "}
             <a
