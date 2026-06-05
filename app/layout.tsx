@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jost, Archivo, Cormorant, Anton } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -45,7 +46,9 @@ export default function RootLayout({
       lang="en"
       className={`${jost.variable} ${archivo.variable} ${cormorant.variable} ${anton.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
