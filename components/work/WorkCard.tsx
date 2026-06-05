@@ -6,7 +6,13 @@ import { isTodo, type WorkClient } from "@/content/work";
 // One Work card. With a screenshot it shows a browser mockup beside (feature/
 // wide) or above the copy. Until a screenshot is supplied it shows a clean
 // result card with no placeholder frame. Links render only once URLs are real.
-export default function WorkCard({ client }: { client: WorkClient }) {
+export default function WorkCard({
+  client,
+  index,
+}: {
+  client: WorkClient;
+  index?: string;
+}) {
   const hasUrl = !isTodo(client.liveUrl);
   const hasShot = !isTodo(client.shot);
   const isWide = client.span === "feature" || client.span === "wide";
@@ -14,14 +20,21 @@ export default function WorkCard({ client }: { client: WorkClient }) {
 
   const body = (
     <div className="flex flex-1 flex-col justify-center gap-4 p-6 sm:p-7">
-      {isFeature && (
-        <span
-          className="inline-flex w-fit items-center rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
-          style={{ backgroundColor: "rgba(212,168,83,0.14)", color: "#D4A853" }}
-        >
-          Signature result
-        </span>
-      )}
+      <div className="flex items-center gap-3">
+        {index && (
+          <span className="font-mono text-xs font-semibold tracking-[0.15em] text-gold/60">
+            {index}
+          </span>
+        )}
+        {isFeature && (
+          <span
+            className="inline-flex w-fit items-center rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
+            style={{ backgroundColor: "rgba(212,168,83,0.14)", color: "#D4A853" }}
+          >
+            Signature result
+          </span>
+        )}
+      </div>
       <p
         className={`font-display font-bold leading-snug text-[#F5F0E8] ${
           isFeature ? "text-2xl" : "text-lg"
@@ -44,7 +57,7 @@ export default function WorkCard({ client }: { client: WorkClient }) {
           {client.caseStudyHref && (
             <Link
               href={client.caseStudyHref}
-              className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 hover:underline"
+              className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
             >
               See the build →
             </Link>
@@ -55,7 +68,7 @@ export default function WorkCard({ client }: { client: WorkClient }) {
   );
 
   return (
-    <SpotlightCard className="h-full rounded-2xl border border-[rgba(212,168,83,0.18)] bg-[#14110D] transition-colors duration-200 hover:border-[rgba(212,168,83,0.45)]">
+    <SpotlightCard className="h-full rounded-2xl border border-gold/15 bg-night-raised transition duration-300 hover:-translate-y-1 hover:border-gold/45">
       {hasShot ? (
         <div
           className={

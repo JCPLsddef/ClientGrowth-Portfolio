@@ -25,7 +25,7 @@ export default function WorkGrid() {
             delay={(i % 3) * 0.06}
             className={`h-full ${wide ? "lg:col-span-2" : ""}`}
           >
-            <WorkCard client={client} />
+            <WorkCard client={client} index={String(i + 1).padStart(2, "0")} />
           </Reveal>
         );
       })}
