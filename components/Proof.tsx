@@ -37,7 +37,7 @@ export default function Proof() {
       <span id="results" aria-hidden="true" className="block scroll-mt-24" />
       <div className="mx-auto max-w-5xl">
         <Reveal className="mb-12 sm:mb-16">
-          <SectionLabel index="01" className="mb-6">
+          <SectionLabel index="02" className="mb-6">
             Work
           </SectionLabel>
           <h2
