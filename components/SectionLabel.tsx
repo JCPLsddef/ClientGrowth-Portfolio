@@ -18,12 +18,14 @@ export default function SectionLabel({
   tone = "light",
 }: SectionLabelProps) {
   const rule = tone === "dark" ? "bg-white/15" : "bg-ink/15";
+  // Deep gold on light backgrounds (contrast on cream), bright gold on dark.
+  const accent = tone === "dark" ? "text-gold" : "text-gold-deep";
   return (
     <div className={`flex items-center gap-4 ${className}`}>
-      <span className="font-mono text-xs font-semibold tracking-[0.2em] text-gold">
+      <span className={`font-mono text-xs font-semibold tracking-[0.2em] ${accent}`}>
         {index}
       </span>
-      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold/90">
+      <span className={`text-xs font-semibold uppercase tracking-[0.2em] ${accent}`}>
         {children}
       </span>
       <span aria-hidden="true" className={`h-px flex-1 ${rule}`} />
