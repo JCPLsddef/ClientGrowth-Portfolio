@@ -14,6 +14,21 @@ those sources. Live sites may have shifted since.
 
 ---
 
+## Decisions locked (your answers, 2026-06-05)
+- juanmora weighting: all four lessons are in scope. The dual-audience copy
+  formula is the spine, plus the Lenis smooth-scroll feel, one copy-as-interaction
+  moment, and two-color restraint (I will add one sparingly used cool secondary
+  alongside the gold, shown on the preview to tune).
+- Preserve all three current signatures, evolving not replacing: the gradient orb
+  hero, the founder parallax monogram reveal, and the KnightLogo three.js mark.
+- Structure: evolve in place. One long page, restyle and improve only, no new
+  routes. The Work section stays on the homepage and improves in place; the
+  existing /work/triple-w-rentals case study is restyled, not multiplied. This
+  supersedes the Hybrid recommendation below and removes the /work index from the
+  plan (Phase 2 becomes Proof + Work restyle in place).
+- Unchanged non-negotiables: first-person voice, gold accent, the Growth
+  Architecture words, and the content/work.ts proof discipline.
+
 ## Contents
 - Part 0 — Answers to your three questions
 - Part 1 — Cited benchmark (grouped by the 4 dimensions)
