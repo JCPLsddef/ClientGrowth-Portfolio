@@ -8,8 +8,10 @@ type WordRevealProps = {
   className?: string;
   /** Delay before the per-word stagger begins. */
   delay?: number;
-  /** Words rendered in gold (compared with punctuation stripped). */
+  /** Words to accent (compared with punctuation stripped). */
   highlight?: string[];
+  /** Class applied to highlighted words. Defaults to gold. */
+  highlightClassName?: string;
 };
 
 const container: Variants = {
@@ -31,6 +33,7 @@ export default function WordReveal({
   className = "",
   delay = 0,
   highlight = [],
+  highlightClassName = "text-gold",
 }: WordRevealProps) {
   const reduce = useReducedMotion();
   if (reduce) {
@@ -63,7 +66,7 @@ export default function WordReveal({
               <motion.span
                 variants={word}
                 style={{ display: "inline-block" }}
-                className={isGold ? "text-gold" : undefined}
+                className={isGold ? highlightClassName : undefined}
               >
                 {w}
               </motion.span>

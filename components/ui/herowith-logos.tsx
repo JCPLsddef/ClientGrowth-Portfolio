@@ -1,5 +1,8 @@
 import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
+import Reveal from "@/components/Reveal";
+import WordReveal from "@/components/WordReveal";
+import Magnetic from "@/components/Magnetic";
 
 const FUIHeroWithBorders = () => {
   return (
@@ -26,6 +29,7 @@ const FUIHeroWithBorders = () => {
         {/* Eyebrow */}
         <div className="flex flex-col items-center justify-end">
           <div className="flex max-w-[88vw] items-center gap-2 !border !border-b-0 border-white/10 px-4 py-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#D4A853]" aria-hidden="true" />
             <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A853] sm:text-xs">
               Growth systems for local service businesses
             </p>
@@ -36,44 +40,62 @@ const FUIHeroWithBorders = () => {
         <div>
           <div className="mx-auto flex min-h-[288px] max-w-[80vw] shrink-0 flex-col items-center justify-center gap-5 px-2 py-10 sm:px-10 lg:px-24">
             <h1
-              className="font-display text-pretty text-center font-extrabold leading-[0.98] tracking-tight text-[#F5F0E8] md:max-w-screen-lg"
-              style={{ fontSize: "clamp(40px, 7vw, 84px)" }}
+              className="font-display text-pretty text-center font-extrabold leading-[0.95] tracking-[-0.02em] text-[#F5F0E8] md:max-w-screen-lg"
+              style={{ fontSize: "clamp(44px, 8vw, 92px)" }}
             >
-              Become the <span className="shiny-gold">obvious</span>{" "}
-              <span className="shiny-gold">choice</span> in your market.
+              <WordReveal
+                text="Become the obvious choice in your market."
+                highlight={["obvious", "choice"]}
+                highlightClassName="shiny-gold"
+              />
             </h1>
-            <h2 className="max-w-2xl text-pretty text-center text-base leading-relaxed text-[#F5F0E8]/75 md:text-lg">
-              You built a business worth choosing. Online, a weaker competitor
-              still looks easier to trust. I fix that. I build the website, the
-              Google visibility, and the follow-up that make the right customers
-              find you first and call you already sold.
-            </h2>
+            <Reveal delay={0.45}>
+              <h2 className="max-w-2xl text-pretty text-center text-base leading-relaxed text-[#F5F0E8]/75 md:text-lg">
+                You built a business worth choosing. Online, a weaker competitor
+                still looks easier to trust. I fix that.
+              </h2>
+            </Reveal>
           </div>
         </div>
 
-        {/* CTAs — solid-gold pill + text link (brand) */}
+        {/* CTAs — magnetic solid-gold pill + text link (brand) */}
         <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="#audit"
-              className={clsx(
-                "cta-shine rounded-full px-7 py-3.5 text-sm font-semibold text-night",
-                "transition-transform hover:scale-[1.03]",
-              )}
-              style={{ backgroundColor: "#D4A853" }}
-            >
-              Get your free Visibility Audit
-            </a>
-            <a
-              href="#apply"
-              className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 hover:underline"
-            >
-              Apply to be a Partner →
-            </a>
-          </div>
-          <p className="max-w-md text-center text-sm text-[#F5F0E8]/55">
-            Most owners cannot say where they lose customers. After this, you can.
-          </p>
+          <Reveal delay={0.55}>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Magnetic>
+                <a
+                  href="#audit"
+                  className={clsx(
+                    "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
+                    "transition-transform hover:scale-[1.03]",
+                  )}
+                  style={{ backgroundColor: "#D4A853" }}
+                >
+                  Get your free Visibility Audit
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.2}>
+                <a
+                  href="#apply"
+                  className="block text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
+                >
+                  Apply to be a Partner →
+                </a>
+              </Magnetic>
+            </div>
+          </Reveal>
+          <Reveal delay={0.65}>
+            <div className="flex flex-col items-center gap-1.5 text-center">
+              {/* Mechanism, in one line. Doubles as a craft signal for hiring teams. */}
+              <p className="max-w-xl text-sm text-[#F5F0E8]/70">
+                The website, the Google visibility, and the AI follow-up. Built and
+                shipped as one system.
+              </p>
+              <p className="max-w-md text-sm text-[#F5F0E8]/55">
+                Most owners cannot say where they lose customers. After this, you can.
+              </p>
+            </div>
+          </Reveal>
         </div>
 
         {/* Client logo bar + proof line */}

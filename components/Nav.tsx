@@ -3,6 +3,13 @@
 import { useEffect, useState } from "react";
 import KnightLogo from "@/components/KnightLogo";
 
+const LINKS = [
+  { href: "#work", label: "Work" },
+  { href: "#system", label: "System" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#how-i-think", label: "For hiring teams" },
+];
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -32,13 +39,24 @@ export default function Nav() {
             CLIENT GROWTH
           </span>
         </a>
+
         <nav className="flex items-center gap-5 text-sm sm:gap-6">
-          <a
-            href="#work"
-            className="hidden font-semibold text-ink-soft transition-colors hover:text-ink md:inline"
-          >
-            For hiring teams
-          </a>
+          <ul className="hidden items-center gap-6 lg:flex">
+            {LINKS.map((link, i) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="group flex items-center gap-1.5 font-medium text-ink-soft transition-colors hover:text-ink"
+                >
+                  <span className="font-mono text-[10px] text-gold/70">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
           <div className="hidden items-center gap-1 sm:flex">
             <button className="font-semibold text-ink">EN</button>
             <span className="opacity-30">/</span>
@@ -46,6 +64,7 @@ export default function Nav() {
               FR
             </button>
           </div>
+
           <a
             href="#audit"
             className="cta-shine whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold text-night transition-transform hover:scale-[1.03] sm:px-5 sm:py-2.5 sm:text-sm"
