@@ -39,7 +39,12 @@ export type WorkClient = {
   caseStudyHref?: string;
 };
 
-export type TestimonialPlacement = "hero" | "afterStats" | "inWork" | "nearPricing";
+export type TestimonialPlacement =
+  | "hero"
+  | "afterStats"
+  | "inWork"
+  | "nearPricing"
+  | "finalCta";
 
 export type Testimonial = {
   /** TODO_TEXT -> real full name. Do not invent. */
@@ -144,6 +149,14 @@ export const testimonials: Testimonial[] = [
     photo: TODO_IMG,
     loom: TODO_LOOM,
     placement: "nearPricing",
+  },
+  {
+    name: TODO_TEXT,
+    business: "Triple W Rentals",
+    quote: TODO_TEXT,
+    photo: TODO_IMG,
+    loom: TODO_LOOM,
+    placement: "finalCta",
   },
 ];
 
