@@ -36,6 +36,10 @@ const BUILT = [
 export default function TripleWCaseStudy() {
   const hasQuote = !isTodo(tripleW.quote);
   const hasName = !isTodo(tripleW.quoteName);
+  const hasLoom = !isTodo(tripleW.loom);
+  const showWords = hasQuote || hasLoom;
+  const showBeforeAfter =
+    !isTodo(tripleW.beforeShot) || !isTodo(tripleW.afterShot);
 
   return (
     <main className="min-h-screen">
@@ -236,90 +240,94 @@ export default function TripleWCaseStudy() {
           </Reveal>
 
           {/* Before / after */}
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {[
-              { label: "Before", shot: tripleW.beforeShot },
-              { label: "After", shot: tripleW.afterShot },
-            ].map((item, i) => (
-              <Reveal key={item.label} delay={i * 0.08}>
-                <figure
-                  className="overflow-hidden rounded-xl bg-white"
-                  style={{ border: "1px solid rgba(20,17,13,0.12)" }}
-                >
-                  <figcaption
-                    className="border-b px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-ink-soft"
-                    style={{ borderColor: "rgba(20,17,13,0.08)" }}
+          {showBeforeAfter && (
+            <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {[
+                { label: "Before", shot: tripleW.beforeShot },
+                { label: "After", shot: tripleW.afterShot },
+              ].map((item, i) => (
+                <Reveal key={item.label} delay={i * 0.08}>
+                  <figure
+                    className="overflow-hidden rounded-xl bg-white"
+                    style={{ border: "1px solid rgba(20,17,13,0.12)" }}
                   >
-                    {item.label}
-                  </figcaption>
-                  <div
-                    className="relative aspect-[16/10] w-full"
-                    style={{ backgroundColor: "#0D0B09" }}
-                  >
-                    {isTodo(item.shot) ? (
-                      <div className="flex h-full w-full items-center justify-center">
-                        {/* TODO: before/after screenshot (content/work.ts -> tripleW.beforeShot / afterShot) */}
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-[#756D63]">
-                          Screenshot coming
-                        </span>
-                      </div>
-                    ) : (
-                      <Image
-                        src={item.shot}
-                        alt={`Triple W Rentals, ${item.label.toLowerCase()}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover object-top"
-                      />
-                    )}
-                  </div>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
+                    <figcaption
+                      className="border-b px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-ink-soft"
+                      style={{ borderColor: "rgba(20,17,13,0.08)" }}
+                    >
+                      {item.label}
+                    </figcaption>
+                    <div
+                      className="relative aspect-[16/10] w-full"
+                      style={{ backgroundColor: "#0D0B09" }}
+                    >
+                      {isTodo(item.shot) ? (
+                        <div className="flex h-full w-full items-center justify-center">
+                          <span className="text-[10px] uppercase tracking-[0.18em] text-[#756D63]">
+                            Screenshot coming
+                          </span>
+                        </div>
+                      ) : (
+                        <Image
+                          src={item.shot}
+                          alt={`Triple W Rentals, ${item.label.toLowerCase()}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover object-top"
+                        />
+                      )}
+                    </div>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* 4. In his words */}
-      <section
-        className="px-6 py-20 sm:py-28"
-        style={{ backgroundColor: "#14110D", color: "#F5F0E8" }}
-      >
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <p
-              className="mb-6 text-xs font-bold uppercase tracking-[0.2em]"
-              style={{ color: "#D4A853" }}
-            >
-              In his words
-            </p>
-            {/* TODO (content/work.ts -> tripleW.quote / quoteName): the owner's real quote and name. */}
-            <blockquote>
+      {showWords && (
+        <section
+          className="px-6 py-20 sm:py-28"
+          style={{ backgroundColor: "#14110D", color: "#F5F0E8" }}
+        >
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
               <p
-                className={`font-display font-bold leading-snug ${
-                  hasQuote ? "text-[#F5F0E8]" : "text-[#F5F0E8]/45"
-                }`}
-                style={{ fontSize: "clamp(22px, 3.2vw, 34px)" }}
+                className="mb-6 text-xs font-bold uppercase tracking-[0.2em]"
+                style={{ color: "#D4A853" }}
               >
-                {hasQuote
-                  ? tripleW.quote
-                  : "A verified quote from the owner of Triple W lands here."}
+                In his words
               </p>
-            </blockquote>
-            <p className="mt-6 text-sm font-semibold text-[#F5F0E8]">
-              {hasName ? tripleW.quoteName : "Owner"}
-              <span className="text-[#F5F0E8]/55"> · Triple W Rentals</span>
-            </p>
-          </Reveal>
-          <Reveal delay={0.1} className="mt-8 flex justify-center">
-            <VideoModal
-              src={tripleW.loom}
-              title="Triple W Rentals, in his words"
-              label="Watch the 30 second clip"
-            />
-          </Reveal>
-        </div>
-      </section>
+              {hasQuote && (
+                <>
+                  <blockquote>
+                    <p
+                      className="font-display font-bold leading-snug text-[#F5F0E8]"
+                      style={{ fontSize: "clamp(22px, 3.2vw, 34px)" }}
+                    >
+                      {tripleW.quote}
+                    </p>
+                  </blockquote>
+                  <p className="mt-6 text-sm font-semibold text-[#F5F0E8]">
+                    {hasName ? tripleW.quoteName : "Owner"}
+                    <span className="text-[#F5F0E8]/55"> · Triple W Rentals</span>
+                  </p>
+                </>
+              )}
+            </Reveal>
+            {hasLoom && (
+              <Reveal delay={0.1} className="mt-8 flex justify-center">
+                <VideoModal
+                  src={tripleW.loom}
+                  title="Triple W Rentals, in his words"
+                  label="Watch the 30 second clip"
+                />
+              </Reveal>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 5. CTA */}
       <section

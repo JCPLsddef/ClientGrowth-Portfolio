@@ -147,10 +147,13 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+// Only surface a testimonial once it has a real quote. While the quote is a
+// TODO placeholder, every placement renders nothing instead of a stub.
 export function testimonialFor(
   placement: TestimonialPlacement,
 ): Testimonial | undefined {
-  return testimonials.find((t) => t.placement === placement);
+  const t = testimonials.find((x) => x.placement === placement);
+  return t && !isTodo(t.quote) ? t : undefined;
 }
 
 // Triple W Rentals case study (/work/triple-w-rentals). The narrative prose
