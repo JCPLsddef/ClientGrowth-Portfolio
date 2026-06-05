@@ -35,8 +35,8 @@ export default function Reframe() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="font-medium text-ink">
-              That is the difference between spending money on marketing and
-              owning your market.
+              That is the difference between renting attention and owning your
+              market.
             </p>
           </Reveal>
         </div>

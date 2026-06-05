@@ -32,7 +32,13 @@ export default function Nav() {
             CLIENT GROWTH
           </span>
         </a>
-        <nav className="flex items-center gap-6 text-sm">
+        <nav className="flex items-center gap-5 text-sm sm:gap-6">
+          <a
+            href="#work"
+            className="hidden font-semibold text-ink-soft transition-colors hover:text-ink md:inline"
+          >
+            For hiring teams
+          </a>
           <div className="hidden items-center gap-1 sm:flex">
             <button className="font-semibold text-ink">EN</button>
             <span className="opacity-30">/</span>

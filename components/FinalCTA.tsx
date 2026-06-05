@@ -30,9 +30,9 @@ export default function FinalCTA() {
             className="mx-auto mt-6 max-w-xl text-lg"
             style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}
           >
-            Tell me about your business. I&apos;ll send back a free Visibility
-            Audit: exactly where you are losing customers to competitors right
-            now, and what it would take to become the obvious choice.
+            Tell me about your business. I will send back a free Visibility
+            Audit. You will see exactly where you are losing customers right now,
+            and the fastest path to becoming the obvious choice.
           </p>
         </Reveal>
         <Reveal delay={0.14}>

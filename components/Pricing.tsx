@@ -1,6 +1,10 @@
 import Reveal from "@/components/Reveal";
+import TestimonialCard from "@/components/work/TestimonialCard";
+import { testimonialFor } from "@/content/work";
 
 export default function Pricing() {
+  const nearPricing = testimonialFor("nearPricing");
+
   return (
     <section
       id="pricing"
@@ -71,6 +75,12 @@ export default function Pricing() {
             </div>
           </Reveal>
         </div>
+        {nearPricing && (
+          <Reveal className="mx-auto mt-12 flex max-w-xl justify-center">
+            <TestimonialCard testimonial={nearPricing} />
+          </Reveal>
+        )}
+
         <Reveal className="mt-10 text-center">
           <p className="text-base font-medium text-ink">
             I run a maximum of three Partnership clients at a time. When the seats
@@ -83,6 +93,15 @@ export default function Pricing() {
           >
             See if your business qualifies → Apply to be a Partner
           </a>
+          <p className="mt-5 text-sm text-ink-soft">
+            Not ready to apply.{" "}
+            <a
+              href="#audit"
+              className="font-semibold text-ink underline underline-offset-4 transition-colors hover:text-ink-soft"
+            >
+              See what this looks like first.
+            </a>
+          </p>
         </Reveal>
       </div>
     </section>
