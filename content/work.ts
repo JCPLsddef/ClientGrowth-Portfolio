@@ -29,6 +29,8 @@ export type WorkClient = {
   logo: string;
   /** One line of result, brand voice. Written from facts already on this site. */
   result: string;
+  /** French translation of `result`. */
+  resultFr: string;
   /** TODO_URL -> the live client website (opens in a new tab) */
   liveUrl: string;
   /** TODO_IMG -> desktop screenshot at /public/work/<slug>.webp */
@@ -67,6 +69,8 @@ export const clients: WorkClient[] = [
     logo: TODO_IMG,
     result:
       "$41,085 in 30 days from $900 in ad spend. 46x return, around $33 per qualified call.",
+    resultFr:
+      "41 085 $ en 30 jours à partir de 900 $ en publicité. Rendement de 46x, environ 33 $ par appel qualifié.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
     span: "feature",
@@ -77,6 +81,7 @@ export const clients: WorkClient[] = [
     name: "Texas Real Estate",
     logo: TODO_IMG,
     result: "From invisible to #1 in Google impression share in his market.",
+    resultFr: "D'invisible à no 1 en part d'impressions Google dans son marché.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
     span: "wide",
@@ -86,6 +91,8 @@ export const clients: WorkClient[] = [
     name: "Elite Barbershop",
     logo: TODO_IMG,
     result: "90 new clients in 90 days. Site, ads, and SEO compounding together.",
+    resultFr:
+      "90 nouveaux clients en 90 jours. Site, publicités et SEO qui s'additionnent.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
   },
@@ -94,6 +101,8 @@ export const clients: WorkClient[] = [
     name: "Culture Barbershop",
     logo: TODO_IMG,
     result: "A fully custom site that finally matches the quality of the cuts.",
+    resultFr:
+      "Un site entièrement sur mesure, enfin à la hauteur de la qualité des coupes.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
   },
@@ -102,6 +111,7 @@ export const clients: WorkClient[] = [
     name: "Absolute Painting",
     logo: TODO_IMG,
     result: "Website and Google Ads in a crowded Texas market.",
+    resultFr: "Site web et Google Ads dans un marché texan saturé.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
   },
@@ -110,6 +120,8 @@ export const clients: WorkClient[] = [
     name: "Centre Dentaire Saint-Élzéar",
     logo: TODO_IMG,
     result: "A clinic site built to book appointments, not just sit there.",
+    resultFr:
+      "Un site de clinique conçu pour prendre des rendez-vous, pas juste exister.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
   },

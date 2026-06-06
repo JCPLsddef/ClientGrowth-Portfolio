@@ -18,13 +18,39 @@ export type Lead = {
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
+// Localized reply copy so the form answers in the visitor's language.
+const MESSAGES = {
+  en: {
+    thanks: "Thanks.",
+    missing: "Please add your name, business, and email so I can reach you.",
+    badEmail: "That email address does not look right.",
+    delivery:
+      "Something went wrong on my end. Please email juan@clientgrowth.ca directly and I'll get right back to you.",
+    success:
+      "Got it. I'll review your business myself and get back to you personally. Talk soon.",
+  },
+  fr: {
+    thanks: "Merci.",
+    missing:
+      "Ajoutez votre nom, votre entreprise et votre courriel pour que je puisse vous joindre.",
+    badEmail: "Cette adresse courriel ne semble pas valide.",
+    delivery:
+      "Un problème est survenu de mon côté. Écrivez-moi directement à juan@clientgrowth.ca et je vous reviens tout de suite.",
+    success:
+      "C'est noté. Je vais évaluer votre entreprise moi-même et vous revenir personnellement. À bientôt.",
+  },
+} as const;
+
 export async function submitLead(
   _prev: LeadState,
   formData: FormData
 ): Promise<LeadState> {
+  const lang = ((formData.get("lang") as string) || "en") === "fr" ? "fr" : "en";
+  const m = MESSAGES[lang];
+
   // Honeypot: real users never fill this hidden field; bots do.
   if (((formData.get("company_url") as string) || "").trim()) {
-    return { status: "success", message: "Thanks." };
+    return { status: "success", message: m.thanks };
   }
 
   const name = ((formData.get("name") as string) || "").trim();
@@ -36,13 +62,10 @@ export async function submitLead(
   const message = ((formData.get("message") as string) || "").trim();
 
   if (!name || !business || !email) {
-    return {
-      status: "error",
-      message: "Please add your name, business, and email so I can reach you.",
-    };
+    return { status: "error", message: m.missing };
   }
   if (!EMAIL_RE.test(email)) {
-    return { status: "error", message: "That email address does not look right." };
+    return { status: "error", message: m.badEmail };
   }
 
   const lead: Lead = {
@@ -60,18 +83,10 @@ export async function submitLead(
     await deliverLead(lead);
   } catch (err) {
     console.error("[lead] delivery failed:", err);
-    return {
-      status: "error",
-      message:
-        "Something went wrong on my end. Please email juan@clientgrowth.ca directly and I'll get right back to you.",
-    };
+    return { status: "error", message: m.delivery };
   }
 
-  return {
-    status: "success",
-    message:
-      "Got it. I'll review your business myself and get back to you personally. Talk soon.",
-  };
+  return { status: "success", message: m.success };
 }
 
 /**

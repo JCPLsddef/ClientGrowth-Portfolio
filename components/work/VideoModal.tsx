@@ -10,11 +10,12 @@ import {
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { isTodo } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 type VideoModalProps = {
   src: string | null; // Loom embed URL; a TODO sentinel shows a "coming soon" panel
   title: string; // used for the dialog label and heading
-  label?: string; // trigger button text
+  label?: string; // trigger button text (defaults to the localized label)
   className?: string; // optional trigger button class override
 };
 
@@ -24,9 +25,11 @@ type VideoModalProps = {
 export default function VideoModal({
   src,
   title,
-  label = "Watch the 30 second clip",
+  label,
   className,
 }: VideoModalProps) {
+  const { t } = useLang();
+  const resolvedLabel = label ?? t.videoModal.defaultLabel;
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const titleId = useId();
@@ -95,7 +98,7 @@ export default function VideoModal({
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M8 5v14l11-7z" />
         </svg>
-        {label}
+        {resolvedLabel}
       </button>
 
       {mounted &&
@@ -134,7 +137,7 @@ export default function VideoModal({
                     <button
                       type="button"
                       onClick={() => setOpen(false)}
-                      aria-label="Close video"
+                      aria-label={t.videoModal.close}
                       className="rounded-full p-1.5 text-[#A69D8D] transition-colors hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F5F0E8]"
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -165,7 +168,7 @@ export default function VideoModal({
                     >
                       {/* TODO: Loom embed URL (content/work.ts) */}
                       <span className="px-6 text-sm text-[#A69D8D]">
-                        A 30 second clip from the owner lands here once recorded.
+                        {t.videoModal.placeholder}
                       </span>
                     </div>
                   )}

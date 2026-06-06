@@ -4,8 +4,11 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import SectionLabel from "@/components/SectionLabel";
 import UnicornScene from "@/components/UnicornScene";
+import { useLang } from "@/components/LanguageProvider";
 
 export default function Founder() {
+  const { t } = useLang();
+  const f = t.founder;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -26,9 +29,10 @@ export default function Founder() {
     <section
       id="founder"
       ref={ref}
-      style={{ position: "relative", height: "230vh", backgroundColor: "var(--marble)" }}
+      className="h-[180vh] sm:h-[230vh]"
+      style={{ position: "relative", backgroundColor: "var(--marble)" }}
     >
-      <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
+      <div className="sticky top-0 h-[100svh] overflow-hidden sm:h-screen">
         {/* Layer 1: JCPL monogram */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.span
@@ -57,32 +61,27 @@ export default function Founder() {
           <div className="grid max-w-5xl grid-cols-1 items-center gap-10 md:grid-cols-2">
             <div>
               <SectionLabel index="06" className="mb-4">
-                Who you&apos;re working with
+                {f.label}
               </SectionLabel>
               <h2
                 className="font-display font-extrabold leading-[1.05] tracking-tight text-ink"
                 style={{ fontSize: "clamp(30px, 4.2vw, 50px)" }}
               >
-                Juan-Carlos
+                {f.name1}
                 <br />
-                Portillo-Laflamme
+                {f.name2}
               </h2>
               <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-ink-soft">
-                <p>
-                  I run Client Growth myself, out of Laval, Quebec. When you hire
-                  me, you get me. Not a sales rep who vanishes after you sign. Not
-                  a junior learning on your account. Not a queue of other clients
-                  ahead of you.
-                </p>
-                <p>
-                  I take a maximum of three clients at a time. That is not a
-                  marketing line. It is how I make sure every system I build
-                  actually performs.
-                </p>
-                <p className="font-medium text-ink">
-                  I measure one number: qualified calls on your calendar. If that
-                  number is not growing, I have not done my job yet.
-                </p>
+                {f.paragraphs.map((para, i) => (
+                  <p
+                    key={i}
+                    className={
+                      i === f.paragraphs.length - 1 ? "font-medium text-ink" : undefined
+                    }
+                  >
+                    {para}
+                  </p>
+                ))}
               </div>
             </div>
 
@@ -91,7 +90,7 @@ export default function Founder() {
               className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl"
               style={{ border: "1px solid rgba(212,168,83,0.4)" }}
             >
-              <UnicornScene className="h-full w-full" />
+              <UnicornScene className="h-full w-full" alt={f.photoAlt} />
             </div>
           </div>
         </motion.div>

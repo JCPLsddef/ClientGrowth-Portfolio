@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import MockupFrame from "@/components/work/MockupFrame";
 import SpotlightCard from "@/components/work/SpotlightCard";
 import { isTodo, type WorkClient } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 // One Work card. With a screenshot it shows a browser mockup beside (feature/
 // wide) or above the copy. Until a screenshot is supplied it shows a clean
@@ -13,10 +16,12 @@ export default function WorkCard({
   client: WorkClient;
   index?: string;
 }) {
+  const { t, lang } = useLang();
   const hasUrl = !isTodo(client.liveUrl);
   const hasShot = !isTodo(client.shot);
   const isWide = client.span === "feature" || client.span === "wide";
   const isFeature = client.span === "feature";
+  const result = lang === "fr" ? client.resultFr : client.result;
 
   const body = (
     <div className="flex flex-1 flex-col justify-center gap-4 p-6 sm:p-7">
@@ -31,7 +36,7 @@ export default function WorkCard({
             className="inline-flex w-fit items-center rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
             style={{ backgroundColor: "rgba(212,168,83,0.14)", color: "#D4A853" }}
           >
-            Signature result
+            {t.work.signatureResult}
           </span>
         )}
       </div>
@@ -40,7 +45,7 @@ export default function WorkCard({
           isFeature ? "text-2xl" : "text-lg"
         }`}
       >
-        {client.result}
+        {result}
       </p>
       {(hasUrl || client.caseStudyHref) && (
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -51,7 +56,7 @@ export default function WorkCard({
               rel="noopener noreferrer"
               className="text-sm font-semibold text-[#D4A853] underline-offset-4 hover:underline"
             >
-              View live site →
+              {t.work.viewLive}
             </a>
           )}
           {client.caseStudyHref && (
@@ -59,7 +64,7 @@ export default function WorkCard({
               href={client.caseStudyHref}
               className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
             >
-              See the build →
+              {t.work.seeBuild}
             </Link>
           )}
         </div>

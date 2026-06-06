@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { isTodo, type WorkClient } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 // Browser-chrome frame around a client site screenshot. Until a real screenshot
 // is supplied (content/work.ts -> client.shot) it shows a neutral on-brand
 // placeholder so the grid looks intentional. The fixed 16:10 aspect ratio keeps
 // layout shift at zero when the real image lands.
 export default function MockupFrame({ client }: { client: WorkClient }) {
+  const { t } = useLang();
   const hasShot = !isTodo(client.shot);
   const hasUrl = !isTodo(client.liveUrl);
   const displayUrl = hasUrl
@@ -50,7 +54,7 @@ export default function MockupFrame({ client }: { client: WorkClient }) {
               {client.name}
             </span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-[#756D63]">
-              Screenshot coming
+              {t.work.screenshotComing}
             </span>
           </div>
         )}
