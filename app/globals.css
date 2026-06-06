@@ -122,6 +122,36 @@ body {
   }
 }
 
+/* Growth System set-piece: gold energy flowing outward along each spoke, and a
+   slow breathing hub. Only mounted on desktop with motion allowed, but guarded
+   for reduced motion as a belt-and-suspenders measure. */
+@keyframes systemFlow {
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+.system-flow-line {
+  animation: systemFlow 2.4s linear infinite;
+}
+@keyframes systemHub {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+.system-hub-pulse {
+  animation: systemHub 3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-flow-line,
+  .system-hub-pulse {
+    animation: none;
+  }
+}
+
 /* Visible keyboard focus ring for every interactive element (brand gold). */
 :where(a, button, [role="button"], input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
   outline: 2px solid #d4a853;
