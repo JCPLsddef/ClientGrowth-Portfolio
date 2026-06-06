@@ -1,9 +1,14 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
 import AuditForm from "@/components/AuditForm";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 export default function FinalCTA() {
+  const { t } = useLang();
+  const c = t.finalCta;
   const finalCta = testimonialFor("finalCta");
 
   return (
@@ -25,8 +30,9 @@ export default function FinalCTA() {
             className="font-display font-extrabold leading-[1.05] tracking-tight"
             style={{ fontSize: "clamp(32px, 4.8vw, 58px)" }}
           >
-            Stop being your market&apos;s{" "}
-            <span style={{ color: "#D4A853" }}>best-kept secret.</span>
+            {c.headlinePrefix}
+            <span style={{ color: "#D4A853" }}>{c.headlineGold}</span>
+            {c.headlineSuffix}
           </h2>
         </Reveal>
         <Reveal delay={0.08}>
@@ -34,9 +40,7 @@ export default function FinalCTA() {
             className="mx-auto mt-6 max-w-xl text-lg"
             style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}
           >
-            Tell me about your business. I will send back a free Visibility
-            Audit. You will see exactly where you are losing customers right now,
-            and the fastest path to becoming the obvious choice.
+            {c.sub}
           </p>
         </Reveal>
 
@@ -55,8 +59,7 @@ export default function FinalCTA() {
         </Reveal>
         <Reveal delay={0.2}>
           <p className="mt-10 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Prefer to talk? +1 (438) 522-0907 · juan@clientgrowth.ca · Three
-            client seats. Founder-led. Quebec.
+            {c.contact}
           </p>
         </Reveal>
       </div>

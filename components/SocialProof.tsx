@@ -1,12 +1,16 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 // Social proof band directly under the hero: the first trust hit. One client
 // testimonial sitting right below the hero logo bar. The dark testimonial card
 // reads cleanly against this warm cream band (and matches the cream sections it
 // is reused on later: after the stats and near pricing).
 export default function SocialProof() {
+  const { t } = useLang();
   const heroTestimonial = testimonialFor("hero");
   if (!heroTestimonial) return null;
 
@@ -22,7 +26,7 @@ export default function SocialProof() {
             className="text-xs font-bold uppercase tracking-[0.2em]"
             style={{ color: "#B8893B" }}
           >
-            What my clients say
+            {t.socialProof.label}
           </p>
         </Reveal>
         <Reveal delay={0.06} className="flex justify-center">

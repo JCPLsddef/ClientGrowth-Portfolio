@@ -2,66 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-
-type FaqItem = { question: string; answer: string; featured?: boolean };
+import { useLang } from "@/components/LanguageProvider";
 
 const GOLD = "#D4A853";
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    featured: true,
-    question: "I ran Google Ads before and lost money. Why would this be different?",
-    answer:
-      "Because ads without a conversion system are just expensive traffic. You got clicks. The website that received them was not built to close. The targeting was not built around purchase intent. The landing page was probably your home page.\n\nI have seen this exact story more times than I can count. A business owner spends $500 to $1,000, gets clicks, gets zero calls, and concludes ads do not work in their industry.\n\nThe clicks were real. Everything behind them was not built. I build it first. Then the ads run. When the funnel exists before the traffic, the calls come. The difference between losing money on ads and 46x return on ad spend is the infrastructure that receives the traffic.",
-  },
-  {
-    question: "What exactly is the Growth Architecture?",
-    answer:
-      "It's a complete acquisition system. Not just a website, not just ads. All of it, built together so each part makes the others stronger. Positioning, conversion website, Google Ads, AI automation, lead qualification, monthly optimization. Built once. Improved every month. It's the last marketing system you will need to think about.",
-  },
-  {
-    question: "How fast will I see results?",
-    answer:
-      "Fast build from signed agreement to live system. That includes the diagnostic audit, full website build, and campaign setup. Most clients see their first inbound call within weeks of going live. The full system reaches peak efficiency at 60 to 90 days as the SEO compounds and the ad campaigns optimize. The tracking dashboard shows you every call, every cost, and every source from day one.",
-  },
-  {
-    question: "What happens if I already have a website?",
-    answer:
-      "If it converts, I keep it. If it does not, I rebuild it around one goal: booking calls.",
-  },
-  {
-    question: "What is the minimum I need to invest in ads?",
-    answer:
-      "I recommend starting at $500 per month. At $33 per qualified call, that is roughly 15 calls. One closed job usually covers the entire system cost.",
-  },
-  {
-    question: "How is this different from hiring a regular agency?",
-    answer:
-      "An agency delivers a project and moves to the next client. I measure my success by one number: qualified calls on your calendar. If that number is not growing every month, I have not done my job. I own the full system, which means nothing falls through the gaps between vendors. And I have never sent a report full of impressions as a substitute for actual results.",
-  },
-  {
-    question: "What if it does not work?",
-    answer:
-      "If I do not produce a measurable result in the first 90 days, you stop paying and I keep working until I do. You keep every asset I have built for you, and you can ask for improvements anytime, free.\n\nI do not take clients I do not believe I can help. That is why there is an application. I review your business before agreeing to work with you, not after you have paid.",
-  },
-  {
-    question: "What does this cost?",
-    answer:
-      "Two ways in. Individual builds start at $600 for a conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
-  },
-  {
-    question: "Who is NOT a good fit?",
-    answer:
-      "Businesses under $5K per month in revenue. Businesses wanting a logo, a brochure site, or a one-off project. Anyone not ready to commit to a 90-day initial run. Anyone who wants to test the waters with no real system behind it.",
-  },
-  {
-    question: "Who is this built for?",
-    answer:
-      "Service businesses generating $5K or more per month that rely too heavily on referrals and want a predictable, scalable way to get new clients from the internet. Painters, barbershops, RV rental companies, dental clinics, and any local service where the phone needs to ring with qualified buyers.",
-  },
-];
-
 export default function FAQ() {
+  const { t } = useLang();
+  const faq = t.faq;
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   const toggle = (i: number) => setOpenIndex((cur) => (cur === i ? -1 : i));
@@ -77,7 +24,7 @@ export default function FAQ() {
           className="mb-4 text-xs font-bold uppercase tracking-[0.2em]"
           style={{ color: GOLD }}
         >
-          Questions
+          {faq.label}
         </p>
         <h2
           className="mx-auto max-w-xl font-display text-white"
@@ -88,23 +35,24 @@ export default function FAQ() {
             letterSpacing: "-0.025em",
           }}
         >
-          Questions Serious Buyers Ask.
+          {faq.headline}
         </h2>
         <p
           className="mx-auto mt-5 max-w-lg"
           style={{ fontSize: 18, lineHeight: 1.75, color: "rgba(255,255,255,0.6)" }}
         >
-          I would rather answer the hard ones here than waste your time on a call.
+          {faq.sub}
         </p>
       </div>
 
       <ul role="list" className="mx-auto flex max-w-2xl flex-col gap-3">
-        {FAQ_ITEMS.map((item, i) => {
+        {faq.items.map((item, i) => {
+          const featured = i === 0;
           const isOpen = openIndex === i;
           const answerId = `faq-answer-${i}`;
           const borderClass = isOpen
             ? "border border-[rgba(212,168,83,0.45)]"
-            : item.featured
+            : featured
               ? "border border-[rgba(212,168,83,0.35)]"
               : "border border-[rgba(255,255,255,0.07)] hover:border-[rgba(212,168,83,0.25)]";
           const paragraphs = item.answer.split("\n\n");
@@ -134,7 +82,7 @@ export default function FAQ() {
                 className="flex w-full items-center justify-between gap-4 p-5 text-left md:p-6"
               >
                 <span className="flex flex-col gap-2">
-                  {item.featured && !isOpen && (
+                  {featured && !isOpen && (
                     <span
                       className="inline-flex w-fit items-center rounded-md"
                       style={{
@@ -148,7 +96,7 @@ export default function FAQ() {
                         padding: "2px 8px",
                       }}
                     >
-                      Most common objection
+                      {faq.mostCommon}
                     </span>
                   )}
                   <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.4, color: "#fff" }}>
@@ -222,14 +170,14 @@ export default function FAQ() {
 
       <div className="mx-auto mt-14 max-w-2xl text-center sm:mt-16">
         <p className="mb-5" style={{ color: "rgba(255,255,255,0.6)" }}>
-          Still have a question I did not answer? Let us talk.
+          {faq.footerNote}
         </p>
         <a
           href="#apply"
           className="inline-flex items-center rounded-full px-7 py-3.5 text-sm font-semibold transition-transform hover:scale-[1.03]"
           style={{ backgroundColor: GOLD, color: "#0D0B09" }}
         >
-          Apply to be a Partner →
+          {faq.footerCta}
         </a>
       </div>
     </section>

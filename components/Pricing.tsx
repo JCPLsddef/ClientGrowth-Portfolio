@@ -1,10 +1,15 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
 import Magnetic from "@/components/Magnetic";
 import SectionLabel from "@/components/SectionLabel";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 export default function Pricing() {
+  const { t } = useLang();
+  const p = t.pricing;
   const nearPricing = testimonialFor("nearPricing");
 
   return (
@@ -16,7 +21,7 @@ export default function Pricing() {
       <div className="mx-auto max-w-5xl">
         <Reveal className="mb-12 max-w-2xl">
           <SectionLabel index="07" className="mb-6">
-            Pricing
+            {p.label}
           </SectionLabel>
           <h2
             className="font-display"
@@ -27,9 +32,9 @@ export default function Pricing() {
               lineHeight: 1.1,
             }}
           >
-            Premium presence. Without agency prices.
+            {p.headline}
           </h2>
-          <p className="mt-4 text-lg text-ink-soft">Two ways to work with me.</p>
+          <p className="mt-4 text-lg text-ink-soft">{p.sub}</p>
         </Reveal>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Reveal>
@@ -38,14 +43,13 @@ export default function Pricing() {
               style={{ border: "1px solid rgba(20,17,13,0.08)" }}
             >
               <h3 className="font-display text-xl font-bold text-ink">
-                Conversion Website
+                {p.card1Title}
               </h3>
               <p className="mt-3 font-display text-3xl font-extrabold text-ink">
-                from $600
+                {p.card1Price}
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                A custom, premium website built to convert, not just to look good.
-                Yours to keep.
+                {p.card1Body}
               </p>
             </div>
           </Reveal>
@@ -59,23 +63,21 @@ export default function Pricing() {
             >
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl font-bold text-ink">
-                  Growth Partnership
+                  {p.card2Title}
                 </h3>
                 <span
                   className="rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
                   style={{ backgroundColor: "rgba(212,168,83,0.16)", color: "#B8893B" }}
                 >
-                  Flagship
+                  {p.card2Badge}
                 </span>
               </div>
               <p className="mt-3 font-display text-3xl font-extrabold text-ink">
-                from $2,500
-                <span className="text-lg font-bold">/mo</span>
+                {p.card2Price}
+                <span className="text-lg font-bold">{p.card2PriceSuffix}</span>
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-soft">
-                The full Growth Architecture: conversion website, local SEO and
-                GEO, Google Ads, AI follow-up, and weekly optimization. 90-day
-                initial term, then month to month. No hidden fees.
+                {p.card2Body}
               </p>
               {/* The honest-money trust line, pulled out and given the cool accent. */}
               <div className="mt-auto flex items-start gap-2.5 border-t border-ink/10 pt-5">
@@ -84,7 +86,7 @@ export default function Pricing() {
                   className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-azure"
                 />
                 <p className="text-sm font-semibold text-azure-deep">
-                  Ad spend goes straight to Google, never to me.
+                  {p.trustLine}
                 </p>
               </div>
             </div>
@@ -97,26 +99,23 @@ export default function Pricing() {
         )}
 
         <Reveal className="mt-10 text-center">
-          <p className="text-base font-medium text-ink">
-            I run a maximum of three Partnership clients at a time. When the seats
-            are full, the waitlist opens.
-          </p>
+          <p className="text-base font-medium text-ink">{p.scarcity}</p>
           <Magnetic className="mt-6 inline-block">
             <a
               href="#apply"
               className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
               style={{ backgroundColor: "#D4A853" }}
             >
-              See if your business qualifies → Apply to be a Partner
+              {p.cta}
             </a>
           </Magnetic>
           <p className="mt-5 text-sm text-ink-soft">
-            Not ready to apply.{" "}
+            {p.fallbackPrefix}
             <a
               href="#audit"
               className="font-semibold text-ink underline underline-offset-4 transition-colors hover:text-ink-soft"
             >
-              See what this looks like first.
+              {p.fallbackLink}
             </a>
           </p>
         </Reveal>

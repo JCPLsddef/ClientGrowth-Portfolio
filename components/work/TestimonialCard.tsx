@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import VideoModal from "@/components/work/VideoModal";
 import { isTodo, type Testimonial } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 type TestimonialCardProps = {
   testimonial: Testimonial;
@@ -15,6 +18,7 @@ export default function TestimonialCard({
   testimonial,
   className = "",
 }: TestimonialCardProps) {
+  const { t } = useLang();
   const { name, business, quote, photo } = testimonial;
   const hasQuote = !isTodo(quote);
   const hasName = !isTodo(name);
@@ -38,7 +42,7 @@ export default function TestimonialCard({
             hasQuote ? "text-[#F5F0E8]/85" : "text-[#F5F0E8]/40"
           }`}
         >
-          {hasQuote ? quote : "A verified client quote will appear here."}
+          {hasQuote ? quote : t.testimonial.placeholderQuote}
         </p>
       </blockquote>
 
@@ -65,7 +69,7 @@ export default function TestimonialCard({
         </span>
         <span className="min-w-0">
           <span className="block font-display text-sm font-bold text-[#F5F0E8]">
-            {hasName ? name : "Verified client"}
+            {hasName ? name : t.testimonial.verifiedClient}
           </span>
           <span className="block text-xs text-[#F5F0E8]/55">{business}</span>
         </span>
@@ -76,8 +80,8 @@ export default function TestimonialCard({
           {/* TODO: 30s Loom embed URL (content/work.ts -> testimonials[].loom) */}
           <VideoModal
             src={testimonial.loom}
-            title={`${business}, in their words`}
-            label="Watch the 30s clip"
+            title={`${business}, ${t.testimonial.inTheirWords}`}
+            label={t.testimonial.watchClip}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#D4A853] underline-offset-4 transition-colors hover:underline"
           />
         </div>

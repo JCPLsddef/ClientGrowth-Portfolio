@@ -44,7 +44,13 @@ type UnicornStudioSDK = {
   addScene: (opts: Record<string, unknown>) => Promise<{ destroy?: () => void }>;
 };
 
-export default function UnicornScene({ className = "" }: { className?: string }) {
+export default function UnicornScene({
+  className = "",
+  alt = "Juan-Carlos Portillo-Laflamme, founder of Client Growth",
+}: {
+  className?: string;
+  alt?: string;
+}) {
   const targetId = "unicorn-" + useId().replace(/[^a-zA-Z0-9]/g, "");
   const reducedMotion = usePrefersReducedMotion();
   const sceneRef = useRef<{ destroy?: () => void } | null>(null);
@@ -95,7 +101,7 @@ export default function UnicornScene({ className = "" }: { className?: string })
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={FALLBACK_IMG}
-        alt="Juan-Carlos Portillo-Laflamme, founder of Client Growth"
+        alt={alt}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
       {/* Unicorn Studio renders its canvas into this element. */}

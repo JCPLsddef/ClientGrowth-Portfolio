@@ -9,7 +9,7 @@ type WordRevealProps = {
   /** Delay before the per-word stagger begins. */
   delay?: number;
   /** Words to accent (compared with punctuation stripped). */
-  highlight?: string[];
+  highlight?: readonly string[];
   /** Class applied to highlighted words. Defaults to gold. */
   highlightClassName?: string;
 };

@@ -1,15 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import KnightLogo from "@/components/KnightLogo";
-
-const NAV_LINKS = [
-  { label: "How it works", href: "/#system" },
-  { label: "Work", href: "/#work" },
-  { label: "For hiring teams", href: "/#how-i-think" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Apply", href: "/#apply" },
-];
+import { useLang } from "@/components/LanguageProvider";
 
 export default function Footer() {
+  const { t } = useLang();
+  const f = t.footer;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -55,7 +52,7 @@ export default function Footer() {
             </span>
           </Link>
           <p style={{ color: "#756D63", fontSize: "0.8rem", marginTop: 16, maxWidth: 320 }}>
-            Growth infrastructure for local service businesses.
+            {f.tagline}
           </p>
         </div>
 
@@ -70,10 +67,10 @@ export default function Footer() {
               marginBottom: 16,
             }}
           >
-            Navigation
+            {f.navHeading}
           </h4>
           <ul className="flex flex-col gap-3">
-            {NAV_LINKS.map((l) => (
+            {f.navLinks.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
@@ -97,7 +94,7 @@ export default function Footer() {
               marginBottom: 16,
             }}
           >
-            Legal
+            {f.legalHeading}
           </h4>
           <ul className="flex flex-col gap-3">
             <li>
@@ -105,7 +102,7 @@ export default function Footer() {
                 href="/privacy"
                 className="text-[15px] text-[#A69D8D] transition-colors duration-150 hover:text-white"
               >
-                Privacy Policy
+                {f.privacy}
               </Link>
             </li>
             <li>
@@ -113,7 +110,7 @@ export default function Footer() {
                 href="/terms"
                 className="text-[15px] text-[#A69D8D] transition-colors duration-150 hover:text-white"
               >
-                Terms of Service
+                {f.terms}
               </Link>
             </li>
             <li>
@@ -167,11 +164,9 @@ export default function Footer() {
           padding: "20px max(24px, 5vw)",
         }}
       >
-        <p style={{ fontSize: 12, color: "#756D63" }}>
-          Operated from Quebec, Canada. Founder-led. Juan@clientgrowth.ca
-        </p>
+        <p style={{ fontSize: 12, color: "#756D63" }}>{f.operated}</p>
         <p style={{ fontSize: 13, color: "#756D63", marginTop: 4 }}>
-          © {currentYear} Client Growth. All rights reserved.
+          © {currentYear} Client Growth. {f.rights}
         </p>
       </div>
     </footer>

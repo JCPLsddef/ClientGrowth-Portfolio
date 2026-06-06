@@ -1,3 +1,5 @@
+"use client";
+
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
 import Magnetic from "@/components/Magnetic";
@@ -5,25 +7,27 @@ import SectionLabel from "@/components/SectionLabel";
 import WorkGrid from "@/components/work/WorkGrid";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
+import { useLang } from "@/components/LanguageProvider";
 
 type Stat = {
   end?: number;
   prefix?: string;
   suffix?: string;
   staticValue?: string;
-  label: string;
 };
 
 // 46x, $41,085, and 90 count up on scroll; "#1" stays a literal rank
-// (counting "#0 -> #1" would look wrong). Labels are unchanged.
+// (counting "#0 -> #1" would look wrong). Labels come from the dictionary.
 const STATS: Stat[] = [
-  { end: 46, suffix: "x", label: "Return on ad spend" },
-  { end: 41085, prefix: "$", label: "In 30 days · Triple W" },
-  { end: 90, label: "Clients in 90 days · Elite" },
-  { staticValue: "#1", label: "Impression share · Texas" },
+  { end: 46, suffix: "x" },
+  { end: 41085, prefix: "$" },
+  { end: 90 },
+  { staticValue: "#1" },
 ];
 
 export default function Proof() {
+  const { t } = useLang();
+  const p = t.proof;
   const afterStats = testimonialFor("afterStats");
   const inWork = testimonialFor("inWork");
 
@@ -38,7 +42,7 @@ export default function Proof() {
       <div className="mx-auto max-w-5xl">
         <Reveal className="mb-12 sm:mb-16">
           <SectionLabel index="02" className="mb-6">
-            Work
+            {p.label}
           </SectionLabel>
           <h2
             className="max-w-3xl font-display"
@@ -49,16 +53,14 @@ export default function Proof() {
               lineHeight: 1.05,
             }}
           >
-            I would rather show you than tell you.
+            {p.headline}
           </h2>
-          <p className="mt-4 max-w-xl text-lg text-ink-soft">
-            Real clients, real numbers, and the system behind each one.
-          </p>
+          <p className="mt-4 max-w-xl text-lg text-ink-soft">{p.sub}</p>
         </Reveal>
 
         <div className="mb-14 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-ink/10 py-10 sm:grid-cols-4">
           {STATS.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 0.08} className="text-center">
+            <Reveal key={i} delay={i * 0.08} className="text-center">
               <div
                 className="flex items-center justify-center font-display font-extrabold tabular-nums"
                 style={{
@@ -73,7 +75,7 @@ export default function Proof() {
                 )}
               </div>
               <div className="mt-1 text-xs uppercase tracking-[0.12em] text-ink-soft">
-                {stat.label}
+                {p.statLabels[i]}
               </div>
             </Reveal>
           ))}
@@ -100,7 +102,7 @@ export default function Proof() {
               className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
               style={{ backgroundColor: "#D4A853" }}
             >
-              Get results like these → Free Visibility Audit
+              {p.cta}
             </a>
           </Magnetic>
         </Reveal>

@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLang } from "@/components/LanguageProvider";
 
 // Mobile-only sticky audit CTA. Appears once the visitor scrolls past the hero
 // and hides itself near the audit form and the footer, so it never sits on top
 // of the content it points to.
 export default function MobileStickyCTA() {
+  const { t } = useLang();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function MobileStickyCTA() {
         className="block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold text-night transition-[filter] hover:brightness-105 active:brightness-95"
         style={{ backgroundColor: "#D4A853" }}
       >
-        Free Visibility Audit
+        {t.mobileCta.label}
       </a>
     </div>
   );

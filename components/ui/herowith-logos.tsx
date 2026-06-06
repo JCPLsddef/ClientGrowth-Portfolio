@@ -1,14 +1,19 @@
+"use client";
+
 import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/WordReveal";
 import Magnetic from "@/components/Magnetic";
+import { useLang } from "@/components/LanguageProvider";
 
 const FUIHeroWithBorders = () => {
+  const { t } = useLang();
+  const hero = t.hero;
   return (
     <section
       id="top"
-      className="relative min-h-[calc(100vh-50px)] overflow-hidden bg-[linear-gradient(to_bottom,#0D0B09,#14110D_40%,#4A371A_74%,#D4A853_88%)]"
+      className="relative min-h-[calc(100svh-50px)] overflow-hidden bg-[linear-gradient(to_bottom,#0D0B09,#14110D_40%,#4A371A_74%,#D4A853_88%)] md:min-h-[calc(100vh-50px)]"
     >
       {/* Glowing orb — charcoal core, champagne-gold rim */}
       <div className="absolute left-1/2 top-[calc(100%-90px)] lg:top-[calc(100%-150px)] h-[500px] w-[700px] md:h-[500px] md:w-[1100px] lg:h-[750px] lg:w-[100%] -translate-x-1/2 rounded-[100%] border-[#D4A853] bg-night bg-[radial-gradient(closest-side,#0D0B09_82%,#D4A853)]" />
@@ -31,7 +36,7 @@ const FUIHeroWithBorders = () => {
           <div className="flex max-w-[88vw] items-center gap-2 !border !border-b-0 border-white/10 px-4 py-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#D4A853]" aria-hidden="true" />
             <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A853] sm:text-xs">
-              Growth systems for local service businesses
+              {hero.eyebrow}
             </p>
           </div>
         </div>
@@ -44,15 +49,14 @@ const FUIHeroWithBorders = () => {
               style={{ fontSize: "clamp(44px, 8vw, 92px)" }}
             >
               <WordReveal
-                text="Become the obvious choice in your market."
-                highlight={["obvious", "choice"]}
+                text={hero.headline}
+                highlight={hero.highlight}
                 highlightClassName="shiny-gold"
               />
             </h1>
             <Reveal delay={0.45}>
               <h2 className="max-w-2xl text-pretty text-center text-base leading-relaxed text-[#F5F0E8]/75 md:text-lg">
-                You built a business worth choosing. Online, a weaker competitor
-                still looks easier to trust. I fix that.
+                {hero.subhead}
               </h2>
             </Reveal>
           </div>
@@ -71,7 +75,7 @@ const FUIHeroWithBorders = () => {
                   )}
                   style={{ backgroundColor: "#D4A853" }}
                 >
-                  Get your free Visibility Audit
+                  {hero.ctaPrimary}
                 </a>
               </Magnetic>
               <Magnetic strength={0.2}>
@@ -79,7 +83,7 @@ const FUIHeroWithBorders = () => {
                   href="#apply"
                   className="block text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
                 >
-                  Apply to be a Partner →
+                  {hero.ctaSecondary}
                 </a>
               </Magnetic>
             </div>
@@ -88,11 +92,10 @@ const FUIHeroWithBorders = () => {
             <div className="flex flex-col items-center gap-1.5 text-center">
               {/* Mechanism, in one line. Doubles as a craft signal for hiring teams. */}
               <p className="max-w-xl text-sm text-[#F5F0E8]/70">
-                The website, the Google visibility, and the AI follow-up. Built and
-                shipped as one system.
+                {hero.mechanism}
               </p>
               <p className="max-w-md text-sm text-[#F5F0E8]/55">
-                Most owners cannot say where they lose customers. After this, you can.
+                {hero.mechanism2}
               </p>
             </div>
           </Reveal>
@@ -105,8 +108,8 @@ const FUIHeroWithBorders = () => {
             <LogoBar />
           </div>
           <p className="pb-10 pt-8 text-center text-sm text-[#D4A853]">
-            $41,085 in 30 days, from $900 in ad spend.{" "}
-            <strong className="font-semibold">46x return.</strong>
+            {hero.proofPrefix}
+            <strong className="font-semibold">{hero.proofStrong}</strong>
           </p>
         </div>
       </div>

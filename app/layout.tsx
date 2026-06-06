@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Jost, Archivo, Cormorant, Anton } from "next/font/google";
+import { cookies, headers } from "next/headers";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import LanguageProvider from "@/components/LanguageProvider";
+import { LANG_COOKIE, type Lang } from "@/content/dictionary";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -36,18 +39,31 @@ export const metadata: Metadata = {
     "Growth infrastructure for local service businesses. A premium website, Google visibility, and AI follow-up built into one system that turns attention into booked calls.",
 };
 
-export default function RootLayout({
+// Resolve the language for the very first paint: an explicit cookie choice wins,
+// otherwise fall back to the browser's Accept-Language preference.
+async function resolveInitialLang(): Promise<Lang> {
+  const stored = (await cookies()).get(LANG_COOKIE)?.value;
+  if (stored === "fr" || stored === "en") return stored;
+  const accept = (await headers()).get("accept-language")?.toLowerCase() ?? "";
+  return /(^|,|\s)fr\b/.test(accept) ? "fr" : "en";
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const lang = await resolveInitialLang();
+
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${jost.variable} ${archivo.variable} ${cormorant.variable} ${anton.variable}`}
     >
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <LanguageProvider initialLang={lang}>
+          <SmoothScroll>{children}</SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );

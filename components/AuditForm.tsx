@@ -2,13 +2,25 @@
 
 import { useActionState } from "react";
 import { submitLead, type LeadState } from "@/app/actions/submitLead";
+import { useLang } from "@/components/LanguageProvider";
 
 const initialState: LeadState = { status: "idle" };
 
 const inputClass =
   "w-full rounded-lg border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[15px] text-white placeholder:text-[rgba(255,255,255,0.4)] transition-colors focus:border-[#D4A853] focus:outline-none";
 
+// The revenue option values are kept in English so lead emails stay consistent
+// regardless of the visitor's language; only the visible labels are translated.
+const REVENUE_VALUES = [
+  "Under $5K/mo",
+  "$5K-$15K/mo",
+  "$15K-$50K/mo",
+  "$50K+/mo",
+];
+
 export default function AuditForm() {
+  const { t, lang } = useLang();
+  const f = t.auditForm;
   const [state, formAction, pending] = useActionState(submitLead, initialState);
 
   if (state.status === "success") {
@@ -26,7 +38,7 @@ export default function AuditForm() {
           className="font-display text-xl font-bold"
           style={{ color: "#D4A853" }}
         >
-          Request received.
+          {f.successTitle}
         </p>
         <p className="mt-3 text-base" style={{ color: "rgba(255,255,255,0.75)" }}>
           {state.message}
@@ -46,37 +58,39 @@ export default function AuditForm() {
         aria-hidden="true"
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
+      {/* Tells the server action which language to reply in. */}
+      <input type="hidden" name="lang" value={lang} />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="lf-name" className="sr-only">
-            Your name
+            {f.name}
           </label>
           <input
             id="lf-name"
             name="name"
             required
             autoComplete="name"
-            placeholder="Your name"
+            placeholder={f.name}
             className={inputClass}
           />
         </div>
         <div>
           <label htmlFor="lf-business" className="sr-only">
-            Business name
+            {f.business}
           </label>
           <input
             id="lf-business"
             name="business"
             required
             autoComplete="organization"
-            placeholder="Business name"
+            placeholder={f.business}
             className={inputClass}
           />
         </div>
         <div>
           <label htmlFor="lf-email" className="sr-only">
-            Email
+            {f.email}
           </label>
           <input
             id="lf-email"
@@ -84,39 +98,39 @@ export default function AuditForm() {
             type="email"
             required
             autoComplete="email"
-            placeholder="Email"
+            placeholder={f.email}
             className={inputClass}
           />
         </div>
         <div>
           <label htmlFor="lf-phone" className="sr-only">
-            Phone (optional)
+            {f.phone}
           </label>
           <input
             id="lf-phone"
             name="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="Phone (optional)"
+            placeholder={f.phone}
             className={inputClass}
           />
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="lf-website" className="sr-only">
-            Website (optional)
+            {f.website}
           </label>
           <input
             id="lf-website"
             name="website"
             type="url"
             inputMode="url"
-            placeholder="Your website (optional)"
+            placeholder={f.website}
             className={inputClass}
           />
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="lf-revenue" className="sr-only">
-            Monthly revenue (optional)
+            {f.revenueLabel}
           </label>
           <select
             id="lf-revenue"
@@ -125,23 +139,24 @@ export default function AuditForm() {
             className={`${inputClass} appearance-none`}
           >
             <option value="" disabled>
-              Roughly what does your business do per month? (optional)
+              {f.revenuePlaceholder}
             </option>
-            <option value="Under $5K/mo">Under $5K / month</option>
-            <option value="$5K-$15K/mo">$5K – $15K / month</option>
-            <option value="$15K-$50K/mo">$15K – $50K / month</option>
-            <option value="$50K+/mo">$50K+ / month</option>
+            {REVENUE_VALUES.map((value, i) => (
+              <option key={value} value={value}>
+                {f.revenueOptions[i]}
+              </option>
+            ))}
           </select>
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="lf-message" className="sr-only">
-            What do you want to fix? (optional)
+            {f.message}
           </label>
           <textarea
             id="lf-message"
             name="message"
             rows={3}
-            placeholder="What do you want to fix? (optional)"
+            placeholder={f.message}
             className={`${inputClass} resize-none`}
           />
         </div>
@@ -164,11 +179,11 @@ export default function AuditForm() {
         className="cta-shine mt-6 w-full rounded-full px-7 py-4 text-sm font-semibold text-night transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         style={{ backgroundColor: "#D4A853" }}
       >
-        {pending ? "Sending..." : "Get my free Visibility Audit"}
+        {pending ? f.sending : f.submit}
       </button>
 
       <p className="mt-4 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
-        No cost, no obligation. I review every business personally.
+        {f.disclaimer}
       </p>
     </form>
   );
