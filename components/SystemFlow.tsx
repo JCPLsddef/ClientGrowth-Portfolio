@@ -7,44 +7,24 @@ type Pillar = { title: string; body: string };
 
 // Desktop-only signature set-piece for the Growth System section: the pillars
 // sit around a central "system" hub in a symmetric star, long spokes draw
-// themselves straight out of the hub and land on each card's edge, and gold
-// energy flows along them. It visualizes the core argument (one system, every
-// part feeding the next). Rendered only on large screens with motion allowed;
-// everywhere else the section falls back to the static bento grid (parent).
+// themselves straight out of the hub, and gold energy flows along them. It
+// visualizes the core argument (one system, every part feeding the next).
+// Rendered only on large screens with motion allowed; everywhere else the
+// section falls back to the static bento grid (handled by the parent).
 //
-// Geometry is deterministic. An SVG with a fixed viewBox draws the spokes; an
-// overlay places the HTML cards at the same coordinates as percentages. Cards
-// are pushed well out from the hub on a circle (a point-up pentagon) so the
-// spokes are long, and each spoke stops exactly on the card's near edge with a
-// small node where they meet. Card box dimensions below match the rendered cards
-// (fixed width + min-height) so the spokes terminate cleanly on every card.
+// Attachment is robust by construction: each spoke is drawn all the way to its
+// card's center, and the cards are opaque, so every card cleanly occludes its
+// spoke exactly at its own edge, no matter the card's rendered size. There is no
+// fragile edge math, so spokes never float short of a card.
 
 const VB_W = 1000;
-const VB_H = 820;
-const HUB = { x: 500, y: 410 };
-const RADIUS = 300; // push cards out so the spokes read long
+const VB_H = 860;
+const HUB = { x: 500, y: 430 };
+const RADIUS = 315; // push cards out so the spokes read long
 const ANGLES_DEG = [-90, -18, 54, 126, 198]; // point-up star, every 72 degrees
-
-const CARD_W = 192; // px (Tailwind w-48)
-const CARD_H = 190; // px (Tailwind min-h-[190px])
-const CONTAINER = 896; // px, the fixed max-w-4xl width on lg+ screens
-const K = VB_W / CONTAINER; // px -> viewBox units
-const HW = (CARD_W / 2) * K;
-const HH = (CARD_H / 2) * K;
 
 const rad = (deg: number) => (deg * Math.PI) / 180;
 const pct = (v: number, total: number) => `${(v / total) * 100}%`;
-
-// Point where the hub->node line crosses the card's rectangular edge.
-function edgePoint(n: { x: number; y: number }) {
-  const dx = HUB.x - n.x;
-  const dy = HUB.y - n.y;
-  const len = Math.hypot(dx, dy) || 1;
-  const ux = dx / len;
-  const uy = dy / len;
-  const s = Math.min(HW / (Math.abs(ux) || 1e-6), HH / (Math.abs(uy) || 1e-6));
-  return { x: n.x + ux * s, y: n.y + uy * s };
-}
 
 export default function SystemFlow({
   pillars,
@@ -60,24 +40,23 @@ export default function SystemFlow({
     x: HUB.x + RADIUS * Math.cos(rad(deg)),
     y: HUB.y + RADIUS * Math.sin(rad(deg)),
   }));
-  const edges = nodes.map(edgePoint);
 
   return (
     <div ref={ref} className="relative mx-auto w-full max-w-4xl">
-      {/* Layer 1: spokes + hub */}
+      {/* Layer 1: spokes + hub (drawn behind the cards, which occlude them) */}
       <svg
         viewBox={`0 0 ${VB_W} ${VB_H}`}
         className="h-auto w-full overflow-visible"
         aria-hidden="true"
       >
-        {edges.map((e, i) => (
+        {nodes.map((n, i) => (
           <g key={`spoke-${i}`}>
             {/* faint base track */}
             <line
               x1={HUB.x}
               y1={HUB.y}
-              x2={e.x}
-              y2={e.y}
+              x2={n.x}
+              y2={n.y}
               stroke="rgba(212,168,83,0.16)"
               strokeWidth={1.5}
             />
@@ -85,25 +64,25 @@ export default function SystemFlow({
             <motion.line
               x1={HUB.x}
               y1={HUB.y}
-              x2={e.x}
-              y2={e.y}
+              x2={n.x}
+              y2={n.y}
               stroke="#D4A853"
-              strokeWidth={1.75}
+              strokeWidth={2}
               strokeLinecap="round"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={inView ? { pathLength: 1, opacity: 0.85 } : {}}
+              animate={inView ? { pathLength: 1, opacity: 0.9 } : {}}
               transition={{
-                duration: 0.85,
+                duration: 0.9,
                 delay: 0.15 + i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
             />
-            {/* flowing energy drifting from hub onto the card */}
+            {/* flowing energy drifting from the hub into the card */}
             <line
               x1={HUB.x}
               y1={HUB.y}
-              x2={e.x}
-              y2={e.y}
+              x2={n.x}
+              y2={n.y}
               stroke="#F3E3AD"
               strokeWidth={2.5}
               strokeLinecap="round"
@@ -116,22 +95,10 @@ export default function SystemFlow({
                 animationDelay: `${i * 0.2}s`,
               }}
             />
-            {/* connection node where the spoke meets the card */}
-            <motion.circle
-              cx={e.x}
-              cy={e.y}
-              r={5}
-              fill="#D4A853"
-              initial={{ scale: 0 }}
-              animate={inView ? { scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: 0.9 + i * 0.1 }}
-              style={{ transformBox: "fill-box", transformOrigin: "center" }}
-            />
           </g>
         ))}
 
-        {/* Hub: soft inner glow + breathing ring (label sits inside, no core dot
-            so it stays readable). */}
+        {/* Hub: soft inner glow + breathing ring (label sits inside) */}
         <motion.circle
           cx={HUB.x}
           cy={HUB.y}
@@ -147,7 +114,7 @@ export default function SystemFlow({
           cy={HUB.y}
           r={56}
           className="system-hub-pulse"
-          fill="rgba(212,168,83,0.05)"
+          fill="#0D0B09"
           stroke="rgba(212,168,83,0.6)"
           strokeWidth={1.5}
           initial={{ scale: 0, opacity: 0 }}
@@ -155,9 +122,20 @@ export default function SystemFlow({
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
         />
+        {/* re-draw the glow on top of the solid ring fill for a lit core */}
+        <motion.circle
+          cx={HUB.x}
+          cy={HUB.y}
+          r={30}
+          fill="rgba(212,168,83,0.16)"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
       </svg>
 
-      {/* Layer 2: HTML cards + hub label, aligned to the same coordinates */}
+      {/* Layer 2: opaque cards + hub label, aligned to the same coordinates.
+          The opaque card background is what makes each spoke attach cleanly. */}
       <div className="absolute inset-0">
         {/* Hub label, centered inside the ring */}
         <motion.div
@@ -178,17 +156,17 @@ export default function SystemFlow({
           return (
             <motion.div
               key={`card-${i}`}
-              className={`absolute flex min-h-[190px] w-48 -translate-x-1/2 -translate-y-1/2 flex-col rounded-2xl border p-5 backdrop-blur-sm ${
+              className={`absolute flex min-h-[188px] w-48 -translate-x-1/2 -translate-y-1/2 flex-col rounded-2xl border bg-night-raised p-5 ${
                 flagship
-                  ? "border-gold/40 bg-gradient-to-br from-white/[0.07] to-white/[0.02]"
-                  : "border-white/10 bg-night-raised/80"
+                  ? "border-gold/45 shadow-[0_0_34px_rgba(212,168,83,0.14)]"
+                  : "border-white/10"
               }`}
               style={{ left: pct(n.x, VB_W), top: pct(n.y, VB_H) }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{
                 duration: 0.5,
-                delay: 0.5 + i * 0.1,
+                delay: 0.55 + i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
