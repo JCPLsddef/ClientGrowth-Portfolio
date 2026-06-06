@@ -42,7 +42,11 @@ export default function WordReveal({
 
   const words = text.split(" ");
   return (
+    // Key on the text so a language switch fully remounts the reveal and replays
+    // it. Without this, the per-word children remount in their hidden state but
+    // whileInView/once never re-fires for them, so the new headline stays hidden.
     <motion.span
+      key={text}
       className={className}
       variants={container}
       custom={delay}
