@@ -6,30 +6,28 @@ import { motion, useInView } from "motion/react";
 type Pillar = { title: string; body: string };
 
 // Desktop-only signature set-piece for the Growth System section: the pillars
-// sit around a central "system" hub in a symmetric star, the spokes draw
-// themselves straight out of the hub and connect onto each card's edge, and gold
+// sit around a central "system" hub in a symmetric star, long spokes draw
+// themselves straight out of the hub and land on each card's edge, and gold
 // energy flows along them. It visualizes the core argument (one system, every
 // part feeding the next). Rendered only on large screens with motion allowed;
 // everywhere else the section falls back to the static bento grid (parent).
 //
 // Geometry is deterministic. An SVG with a fixed viewBox draws the spokes; an
 // overlay places the HTML cards at the same coordinates as percentages. Cards
-// are evenly spaced on a circle (a point-up pentagon) and each spoke stops
-// exactly on the card's edge facing the hub, with a small node where they meet.
+// are pushed well out from the hub on a circle (a point-up pentagon) so the
+// spokes are long, and each spoke stops exactly on the card's near edge with a
+// small node where they meet. Card box dimensions below match the rendered cards
+// (fixed width + min-height) so the spokes terminate cleanly on every card.
 
 const VB_W = 1000;
-const VB_H = 720;
-const HUB = { x: 500, y: 382 };
-const RADIUS = 260;
-// Point-up star: one card on top, then evenly every 72 degrees.
-const ANGLES_DEG = [-90, -18, 54, 126, 198];
+const VB_H = 820;
+const HUB = { x: 500, y: 410 };
+const RADIUS = 300; // push cards out so the spokes read long
+const ANGLES_DEG = [-90, -18, 54, 126, 198]; // point-up star, every 72 degrees
 
-// Card box, used to terminate each spoke right on the card edge. Width is exact
-// (Tailwind w-52); height is the min-height the cards are pinned to, so the math
-// matches what renders. CONTAINER is the fixed max-w-4xl width on lg+ screens.
-const CARD_W = 208;
-const CARD_H = 210;
-const CONTAINER = 896;
+const CARD_W = 192; // px (Tailwind w-48)
+const CARD_H = 190; // px (Tailwind min-h-[190px])
+const CONTAINER = 896; // px, the fixed max-w-4xl width on lg+ screens
 const K = VB_W / CONTAINER; // px -> viewBox units
 const HW = (CARD_W / 2) * K;
 const HH = (CARD_H / 2) * K;
@@ -37,7 +35,7 @@ const HH = (CARD_H / 2) * K;
 const rad = (deg: number) => (deg * Math.PI) / 180;
 const pct = (v: number, total: number) => `${(v / total) * 100}%`;
 
-// Where the hub->node line crosses the card's rectangular edge.
+// Point where the hub->node line crosses the card's rectangular edge.
 function edgePoint(n: { x: number; y: number }) {
   const dx = HUB.x - n.x;
   const dy = HUB.y - n.y;
@@ -95,7 +93,7 @@ export default function SystemFlow({
               initial={{ pathLength: 0, opacity: 0 }}
               animate={inView ? { pathLength: 1, opacity: 0.85 } : {}}
               transition={{
-                duration: 0.8,
+                duration: 0.85,
                 delay: 0.15 + i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
@@ -114,7 +112,7 @@ export default function SystemFlow({
               style={{
                 opacity: inView ? 0.9 : 0,
                 transition: "opacity 0.6s ease",
-                transitionDelay: `${0.6 + i * 0.1}s`,
+                transitionDelay: `${0.7 + i * 0.1}s`,
                 animationDelay: `${i * 0.2}s`,
               }}
             />
@@ -126,7 +124,7 @@ export default function SystemFlow({
               fill="#D4A853"
               initial={{ scale: 0 }}
               animate={inView ? { scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: 0.85 + i * 0.1 }}
+              transition={{ duration: 0.3, delay: 0.9 + i * 0.1 }}
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           </g>
@@ -180,7 +178,7 @@ export default function SystemFlow({
           return (
             <motion.div
               key={`card-${i}`}
-              className={`absolute flex w-52 min-h-[210px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-2xl border p-5 backdrop-blur-sm ${
+              className={`absolute flex min-h-[190px] w-48 -translate-x-1/2 -translate-y-1/2 flex-col rounded-2xl border p-5 backdrop-blur-sm ${
                 flagship
                   ? "border-gold/40 bg-gradient-to-br from-white/[0.07] to-white/[0.02]"
                   : "border-white/10 bg-night-raised/80"
