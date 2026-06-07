@@ -121,7 +121,7 @@ export const en = {
         body: "A premium site built around one job: turning visitors into booked calls.",
       },
       {
-        title: "Local SEO and GEO",
+        title: "Local SEO and AI Search",
         body: "You show up first on Google, and inside AI answers when people ask for the best in your area.",
       },
       {
@@ -187,7 +187,7 @@ export const en = {
     card2Price: "from $2,500",
     card2PriceSuffix: "/mo",
     card2Body:
-      "The full Growth Architecture: conversion website, local SEO and GEO, Google Ads, AI follow-up, and weekly optimization. 90-day initial term, then month to month. No hidden fees.",
+      "The full Growth Architecture: conversion website, local SEO and AI Search, Google Ads, AI follow-up, and weekly optimization. 90-day initial term, then month to month. No hidden fees.",
     trustLine: "Ad spend goes straight to Google, never to me.",
     scarcity:
       "I run a maximum of three Partnership clients at a time. When the seats are full, the waitlist opens.",
@@ -524,7 +524,7 @@ export const fr: Dictionary = {
         body: "Un site haut de gamme bâti autour d'un seul but : transformer les visiteurs en appels réservés.",
       },
       {
-        title: "SEO local et GEO",
+        title: "SEO local et AI Search",
         body: "Vous apparaissez en premier sur Google, et dans les réponses des IA quand on cherche le meilleur dans votre région.",
       },
       {
@@ -590,7 +590,7 @@ export const fr: Dictionary = {
     card2Price: "à partir de 2 500 $",
     card2PriceSuffix: "/mois",
     card2Body:
-      "L'Architecture de croissance complète : site de conversion, SEO local et GEO, Google Ads, suivi par IA et optimisation hebdomadaire. Engagement initial de 90 jours, puis de mois en mois. Aucuns frais cachés.",
+      "L'Architecture de croissance complète : site de conversion, SEO local et AI Search, Google Ads, suivi par IA et optimisation hebdomadaire. Engagement initial de 90 jours, puis de mois en mois. Aucuns frais cachés.",
     trustLine: "Le budget publicitaire va directement à Google, jamais à moi.",
     scarcity:
       "Je gère un maximum de trois clients en Partenariat à la fois. Quand les places sont prises, la liste d'attente ouvre.",
