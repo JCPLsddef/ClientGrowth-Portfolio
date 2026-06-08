@@ -4,7 +4,7 @@ import { useReducedMotion } from "motion/react";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import SpotlightField from "@/components/SpotlightField";
-import SystemRadar from "@/components/SystemRadar";
+import SystemFlow from "@/components/SystemFlow";
 import { useLang } from "@/components/LanguageProvider";
 
 export default function GrowthSystem() {
@@ -86,7 +86,7 @@ export default function GrowthSystem() {
             {reduce ? (
               bento
             ) : (
-              <SystemRadar pillars={s.pillars} coreLabel={s.label} />
+              <SystemFlow pillars={s.pillars} coreLabel={s.label} />
             )}
           </div>
 
