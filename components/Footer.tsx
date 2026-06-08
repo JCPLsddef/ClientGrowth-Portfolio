@@ -140,7 +140,7 @@ export default function Footer() {
             display: "block",
             fontFamily: "var(--font-cormorant), Georgia, serif",
             fontWeight: 400,
-            fontSize: "clamp(52px, 16vw, 280px)",
+            fontSize: "clamp(40px, 13vw, 280px)",
             letterSpacing: "-0.02em",
             whiteSpace: "nowrap",
             maxWidth: "100%",

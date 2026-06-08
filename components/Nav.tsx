@@ -24,7 +24,7 @@ function LangToggle({
         type="button"
         onClick={() => setLang("en")}
         aria-pressed={lang === "en"}
-        className={`px-1.5 py-1 ${
+        className={`inline-flex min-h-[44px] min-w-[40px] items-center justify-center px-2.5 ${
           lang === "en"
             ? "font-semibold text-ink"
             : "text-ink-soft opacity-60 transition-opacity hover:opacity-100"
@@ -39,7 +39,7 @@ function LangToggle({
         type="button"
         onClick={() => setLang("fr")}
         aria-pressed={lang === "fr"}
-        className={`px-1.5 py-1 ${
+        className={`inline-flex min-h-[44px] min-w-[40px] items-center justify-center px-2.5 ${
           lang === "fr"
             ? "font-semibold text-ink"
             : "text-ink-soft opacity-60 transition-opacity hover:opacity-100"
