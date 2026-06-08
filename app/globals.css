@@ -11,6 +11,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Safety net against accidental horizontal scroll on phones. `clip` (not
+     `hidden`) so html never becomes a scroll container — that would break
+     position: sticky (the desktop founder section and the nav). */
+  overflow-x: clip;
 }
 
 body {
