@@ -81,19 +81,27 @@ const LOGOS = {
     "https://static.wixstatic.com/media/62f926_cbad727efe524758927405bae7ce8c84~mv2.png",
 } as const;
 
-/** One entry in the hero trust strip (decoupled from the Work grid). */
-export type StripLogo = { name: string; logo: string };
+/**
+ * One entry in the hero trust strip (decoupled from the Work grid).
+ * `scale` is an optical-balance multiplier: each source logo bakes in a
+ * different amount of transparent padding, so at a single fixed tile size
+ * some read huge (Beam) and some tiny (Culture). The tile constrains every
+ * logo to the same box; `scale` then nudges each one so they all *look*
+ * the same visual weight. 1 = no adjustment.
+ */
+export type StripLogo = { name: string; logo: string; scale?: number };
 
 // The "selected work" strip under the hero. Order: strongest, most
-// recognizable results first.
+// recognizable results first. `scale` values are tuned by eye against the
+// rendered strip so every logo carries equal visual weight.
 export const logoStrip: StripLogo[] = [
-  { name: "Triple W Rentals", logo: LOGOS.tripleWRentals },
-  { name: "Elite Barbershop", logo: LOGOS.eliteBarbershop },
-  { name: "Nancy Musselman Real Estate", logo: LOGOS.nancyMusselman },
-  { name: "Centre Dentaire Saint-Élzéar", logo: LOGOS.centreDentaire },
-  { name: "Culture Barbershop", logo: LOGOS.cultureBarbershop },
-  { name: "Beam Real Estate LLC", logo: LOGOS.beamRealEstate },
-  { name: "Absolute Painting", logo: LOGOS.absolutePainting },
+  { name: "Triple W Rentals", logo: LOGOS.tripleWRentals, scale: 1.08 },
+  { name: "Elite Barbershop", logo: LOGOS.eliteBarbershop, scale: 1.08 },
+  { name: "Nancy Musselman Real Estate", logo: LOGOS.nancyMusselman, scale: 1 },
+  { name: "Centre Dentaire Saint-Élzéar", logo: LOGOS.centreDentaire, scale: 1.32 },
+  { name: "Culture Barbershop", logo: LOGOS.cultureBarbershop, scale: 1.42 },
+  { name: "Beam Real Estate LLC", logo: LOGOS.beamRealEstate, scale: 0.78 },
+  { name: "Absolute Painting", logo: LOGOS.absolutePainting, scale: 1.05 },
 ];
 
 export const clients: WorkClient[] = [
