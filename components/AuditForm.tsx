@@ -7,7 +7,7 @@ import { useLang } from "@/components/LanguageProvider";
 const initialState: LeadState = { status: "idle" };
 
 const inputClass =
-  "w-full rounded-lg border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[15px] text-white placeholder:text-[rgba(255,255,255,0.4)] transition-colors focus:border-[#D4A853] focus:outline-none";
+  "w-full rounded-lg border border-[rgba(212,168,83,0.5)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[15px] text-white placeholder:text-[rgba(255,255,255,0.4)] transition-colors hover:border-[rgba(212,168,83,0.75)] focus:border-[#D4A853] focus:outline-none";
 
 // The revenue option values are kept in English so lead emails stay consistent
 // regardless of the visitor's language; only the visible labels are translated.

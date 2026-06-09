@@ -15,7 +15,7 @@ type FounderCopy = {
   photoAlt: string;
 };
 
-// The founder card (name, story, photo). Shared by both layouts, so the heavy
+// The founder card (name, story, photo). Shared by every layout, so the heavy
 // UnicornScene only ever mounts once: exactly one layout is rendered at a time.
 function FounderCard({ f }: { f: FounderCopy }) {
   return (
@@ -56,8 +56,7 @@ function FounderCard({ f }: { f: FounderCopy }) {
   );
 }
 
-// Mobile + reduced-motion: a normal, fully-scrollable section. No sticky pin and
-// no fixed viewport height, so the content can never be clipped on small screens.
+// Reduced-motion: a normal, fully-scrollable section with no animation at all.
 function FounderStatic({ f }: { f: FounderCopy }) {
   return (
     <section id="founder" className="relative bg-marble px-6 py-20 sm:py-28">
@@ -68,7 +67,57 @@ function FounderStatic({ f }: { f: FounderCopy }) {
   );
 }
 
-// Desktop: the JCPL monogram spreads and lifts away as the founder card rises in.
+// Mobile: keep the JCPL name intro, but as a self-contained first screen that
+// spreads, lifts and fades as you scroll past it — then the full card follows in
+// normal flow, so the full name is always visible and nothing is ever clipped.
+function FounderMobile({ f }: { f: FounderCopy }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const spacing = useTransform(scrollYProgress, [0, 0.8], ["0.04em", "0.22em"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.78]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-10vh"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.35, 0.72], [1, 1, 0]);
+
+  return (
+    <section id="founder" className="relative bg-marble">
+      {/* Act 1 — the JCPL intro. */}
+      <div
+        ref={ref}
+        className="flex h-[100svh] items-center justify-center overflow-hidden"
+      >
+        <motion.span
+          aria-hidden="true"
+          style={{
+            display: "inline-block",
+            fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
+            fontSize: "clamp(64px, 27vw, 150px)",
+            lineHeight: 1,
+            color: "var(--ink)",
+            letterSpacing: spacing,
+            scale,
+            y,
+            opacity,
+          }}
+        >
+          JCPL
+        </motion.span>
+      </div>
+
+      {/* Act 2 — the full card, in flow: never clipped, full name visible. */}
+      <div className="px-6 pb-24">
+        <Reveal className="mx-auto max-w-5xl">
+          <FounderCard f={f} />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// Desktop: the JCPL monogram spreads and lifts away as the founder card rises in,
+// both inside one pinned viewport (there is room for the full card here).
 function FounderDesktop({ f }: { f: FounderCopy }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -129,10 +178,9 @@ export default function Founder() {
   const reduce = useReducedMotion();
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // The sticky scroll choreography only works with the tall desktop layout.
-  // Detect width in JS (not just CSS) so we render a single layout and mount
-  // UnicornScene once; the swap happens on mount, long before this section
-  // (06) scrolls into view, so there is no visible flash.
+  // Pick the layout in JS by width so exactly one renders and UnicornScene
+  // mounts once. The swap happens on mount, long before section 06 scrolls
+  // into view, so there is no visible flash.
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const update = () => setIsDesktop(mq.matches);
@@ -141,8 +189,7 @@ export default function Founder() {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // Desktop with motion allowed gets the animation; mobile, reduced-motion and
-  // the pre-hydration server render all get the robust static section.
-  if (isDesktop && !reduce) return <FounderDesktop f={f} />;
-  return <FounderStatic f={f} />;
+  if (reduce) return <FounderStatic f={f} />;
+  if (isDesktop) return <FounderDesktop f={f} />;
+  return <FounderMobile f={f} />;
 }
