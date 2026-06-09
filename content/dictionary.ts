@@ -43,6 +43,8 @@ export const en = {
       "Most owners cannot say where they lose customers. After this, you can.",
     proofPrefix: "$41,085 in 30 days, from $900 in ad spend. ",
     proofStrong: "46x return.",
+    logosLabel:
+      "Selected work across local services, real estate, and dental care",
   },
 
   socialProof: {
@@ -312,6 +314,10 @@ export const en = {
     sending: "Sending...",
     disclaimer: "No cost, no obligation. I review every business personally.",
     successTitle: "Request received.",
+    successBody:
+      "Got it. I'll review your business myself and get back to you personally. Talk soon.",
+    errorMessage:
+      "Something went wrong sending your request. Please try again, or email juan@clientgrowth.ca directly and I'll get right back to you.",
   },
 
   footer: {
@@ -446,6 +452,8 @@ export const fr: Dictionary = {
       "La plupart des propriétaires ignorent où ils perdent des clients. Après ça, vous le saurez.",
     proofPrefix: "41 085 $ en 30 jours, à partir de 900 $ en publicité. ",
     proofStrong: "Rendement de 46x.",
+    logosLabel:
+      "Réalisations choisies : services locaux, immobilier et soins dentaires",
   },
 
   socialProof: {
@@ -716,6 +724,10 @@ export const fr: Dictionary = {
     disclaimer:
       "Sans frais, sans obligation. J'évalue chaque entreprise personnellement.",
     successTitle: "Demande reçue.",
+    successBody:
+      "C'est noté. Je vais évaluer votre entreprise moi-même et vous revenir personnellement. À bientôt.",
+    errorMessage:
+      "Un problème est survenu lors de l'envoi. Réessayez, ou écrivez-moi directement à juan@clientgrowth.ca et je vous reviens tout de suite.",
   },
 
   footer: {

@@ -1,10 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
-import { submitLead, type LeadState } from "@/app/actions/submitLead";
+import { useState, type FormEvent } from "react";
+import { usePathname } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 
-const initialState: LeadState = { status: "idle" };
+// Leads are delivered by Formspree (https://formspree.io) straight to the
+// Client Growth inbox. No server or env vars involved: the form posts from
+// the browser with an `Accept: application/json` header so Formspree replies
+// with JSON instead of redirecting.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mykajvqj";
+
+type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClass =
   "w-full rounded-lg border border-[rgba(212,168,83,0.5)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[15px] text-white placeholder:text-[rgba(255,255,255,0.4)] transition-colors hover:border-[rgba(212,168,83,0.75)] focus:border-[#D4A853] focus:outline-none";
@@ -21,9 +27,48 @@ const REVENUE_VALUES = [
 export default function AuditForm() {
   const { t, lang } = useLang();
   const f = t.auditForm;
-  const [state, formAction, pending] = useActionState(submitLead, initialState);
+  const pathname = usePathname();
+  const [status, setStatus] = useState<Status>("idle");
+  const pending = status === "submitting";
 
-  if (state.status === "success") {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (pending) return; // guards against double submission
+
+    const data = new FormData(e.currentTarget);
+
+    // Honeypot: real users never fill this hidden field; bots do. Show the
+    // success state without sending so bots learn nothing. Formspree also
+    // discards any submission where `_gotcha` is filled.
+    if (((data.get("_gotcha") as string) || "").trim()) {
+      setStatus("success");
+      return;
+    }
+
+    // Subject line of the notification email, set per submission.
+    data.set(
+      "_subject",
+      `New Visibility Audit request — ${(data.get("business") as string) || "?"}`
+    );
+
+    setStatus("submitting");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) {
+        throw new Error(`Formspree responded with ${res.status}`);
+      }
+      setStatus("success");
+    } catch (err) {
+      console.error("[lead] delivery failed:", err);
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
     return (
       <div
         className="mx-auto max-w-xl rounded-2xl p-8 text-center"
@@ -41,25 +86,27 @@ export default function AuditForm() {
           {f.successTitle}
         </p>
         <p className="mt-3 text-base" style={{ color: "rgba(255,255,255,0.75)" }}>
-          {state.message}
+          {f.successBody}
         </p>
       </div>
     );
   }
 
   return (
-    <form action={formAction} className="mx-auto max-w-xl text-left">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-xl text-left" noValidate={false}>
       {/* Honeypot: hidden from users, catches bots. */}
       <input
         type="text"
-        name="company_url"
+        name="_gotcha"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
-      {/* Tells the server action which language to reply in. */}
+      {/* Lead metadata: visible in the Formspree email/dashboard. */}
       <input type="hidden" name="lang" value={lang} />
+      <input type="hidden" name="page" value={pathname ?? "/"} />
+      <input type="hidden" name="form" value="visibility-audit" />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
@@ -162,14 +209,14 @@ export default function AuditForm() {
         </div>
       </div>
 
-      {state.status === "error" && (
+      {status === "error" && (
         <p
           className="mt-4 text-sm"
           style={{ color: "#E5A3A3" }}
           role="alert"
           aria-live="assertive"
         >
-          {state.message}
+          {f.errorMessage}
         </p>
       )}
 
