@@ -62,11 +62,45 @@ export type Testimonial = {
   placement: TestimonialPlacement;
 };
 
+// Client logos (Client Growth Wix media library). Referenced as remote
+// images; static.wixstatic.com is whitelisted in next.config.mjs.
+const LOGOS = {
+  eliteBarbershop:
+    "https://static.wixstatic.com/media/62f926_e18d05b0a0914e6fb4269bcd04246eb5~mv2.png",
+  tripleWRentals:
+    "https://static.wixstatic.com/media/62f926_cdac06309eba45679ea0ac08a402b45c~mv2.png",
+  cultureBarbershop:
+    "https://static.wixstatic.com/media/62f926_ca6524ec96fe4822a3da0d0481995989~mv2.png",
+  centreDentaire:
+    "https://static.wixstatic.com/media/62f926_46341a52a846490d8446c91d0fb56281~mv2.png",
+  nancyMusselman:
+    "https://static.wixstatic.com/media/62f926_a4e8d4b1911b4aa7a3b026a0052431e7~mv2.png",
+  beamRealEstate:
+    "https://static.wixstatic.com/media/62f926_9ad494fb59a64c3abe3ff5bd1941b69c~mv2.jpg",
+  absolutePainting:
+    "https://static.wixstatic.com/media/62f926_cbad727efe524758927405bae7ce8c84~mv2.png",
+} as const;
+
+/** One entry in the hero trust strip (decoupled from the Work grid). */
+export type StripLogo = { name: string; logo: string };
+
+// The "selected work" strip under the hero. Order: strongest, most
+// recognizable results first.
+export const logoStrip: StripLogo[] = [
+  { name: "Triple W Rentals", logo: LOGOS.tripleWRentals },
+  { name: "Elite Barbershop", logo: LOGOS.eliteBarbershop },
+  { name: "Nancy Musselman Real Estate", logo: LOGOS.nancyMusselman },
+  { name: "Centre Dentaire Saint-Élzéar", logo: LOGOS.centreDentaire },
+  { name: "Culture Barbershop", logo: LOGOS.cultureBarbershop },
+  { name: "Beam Real Estate LLC", logo: LOGOS.beamRealEstate },
+  { name: "Absolute Painting", logo: LOGOS.absolutePainting },
+];
+
 export const clients: WorkClient[] = [
   {
     slug: "triple-w-rentals",
     name: "Triple W Rentals",
-    logo: TODO_IMG,
+    logo: LOGOS.tripleWRentals,
     result:
       "$41,085 in 30 days from $900 in ad spend. 46x return, around $33 per qualified call.",
     resultFr:
@@ -89,7 +123,7 @@ export const clients: WorkClient[] = [
   {
     slug: "elite-barbershop",
     name: "Elite Barbershop",
-    logo: TODO_IMG,
+    logo: LOGOS.eliteBarbershop,
     result: "90 new clients in 90 days. Site, ads, and SEO compounding together.",
     resultFr:
       "90 nouveaux clients en 90 jours. Site, publicités et SEO qui s'additionnent.",
@@ -99,7 +133,7 @@ export const clients: WorkClient[] = [
   {
     slug: "culture-barbershop",
     name: "Culture Barbershop",
-    logo: TODO_IMG,
+    logo: LOGOS.cultureBarbershop,
     result: "A fully custom site that finally matches the quality of the cuts.",
     resultFr:
       "Un site entièrement sur mesure, enfin à la hauteur de la qualité des coupes.",
@@ -109,7 +143,7 @@ export const clients: WorkClient[] = [
   {
     slug: "absolute-painting",
     name: "Absolute Painting",
-    logo: TODO_IMG,
+    logo: LOGOS.absolutePainting,
     result: "Website and Google Ads in a crowded Texas market.",
     resultFr: "Site web et Google Ads dans un marché texan saturé.",
     liveUrl: TODO_URL,
@@ -118,7 +152,7 @@ export const clients: WorkClient[] = [
   {
     slug: "centre-dentaire-saint-elzear",
     name: "Centre Dentaire Saint-Élzéar",
-    logo: TODO_IMG,
+    logo: LOGOS.centreDentaire,
     result: "A clinic site built to book appointments, not just sit there.",
     resultFr:
       "Un site de clinique conçu pour prendre des rendez-vous, pas juste exister.",

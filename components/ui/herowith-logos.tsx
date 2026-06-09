@@ -103,8 +103,10 @@ const FUIHeroWithBorders = () => {
 
         {/* Client logo bar + proof line */}
         <div className="mx-auto w-full max-w-7xl">
-          {/* TODO: swap the business-name wordmarks for real monochrome client logo SVGs (content/work.ts -> client.logo) */}
-          <div className="w-full px-4 pt-10 md:px-8">
+          <p className="px-6 pt-9 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F5F0E8]/45 sm:text-[11px]">
+            {hero.logosLabel}
+          </p>
+          <div className="w-full px-4 pt-6 md:px-8">
             <LogoBar />
           </div>
           <p className="pb-10 pt-8 text-center text-sm text-[#D4A853]">
