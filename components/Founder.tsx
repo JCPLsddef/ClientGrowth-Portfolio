@@ -71,25 +71,76 @@ function FounderStatic({ f }: { f: FounderCopy }) {
 // spreads, lifts and fades as you scroll past it — then the full card follows in
 // normal flow, so the full name is always visible and nothing is ever clipped.
 function FounderMobile({ f }: { f: FounderCopy }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-  // The monogram is pinned over the scroll track, so the animation reads in
-  // place (spread + shrink + lift + fade) instead of just scrolling away. It
-  // finishes fading right as the pin ends, so the card slides straight in.
-  const spacing = useTransform(scrollYProgress, [0, 0.7], ["0.03em", "0.3em"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.62]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-12vh"]);
-  const opacity = useTransform(scrollYProgress, [0.12, 0.92], [1, 0]);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const monoRef = useRef<HTMLSpanElement>(null);
+
+  // Drive the pinned monogram straight from layout: each frame (while the track
+  // is on screen) we read its real position and map it to spread/shrink/lift/
+  // fade. This does not depend on framer's useScroll, which was not updating
+  // under Lenis on touch — so the animation now plays reliably on mobile.
+  useEffect(() => {
+    const track = trackRef.current;
+    const mono = monoRef.current;
+    if (!track || !mono) return;
+
+    let raf = 0;
+    let running = false;
+
+    const apply = () => {
+      const rect = track.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const distance = rect.height - vh; // how far the sticky child stays pinned
+      const p = distance > 0 ? Math.min(Math.max(-rect.top / distance, 0), 1) : 0;
+
+      const spread = 0.02 + 0.24 * Math.min(p / 0.6, 1); // em
+      const e = Math.min(p / 0.8, 1);
+      const scale = 1 - 0.38 * e;
+      const ty = -16 * e; // vh
+      const opacity = p <= 0.15 ? 1 : Math.max(1 - (p - 0.15) / 0.7, 0);
+
+      mono.style.letterSpacing = `${spread}em`;
+      mono.style.transform = `translateY(${ty}vh) scale(${scale})`;
+      mono.style.opacity = `${opacity}`;
+    };
+
+    const loop = () => {
+      if (!running) return;
+      apply();
+      raf = requestAnimationFrame(loop);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !running) {
+          running = true;
+          raf = requestAnimationFrame(loop);
+        } else if (!entry.isIntersecting && running) {
+          running = false;
+          cancelAnimationFrame(raf);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(track);
+    apply(); // correct first paint even before the loop starts
+
+    return () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
+  }, []);
 
   return (
     <section id="founder" className="relative bg-marble">
-      {/* Act 1 — JCPL intro, pinned while it spreads, lifts and fades out. */}
-      <div ref={ref} className="relative h-[150svh]">
-        <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden px-6">
-          <motion.span
+      {/* Act 1 — JCPL intro: pinned while it spreads, lifts and fades out. */}
+      <div ref={trackRef} style={{ position: "relative", height: "170vh" }}>
+        <div
+          className="sticky top-0 flex items-center justify-center overflow-hidden px-6"
+          style={{ height: "100svh" }}
+        >
+          <span
+            ref={monoRef}
             aria-hidden="true"
             style={{
               display: "inline-block",
@@ -97,14 +148,12 @@ function FounderMobile({ f }: { f: FounderCopy }) {
               fontSize: "clamp(64px, 27vw, 150px)",
               lineHeight: 1,
               color: "var(--ink)",
-              letterSpacing: spacing,
-              scale,
-              y,
-              opacity,
+              letterSpacing: "0.02em",
+              willChange: "transform, opacity",
             }}
           >
             JCPL
-          </motion.span>
+          </span>
         </div>
       </div>
 
