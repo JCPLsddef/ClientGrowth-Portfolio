@@ -86,17 +86,29 @@ function FounderMobile({ f }: { f: FounderCopy }) {
     let raf = 0;
     let running = false;
 
+    const ease = (a: number, b: number, x: number) => {
+      const t = Math.min(Math.max((x - a) / (b - a), 0), 1);
+      return t * t * (3 - 2 * t); // smoothstep
+    };
+
     const apply = () => {
       const rect = track.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const distance = rect.height - vh; // how far the sticky child stays pinned
-      const p = distance > 0 ? Math.min(Math.max(-rect.top / distance, 0), 1) : 0;
+      const sticky = mono.parentElement;
+      // Use the sticky child's real height for the pin distance so progress is
+      // correct even as the mobile address bar shows/hides.
+      const childH = sticky
+        ? sticky.getBoundingClientRect().height
+        : window.innerHeight || 1;
+      const distance = rect.height - childH;
+      const p =
+        distance > 0 ? Math.min(Math.max(-rect.top / distance, 0), 1) : 0;
 
-      const spread = 0.02 + 0.24 * Math.min(p / 0.6, 1); // em
-      const e = Math.min(p / 0.8, 1);
-      const scale = 1 - 0.38 * e;
-      const ty = -16 * e; // vh
-      const opacity = p <= 0.15 ? 1 : Math.max(1 - (p - 0.15) / 0.7, 0);
+      // Cinematic: holds briefly, then the letters separate and the word lifts
+      // and fades, finishing right as the pin ends so the card slides in.
+      const spread = 0.02 + 0.46 * ease(0.12, 0.92, p); // letters pull apart
+      const scale = 1 - 0.3 * ease(0.12, 0.95, p);
+      const ty = -10 * ease(0.12, 0.95, p); // vh, gentle lift
+      const opacity = 1 - ease(0.5, 1, p);
 
       mono.style.letterSpacing = `${spread}em`;
       mono.style.transform = `translateY(${ty}vh) scale(${scale})`;
@@ -134,8 +146,9 @@ function FounderMobile({ f }: { f: FounderCopy }) {
   return (
     <section id="founder" className="relative bg-marble">
       {/* Act 1 — JCPL intro: pinned while it spreads, lifts and fades out. */}
-      <div ref={trackRef} style={{ position: "relative", height: "170vh" }}>
+      <div ref={trackRef} style={{ position: "relative", height: "190svh" }}>
         <div
+          id="jcpl-intro"
           className="sticky top-0 flex items-center justify-center overflow-hidden px-6"
           style={{ height: "100svh" }}
         >
