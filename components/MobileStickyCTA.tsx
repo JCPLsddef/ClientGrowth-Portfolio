@@ -12,14 +12,17 @@ export default function MobileStickyCTA() {
 
   useEffect(() => {
     const audit = document.getElementById("audit");
+    const intro = document.getElementById("jcpl-intro");
     let pastHero = false;
     let auditVisible = false;
+    let introVisible = false;
 
     const nearBottom = () =>
       window.innerHeight + window.scrollY >=
       document.documentElement.scrollHeight - 120;
 
-    const update = () => setShow(pastHero && !auditVisible && !nearBottom());
+    const update = () =>
+      setShow(pastHero && !auditVisible && !introVisible && !nearBottom());
 
     const onScroll = () => {
       pastHero = window.scrollY > window.innerHeight * 0.6;
@@ -28,21 +31,35 @@ export default function MobileStickyCTA() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    let observer: IntersectionObserver | undefined;
+    const observers: IntersectionObserver[] = [];
     if (audit) {
-      observer = new IntersectionObserver(
+      const o = new IntersectionObserver(
         ([entry]) => {
           auditVisible = entry.isIntersecting;
           update();
         },
         { rootMargin: "0px 0px -40% 0px" },
       );
-      observer.observe(audit);
+      o.observe(audit);
+      observers.push(o);
+    }
+    // While the mobile "JCPL" intro fills the screen, keep the bar hidden so it
+    // never sits over the founder's name as the section transitions in.
+    if (intro) {
+      const o = new IntersectionObserver(
+        ([entry]) => {
+          introVisible = entry.intersectionRatio > 0.35;
+          update();
+        },
+        { threshold: [0, 0.35, 0.7, 1] },
+      );
+      o.observe(intro);
+      observers.push(o);
     }
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer?.disconnect();
+      observers.forEach((o) => o.disconnect());
     };
   }, []);
 

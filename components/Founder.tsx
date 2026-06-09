@@ -71,43 +71,109 @@ function FounderStatic({ f }: { f: FounderCopy }) {
 // spreads, lifts and fades as you scroll past it — then the full card follows in
 // normal flow, so the full name is always visible and nothing is ever clipped.
 function FounderMobile({ f }: { f: FounderCopy }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const spacing = useTransform(scrollYProgress, [0, 0.8], ["0.04em", "0.22em"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.78]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-10vh"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.35, 0.72], [1, 1, 0]);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const monoRef = useRef<HTMLSpanElement>(null);
+
+  // Drive the pinned monogram straight from layout: each frame (while the track
+  // is on screen) we read its real position and map it to spread/shrink/lift/
+  // fade. This does not depend on framer's useScroll, which was not updating
+  // under Lenis on touch — so the animation now plays reliably on mobile.
+  useEffect(() => {
+    const track = trackRef.current;
+    const mono = monoRef.current;
+    if (!track || !mono) return;
+
+    let raf = 0;
+    let running = false;
+
+    const ease = (a: number, b: number, x: number) => {
+      const t = Math.min(Math.max((x - a) / (b - a), 0), 1);
+      return t * t * (3 - 2 * t); // smoothstep
+    };
+
+    const apply = () => {
+      const rect = track.getBoundingClientRect();
+      const sticky = mono.parentElement;
+      // Use the sticky child's real height for the pin distance so progress is
+      // correct even as the mobile address bar shows/hides.
+      const childH = sticky
+        ? sticky.getBoundingClientRect().height
+        : window.innerHeight || 1;
+      const distance = rect.height - childH;
+      const p =
+        distance > 0 ? Math.min(Math.max(-rect.top / distance, 0), 1) : 0;
+
+      // Cinematic: holds briefly, then the letters separate and the word lifts
+      // and fades, finishing right as the pin ends so the card slides in.
+      const spread = 0.02 + 0.46 * ease(0.12, 0.92, p); // letters pull apart
+      const scale = 1 - 0.3 * ease(0.12, 0.95, p);
+      const ty = -10 * ease(0.12, 0.95, p); // vh, gentle lift
+      const opacity = 1 - ease(0.5, 1, p);
+
+      mono.style.letterSpacing = `${spread}em`;
+      mono.style.transform = `translateY(${ty}vh) scale(${scale})`;
+      mono.style.opacity = `${opacity}`;
+    };
+
+    const loop = () => {
+      if (!running) return;
+      apply();
+      raf = requestAnimationFrame(loop);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !running) {
+          running = true;
+          raf = requestAnimationFrame(loop);
+        } else if (!entry.isIntersecting && running) {
+          running = false;
+          cancelAnimationFrame(raf);
+        }
+      },
+      { threshold: 0 }
+    );
+    io.observe(track);
+    apply(); // correct first paint even before the loop starts
+
+    return () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
+  }, []);
 
   return (
     <section id="founder" className="relative bg-marble">
-      {/* Act 1 — the JCPL intro. */}
-      <div
-        ref={ref}
-        className="flex h-[100svh] items-center justify-center overflow-hidden"
-      >
-        <motion.span
-          aria-hidden="true"
-          style={{
-            display: "inline-block",
-            fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
-            fontSize: "clamp(64px, 27vw, 150px)",
-            lineHeight: 1,
-            color: "var(--ink)",
-            letterSpacing: spacing,
-            scale,
-            y,
-            opacity,
-          }}
+      {/* Act 1 — JCPL intro: pinned while it spreads, lifts and fades out. */}
+      <div ref={trackRef} style={{ position: "relative", height: "190svh" }}>
+        <div
+          id="jcpl-intro"
+          className="sticky top-0 flex items-center justify-center overflow-hidden px-6"
+          style={{ height: "100svh" }}
         >
-          JCPL
-        </motion.span>
+          <span
+            ref={monoRef}
+            aria-hidden="true"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
+              fontSize: "clamp(64px, 27vw, 150px)",
+              lineHeight: 1,
+              color: "var(--ink)",
+              letterSpacing: "0.02em",
+              willChange: "transform, opacity",
+            }}
+          >
+            JCPL
+          </span>
+        </div>
       </div>
 
-      {/* Act 2 — the full card, in flow: never clipped, full name visible. */}
-      <div className="px-6 pb-24">
+      {/* Act 2 — the full card, in flow: never clipped, full name visible.
+          Pulled up so the text starts a bit higher as it slides in (JCPL has
+          faded to ~0 by then, so there is no visual overlap). */}
+      <div className="px-6 pb-24" style={{ marginTop: "-10vh" }}>
         <Reveal className="mx-auto max-w-5xl">
           <FounderCard f={f} />
         </Reveal>
