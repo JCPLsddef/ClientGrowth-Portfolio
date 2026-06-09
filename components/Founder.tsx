@@ -170,8 +170,10 @@ function FounderMobile({ f }: { f: FounderCopy }) {
         </div>
       </div>
 
-      {/* Act 2 — the full card, in flow: never clipped, full name visible. */}
-      <div className="px-6 pb-24">
+      {/* Act 2 — the full card, in flow: never clipped, full name visible.
+          Pulled up so the text starts a bit higher as it slides in (JCPL has
+          faded to ~0 by then, so there is no visual overlap). */}
+      <div className="px-6 pb-24" style={{ marginTop: "-10vh" }}>
         <Reveal className="mx-auto max-w-5xl">
           <FounderCard f={f} />
         </Reveal>
