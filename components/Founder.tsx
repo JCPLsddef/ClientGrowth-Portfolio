@@ -74,36 +74,38 @@ function FounderMobile({ f }: { f: FounderCopy }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
-  const spacing = useTransform(scrollYProgress, [0, 0.8], ["0.04em", "0.22em"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.78]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-10vh"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.35, 0.72], [1, 1, 0]);
+  // The monogram is pinned over the scroll track, so the animation reads in
+  // place (spread + shrink + lift + fade) instead of just scrolling away. It
+  // finishes fading right as the pin ends, so the card slides straight in.
+  const spacing = useTransform(scrollYProgress, [0, 0.7], ["0.03em", "0.3em"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.62]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "-12vh"]);
+  const opacity = useTransform(scrollYProgress, [0.12, 0.92], [1, 0]);
 
   return (
     <section id="founder" className="relative bg-marble">
-      {/* Act 1 — the JCPL intro. */}
-      <div
-        ref={ref}
-        className="flex h-[100svh] items-center justify-center overflow-hidden"
-      >
-        <motion.span
-          aria-hidden="true"
-          style={{
-            display: "inline-block",
-            fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
-            fontSize: "clamp(64px, 27vw, 150px)",
-            lineHeight: 1,
-            color: "var(--ink)",
-            letterSpacing: spacing,
-            scale,
-            y,
-            opacity,
-          }}
-        >
-          JCPL
-        </motion.span>
+      {/* Act 1 — JCPL intro, pinned while it spreads, lifts and fades out. */}
+      <div ref={ref} className="relative h-[150svh]">
+        <div className="sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden px-6">
+          <motion.span
+            aria-hidden="true"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
+              fontSize: "clamp(64px, 27vw, 150px)",
+              lineHeight: 1,
+              color: "var(--ink)",
+              letterSpacing: spacing,
+              scale,
+              y,
+              opacity,
+            }}
+          >
+            JCPL
+          </motion.span>
+        </div>
       </div>
 
       {/* Act 2 — the full card, in flow: never clipped, full name visible. */}
