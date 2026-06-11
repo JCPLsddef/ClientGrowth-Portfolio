@@ -8,8 +8,7 @@ import HowIThink from "@/components/HowIThink";
 import GrowthSystem from "@/components/GrowthSystem";
 import HowItWorks from "@/components/HowItWorks";
 import Founder from "@/components/Founder";
-import Pricing from "@/components/Pricing";
-import RiskReversal from "@/components/RiskReversal";
+import AuditForm from "@/components/AuditForm";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -28,8 +27,7 @@ export default function Home() {
       <GrowthSystem />
       <HowItWorks />
       <Founder />
-      <Pricing />
-      <RiskReversal />
+      <AuditForm />
       <FAQ />
       <FinalCTA />
       <Footer />

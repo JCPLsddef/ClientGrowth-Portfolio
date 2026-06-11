@@ -19,7 +19,6 @@ export const en = {
     links: [
       { href: "#work", label: "Work" },
       { href: "#system", label: "System" },
-      { href: "#pricing", label: "Pricing" },
       { href: "#how-i-think", label: "For hiring teams" },
     ],
     ctaShort: "Free Audit",
@@ -428,7 +427,6 @@ export const fr: Dictionary = {
     links: [
       { href: "#work", label: "Réalisations" },
       { href: "#system", label: "Système" },
-      { href: "#pricing", label: "Tarifs" },
       { href: "#how-i-think", label: "Pour les recruteurs" },
     ],
     ctaShort: "Audit gratuit",

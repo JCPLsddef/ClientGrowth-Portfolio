@@ -54,9 +54,17 @@ export default function UnicornScene({
   const targetId = "unicorn-" + useId().replace(/[^a-zA-Z0-9]/g, "");
   const reducedMotion = usePrefersReducedMotion();
   const sceneRef = useRef<{ destroy?: () => void } | null>(null);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsMobile(!mq.matches);
+    mq.addEventListener("change", () => setIsMobile(!mq.matches));
+    return () => mq.removeEventListener("change", () => setIsMobile(!mq.matches));
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion || isMobile) return;
     let cancelled = false;
 
     loadSDK()
@@ -83,7 +91,6 @@ export default function UnicornScene({
         sceneRef.current = scene;
       })
       .catch((err) => {
-        // On any failure the static fallback image remains visible.
         console.warn("UnicornScene:", err);
       });
 
@@ -92,20 +99,19 @@ export default function UnicornScene({
       sceneRef.current?.destroy?.();
       sceneRef.current = null;
     };
-  }, [targetId, reducedMotion]);
+  }, [targetId, reducedMotion, isMobile]);
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {/* Static photo: visible until the WebGL canvas paints over it, and the
-          only thing shown under reduced motion or if the scene fails. */}
+      {/* Static photo: always shown on mobile, fallback on desktop if WebGL fails */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={FALLBACK_IMG}
         alt={alt}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       />
-      {/* Unicorn Studio renders its canvas into this element. */}
-      <div id={targetId} className="absolute inset-0 h-full w-full" />
+      {/* Unicorn Studio canvas: desktop only */}
+      {!isMobile && <div id={targetId} className="absolute inset-0 h-full w-full" />}
     </div>
   );
 }
