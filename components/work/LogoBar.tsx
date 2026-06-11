@@ -22,13 +22,12 @@ export default function LogoBar() {
       className="marquee-pause relative overflow-hidden"
       style={{ maskImage: fade, WebkitMaskImage: fade }}
     >
-      <ul className="animate-marquee flex w-max items-center gap-4 pr-4 sm:gap-6 sm:pr-6">
+      <ul className="animate-marquee flex w-max items-center gap-6 pr-6 sm:gap-8 sm:pr-8">
         {doubled.map((client, i) => (
           <li
             key={`${client.name}-${i}`}
             aria-hidden={i >= logoStrip.length}
-            className="flex h-16 w-[148px] flex-none items-center justify-center overflow-hidden rounded-xl px-4 sm:w-[164px]"
-            style={{ backgroundColor: "#F5F0E8" }}
+            className="flex h-20 w-[156px] flex-none items-center justify-center overflow-hidden px-3 sm:h-24 sm:w-[176px] sm:px-4"
           >
             <Image
               src={client.logo}
@@ -37,11 +36,9 @@ export default function LogoBar() {
               height={44}
               className="h-auto w-auto object-contain"
               style={{
-                maxHeight: 34,
-                maxWidth: 116,
+                maxHeight: 52,
+                maxWidth: 140,
                 transform: `scale(${client.scale ?? 1})`,
-                filter: "grayscale(1)",
-                opacity: 0.85,
               }}
             />
           </li>
