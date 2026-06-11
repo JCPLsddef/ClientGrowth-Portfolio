@@ -1,15 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/WordReveal";
 import Magnetic from "@/components/Magnetic";
+import AuditPopup from "@/components/AuditPopup";
 import { useLang } from "@/components/LanguageProvider";
 
 const FUIHeroWithBorders = () => {
   const { t } = useLang();
   const hero = t.hero;
+  const [popupOpen, setPopupOpen] = useState(false);
   return (
     <section
       id="top"
@@ -62,12 +65,13 @@ const FUIHeroWithBorders = () => {
           </div>
         </div>
 
-        {/* CTAs — magnetic solid-gold pill + text link (brand) */}
+        {/* CTA — magnetic solid-gold pill, opens the free-audit popup */}
         <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
           <Reveal delay={0.55}>
             <Magnetic>
-              <a
-                href="#audit"
+              <button
+                type="button"
+                onClick={() => setPopupOpen(true)}
                 className={clsx(
                   "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
                   "transition-transform hover:scale-[1.03]",
@@ -75,28 +79,14 @@ const FUIHeroWithBorders = () => {
                 style={{ backgroundColor: "#D4A853" }}
               >
                 {hero.ctaPrimary}
-              </a>
+              </button>
             </Magnetic>
-          </Reveal>
-          <Reveal delay={0.65}>
-            <div className="flex flex-col items-center gap-1.5 text-center">
-              {/* Mechanism, in one line. Doubles as a craft signal for hiring teams. */}
-              <p className="max-w-xl text-sm text-[#F5F0E8]/70">
-                {hero.mechanism}
-              </p>
-              <p className="max-w-md text-sm text-[#F5F0E8]/55">
-                {hero.mechanism2}
-              </p>
-            </div>
           </Reveal>
         </div>
 
         {/* Client logo bar + proof line */}
         <div className="mx-auto w-full max-w-7xl">
-          <p className="px-6 pt-9 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F5F0E8]/45 sm:text-[11px]">
-            {hero.logosLabel}
-          </p>
-          <div className="w-full px-4 pt-6 md:px-8">
+          <div className="w-full px-4 pt-8 md:px-8">
             <LogoBar />
           </div>
           <p className="pb-10 pt-8 text-center text-sm text-[#D4A853]">
@@ -105,6 +95,8 @@ const FUIHeroWithBorders = () => {
           </p>
         </div>
       </div>
+
+      <AuditPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
     </section>
   );
 };

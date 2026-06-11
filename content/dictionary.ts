@@ -34,16 +34,21 @@ export const en = {
     highlight: ["obvious", "choice"],
     subhead:
       "You built a business worth choosing. Online, a weaker competitor still looks easier to trust. I fix that.",
-    ctaPrimary: "Get your free Visibility Audit",
-    ctaSecondary: "Apply to be a Partner →",
-    mechanism:
-      "The website, the Google visibility, and the AI follow-up. Built and shipped as one system.",
-    mechanism2:
-      "Most owners cannot say where they lose customers. After this, you can.",
+    ctaPrimary: "Work with me",
     proofPrefix: "$41,085 in 30 days, from $900 in ad spend. ",
     proofStrong: "46x return.",
-    logosLabel:
-      "Selected work across local services, real estate, and dental care",
+  },
+
+  auditPopup: {
+    title: "Small problems cost you big money.",
+    paragraphs: [
+      "A button in the wrong place. A site that loads two seconds too slow. A Google listing missing one photo. Details you never see, but that quietly send your customers to a competitor every single week.",
+      "Most of the time, it is not a big problem holding a business back. It is a small one, repeated hundreds of times.",
+      "That is exactly why I offer a free Visibility Audit. I find where you are losing customers right now, and I show you exactly how to fix it. No cost, no obligation.",
+    ],
+    cta: "Get my free Visibility Audit →",
+    note: "Free, no strings attached. I review every business personally.",
+    close: "Close",
   },
 
   socialProof: {
@@ -175,53 +180,6 @@ export const en = {
     photoAlt: "Juan-Carlos Portillo-Laflamme, founder of Client Growth",
   },
 
-  pricing: {
-    label: "Pricing",
-    headline: "Premium presence. Without agency prices.",
-    sub: "Two ways to work with me.",
-    card1Title: "Conversion Website",
-    card1Price: "from $600",
-    card1Body:
-      "A custom, premium website built to convert, not just to look good. Yours to keep.",
-    card2Title: "Growth Partnership",
-    card2Badge: "Flagship",
-    card2Price: "from $2,500",
-    card2PriceSuffix: "/mo",
-    card2Body:
-      "The full Growth Architecture: conversion website, local SEO and AI Search, Google Ads, AI follow-up, and weekly optimization. 90-day initial term, then month to month. No hidden fees.",
-    trustLine: "Ad spend goes straight to Google, never to me.",
-    scarcity:
-      "I run a maximum of three Partnership clients at a time. When the seats are full, the waitlist opens.",
-    cta: "See if your business qualifies → Apply to be a Partner",
-    fallbackPrefix: "Not ready to apply. ",
-    fallbackLink: "See what this looks like first.",
-  },
-
-  riskReversal: {
-    headline: "The risk is mine, not yours.",
-    badge: "90-day guarantee",
-    guaranteeGold:
-      "If I do not produce a measurable result in your first 90 days, you stop paying.",
-    guaranteeRest:
-      " I keep working until I do. You keep every asset I have built for you, and you can ask for improvements anytime, free.",
-    guaranteeP2:
-      "I can promise that because I do not take clients I do not believe I can help. I review your business before I agree to work with you, not after you have paid. That is what the application is for.",
-    objections: [
-      {
-        q: "“I have tried marketing before.”",
-        a: "You tried pieces. This is a system. The clicks were real. The thing that was supposed to convert them was never built.",
-      },
-      {
-        q: "“I know someone cheaper.”",
-        a: "Cheaper builds you a thing. I build you a result, and I back it with the guarantee above.",
-      },
-      {
-        q: "“Will I lose control?”",
-        a: "No. You own every asset. I run the machine. You run the business.",
-      },
-    ],
-  },
-
   faq: {
     label: "Questions",
     headline: "Questions Serious Buyers Ask.",
@@ -281,7 +239,7 @@ export const en = {
       },
     ],
     footerNote: "Still have a question I did not answer? Let us talk.",
-    footerCta: "Apply to be a Partner →",
+    footerCta: "Get your free Visibility Audit →",
   },
 
   finalCta: {
@@ -326,8 +284,7 @@ export const en = {
       { label: "How it works", href: "/#system" },
       { label: "Work", href: "/#work" },
       { label: "For hiring teams", href: "/#how-i-think" },
-      { label: "Pricing", href: "/#pricing" },
-      { label: "Apply", href: "/#apply" },
+      { label: "Free audit", href: "/#audit" },
     ],
     legalHeading: "Legal",
     privacy: "Privacy Policy",
@@ -442,18 +399,22 @@ export const fr: Dictionary = {
     highlight: ["choix", "évident"],
     subhead:
       "Vous avez bâti une entreprise qui mérite d'être choisie. En ligne, un concurrent plus faible a pourtant l'air plus facile à choisir. Je corrige ça.",
-    ctaPrimary: "Obtenez votre audit de visibilité gratuit",
-    ctaSecondary: "Postulez comme Partenaire →",
-    mechanism:
-      "Le site web, la visibilité Google et le suivi par IA. Conçus et livrés comme un seul système.",
-    mechanism2:
-      "La plupart des propriétaires ignorent où ils perdent des clients. Après ça, vous le saurez.",
+    ctaPrimary: "Travaillez avec moi",
     proofPrefix: "41 085 $ en 30 jours, à partir de 900 $ en publicité. ",
     proofStrong: "Rendement de 46x.",
-    logosLabel:
-      "Réalisations choisies : services locaux, immobilier et soins dentaires",
   },
 
+  auditPopup: {
+    title: "Les petits problèmes vous coûtent gros.",
+    paragraphs: [
+      "Un bouton au mauvais endroit. Un site qui charge deux secondes de trop. Une fiche Google où il manque une photo. Des détails que vous ne voyez jamais, mais qui envoient discrètement vos clients chez un concurrent, chaque semaine.",
+      "La plupart du temps, ce n'est pas un gros problème qui freine une entreprise. C'est un petit, répété des centaines de fois.",
+      "C'est exactement pour ça que j'offre un audit de visibilité gratuit. Je trouve où vous perdez des clients en ce moment, et je vous montre exactement comment le corriger. Sans frais, sans obligation.",
+    ],
+    cta: "Obtenir mon audit de visibilité gratuit →",
+    note: "Gratuit, sans engagement. J'évalue chaque entreprise personnellement.",
+    close: "Fermer",
+  },
   socialProof: {
     label: "Ce que disent mes clients",
   },
@@ -583,53 +544,6 @@ export const fr: Dictionary = {
     photoAlt: "Juan-Carlos Portillo-Laflamme, fondateur de Client Growth",
   },
 
-  pricing: {
-    label: "Tarifs",
-    headline: "Une présence haut de gamme. Sans les prix d'agence.",
-    sub: "Deux façons de travailler avec moi.",
-    card1Title: "Site de conversion",
-    card1Price: "à partir de 600 $",
-    card1Body:
-      "Un site sur mesure, haut de gamme, conçu pour convertir, pas seulement pour bien paraître. Il est à vous.",
-    card2Title: "Partenariat de croissance",
-    card2Badge: "Phare",
-    card2Price: "à partir de 2 500 $",
-    card2PriceSuffix: "/mois",
-    card2Body:
-      "L'Architecture de croissance complète : site de conversion, SEO local et AI Search, Google Ads, suivi par IA et optimisation hebdomadaire. Engagement initial de 90 jours, puis de mois en mois. Aucuns frais cachés.",
-    trustLine: "Le budget publicitaire va directement à Google, jamais à moi.",
-    scarcity:
-      "Je gère un maximum de trois clients en Partenariat à la fois. Quand les places sont prises, la liste d'attente ouvre.",
-    cta: "Voyez si votre entreprise se qualifie → Postulez comme Partenaire",
-    fallbackPrefix: "Pas prêt à postuler. ",
-    fallbackLink: "Voyez d'abord à quoi ça ressemble.",
-  },
-
-  riskReversal: {
-    headline: "Le risque est pour moi, pas pour vous.",
-    badge: "Garantie 90 jours",
-    guaranteeGold:
-      "Si je ne produis pas un résultat mesurable durant vos 90 premiers jours, vous arrêtez de payer.",
-    guaranteeRest:
-      " Je continue de travailler jusqu'à ce que j'y arrive. Vous gardez tous les actifs que j'ai bâtis pour vous, et vous pouvez demander des améliorations en tout temps, gratuitement.",
-    guaranteeP2:
-      "Je peux le promettre parce que je ne prends pas de clients que je ne crois pas pouvoir aider. J'évalue votre entreprise avant d'accepter de travailler avec vous, pas après que vous ayez payé. C'est à ça que sert la candidature.",
-    objections: [
-      {
-        q: "« J'ai déjà essayé le marketing. »",
-        a: "Vous avez essayé des morceaux. Ici, c'est un système. Les clics étaient réels. Ce qui devait les convertir n'a jamais été construit.",
-      },
-      {
-        q: "« Je connais quelqu'un de moins cher. »",
-        a: "Moins cher vous construit une chose. Moi, je vous construis un résultat, et je l'appuie avec la garantie ci-dessus.",
-      },
-      {
-        q: "« Vais-je perdre le contrôle ? »",
-        a: "Non. Vous possédez chaque actif. Je fais rouler la machine. Vous dirigez l'entreprise.",
-      },
-    ],
-  },
-
   faq: {
     label: "Questions",
     headline: "Les questions que posent les acheteurs sérieux.",
@@ -689,7 +603,7 @@ export const fr: Dictionary = {
       },
     ],
     footerNote: "Une question sans réponse ? Parlons-en.",
-    footerCta: "Postulez comme Partenaire →",
+    footerCta: "Obtenez votre audit de visibilité gratuit →",
   },
 
   finalCta: {
@@ -735,8 +649,7 @@ export const fr: Dictionary = {
       { label: "Comment ça marche", href: "/#system" },
       { label: "Réalisations", href: "/#work" },
       { label: "Pour les recruteurs", href: "/#how-i-think" },
-      { label: "Tarifs", href: "/#pricing" },
-      { label: "Postuler", href: "/#apply" },
+      { label: "Audit gratuit", href: "/#audit" },
     ],
     legalHeading: "Légal",
     privacy: "Politique de confidentialité",

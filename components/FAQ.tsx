@@ -173,7 +173,7 @@ export default function FAQ() {
           {faq.footerNote}
         </p>
         <a
-          href="#apply"
+          href="#audit"
           className="inline-flex items-center rounded-full px-7 py-3.5 text-sm font-semibold transition-transform hover:scale-[1.03]"
           style={{ backgroundColor: GOLD, color: "#0D0B09" }}
         >
