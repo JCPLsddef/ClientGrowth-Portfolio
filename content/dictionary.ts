@@ -40,14 +40,15 @@ export const en = {
   },
 
   auditPopup: {
-    title: "Small problems cost you big money.",
+    title: "Here's what I'm about to show you.",
     paragraphs: [
-      "A button in the wrong place. A site that loads two seconds too slow. A Google listing missing one photo. Details you never see, but that quietly send your customers to a competitor every single week.",
-      "Most of the time, it is not a big problem holding a business back. It is a small one, repeated hundreds of times.",
-      "That is exactly why I offer a free Visibility Audit. I find where you are losing customers right now, and I show you exactly how to fix it. No cost, no obligation.",
+      "You're losing customers right now. Not tomorrow. Today.",
+      "A button that's in the wrong place. A page that loads a second too slow. A Google listing missing a single photo. Your phone number hard to find. A contact form that doesn't work on mobile.",
+      "These aren't big problems. They're small ones. But small problems repeated a hundred times a week add up to real money out of your pocket.",
+      "I find these problems and I fix them. Then qualified customers start calling instead of calling your competitor. That's the whole game.",
     ],
-    cta: "Get my free Visibility Audit →",
-    note: "Free, no strings attached. I review every business personally.",
+    cta: "Show me my free Visibility Audit →",
+    note: "Takes 15 minutes. I do the review myself. No sales call.",
     close: "Close",
   },
 
@@ -405,14 +406,15 @@ export const fr: Dictionary = {
   },
 
   auditPopup: {
-    title: "Les petits problèmes vous coûtent gros.",
+    title: "Voici ce que je vais vous montrer.",
     paragraphs: [
-      "Un bouton au mauvais endroit. Un site qui charge deux secondes de trop. Une fiche Google où il manque une photo. Des détails que vous ne voyez jamais, mais qui envoient discrètement vos clients chez un concurrent, chaque semaine.",
-      "La plupart du temps, ce n'est pas un gros problème qui freine une entreprise. C'est un petit, répété des centaines de fois.",
-      "C'est exactement pour ça que j'offre un audit de visibilité gratuit. Je trouve où vous perdez des clients en ce moment, et je vous montre exactement comment le corriger. Sans frais, sans obligation.",
+      "Vous perdez des clients en ce moment. Pas demain. Aujourd'hui.",
+      "Un bouton au mauvais endroit. Une page qui charge une demi-seconde de trop. Une fiche Google qui manque une photo. Votre numéro de téléphone difficile à trouver. Un formulaire de contact qui ne marche pas sur mobile.",
+      "Ce ne sont pas des gros problèmes. Ce sont des petits. Mais des petits problèmes répétés une centaine de fois par semaine, ça ajoute vite à vrai argent qui sort de votre poche.",
+      "Je trouve ces problèmes et je les règle. Ensuite, des clients qualifiés commencent à appeler au lieu d'appeler votre compétiteur. C'est tout le jeu.",
     ],
-    cta: "Obtenir mon audit de visibilité gratuit →",
-    note: "Gratuit, sans engagement. J'évalue chaque entreprise personnellement.",
+    cta: "Montrez-moi mon audit de visibilité gratuit →",
+    note: "15 minutes. Je fais moi-même l'évaluation. Pas d'appel de vente.",
     close: "Fermer",
   },
   socialProof: {

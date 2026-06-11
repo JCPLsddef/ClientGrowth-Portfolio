@@ -90,21 +90,22 @@ export default function AuditPopup({
 
             <h3
               className="font-display pr-8 font-extrabold leading-[1.1] tracking-tight"
-              style={{ fontSize: "clamp(24px, 4vw, 32px)", color: "#F5F0E8" }}
+              style={{ fontSize: "clamp(28px, 5vw, 36px)", color: "#D4A853" }}
             >
               {p.title}
             </h3>
 
-            <div className="mt-5 flex flex-col gap-4">
+            <div className="mt-6 flex flex-col gap-3.5">
               {p.paragraphs.map((para, i) => (
                 <p
                   key={i}
-                  className="text-[15px] leading-relaxed"
+                  className="text-[15px] leading-[1.65]"
                   style={{
                     color:
-                      i === p.paragraphs.length - 1
-                        ? "rgba(245,240,232,0.92)"
-                        : "rgba(245,240,232,0.7)",
+                      i === 0
+                        ? "#F5F0E8" // First para: bright white, high contrast
+                        : "rgba(245,240,232,0.85)",
+                    fontWeight: i === 0 ? "600" : "400",
                   }}
                 >
                   {para}
@@ -115,15 +116,18 @@ export default function AuditPopup({
             <a
               href="#audit"
               onClick={onClose}
-              className="cta-shine mt-7 block w-full rounded-full px-7 py-4 text-center text-sm font-semibold text-night transition-transform hover:scale-[1.02]"
-              style={{ backgroundColor: "#D4A853" }}
+              className="cta-shine mt-8 block w-full rounded-full px-7 py-4.5 text-center text-base font-bold text-night transition-all hover:scale-[1.04] hover:shadow-lg active:scale-[0.98]"
+              style={{
+                backgroundColor: "#D4A853",
+                boxShadow: "0 12px 30px rgba(212,168,83,0.35)",
+              }}
             >
               {p.cta}
             </a>
 
             <p
-              className="mt-4 text-center text-xs"
-              style={{ color: "rgba(255,255,255,0.45)" }}
+              className="mt-5 text-center text-xs font-medium"
+              style={{ color: "rgba(255,255,255,0.6)" }}
             >
               {p.note}
             </p>
