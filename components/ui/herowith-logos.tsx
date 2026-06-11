@@ -97,7 +97,7 @@ const FUIHeroWithBorders = () => {
           <div className="w-full px-4 pt-8 md:px-8">
             <LogoBar />
           </div>
-          <p className="pb-10 pt-8 text-center text-sm text-[#D4A853]">
+          <p className="pb-10 pt-8 text-center text-sm text-[#F5F0E8]">
             {hero.proofPrefix}
             <strong className="font-semibold">{hero.proofStrong}</strong>
           </p>
