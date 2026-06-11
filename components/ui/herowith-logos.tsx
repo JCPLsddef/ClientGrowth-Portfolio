@@ -65,28 +65,18 @@ const FUIHeroWithBorders = () => {
         {/* CTAs — magnetic solid-gold pill + text link (brand) */}
         <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
           <Reveal delay={0.55}>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Magnetic>
-                <a
-                  href="#audit"
-                  className={clsx(
-                    "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
-                    "transition-transform hover:scale-[1.03]",
-                  )}
-                  style={{ backgroundColor: "#D4A853" }}
-                >
-                  {hero.ctaPrimary}
-                </a>
-              </Magnetic>
-              <Magnetic strength={0.2}>
-                <a
-                  href="#apply"
-                  className="block text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
-                >
-                  {hero.ctaSecondary}
-                </a>
-              </Magnetic>
-            </div>
+            <Magnetic>
+              <a
+                href="#audit"
+                className={clsx(
+                  "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
+                  "transition-transform hover:scale-[1.03]",
+                )}
+                style={{ backgroundColor: "#D4A853" }}
+              >
+                {hero.ctaPrimary}
+              </a>
+            </Magnetic>
           </Reveal>
           <Reveal delay={0.65}>
             <div className="flex flex-col items-center gap-1.5 text-center">
