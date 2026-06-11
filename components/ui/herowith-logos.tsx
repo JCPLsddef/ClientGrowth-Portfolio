@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
 import Reveal from "@/components/Reveal";
@@ -13,6 +13,14 @@ const FUIHeroWithBorders = () => {
   const { t } = useLang();
   const hero = t.hero;
   const [popupOpen, setPopupOpen] = useState(false);
+
+  // Auto-show popup after 7 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPopupOpen(true);
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <section
       id="top"
