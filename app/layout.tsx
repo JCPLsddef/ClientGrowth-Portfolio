@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Archivo, Cormorant, Anton } from "next/font/google";
+import { Jost, Archivo, Cormorant } from "next/font/google";
 import { cookies, headers } from "next/headers";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -23,13 +23,6 @@ const cormorant = Cormorant({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-cormorant",
-  display: "swap",
-});
-
-const anton = Anton({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-anton",
   display: "swap",
 });
 
@@ -58,7 +51,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${jost.variable} ${archivo.variable} ${cormorant.variable} ${anton.variable}`}
+      className={`${jost.variable} ${archivo.variable} ${cormorant.variable}`}
     >
       <body>
         <LanguageProvider initialLang={lang}>

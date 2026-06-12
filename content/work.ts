@@ -27,6 +27,14 @@ export type WorkClient = {
   name: string;
   /** TODO_IMG -> monochrome logo SVG/PNG at /public/work/<slug>-logo.svg */
   logo: string;
+  /** Industry / location tag, e.g. "Barbershop" or "Painting · Texas". Only facts already public on this site. */
+  tag: string;
+  /** French translation of `tag`. */
+  tagFr: string;
+  /** Headline metric in gold, e.g. "46x return". Omit rather than invent: the card stays complete without it. */
+  stat?: string;
+  /** French translation of `stat`. */
+  statFr?: string;
   /** One line of result, brand voice. Written from facts already on this site. */
   result: string;
   /** French translation of `result`. */
@@ -53,8 +61,14 @@ export type Testimonial = {
   name: string;
   /** Real client business (already public on this site). */
   business: string;
-  /** TODO_TEXT -> real one-line quote, in the client's words. Do not invent. */
+  /** TODO_TEXT -> real quote, in the client's words. Do not invent. "\n\n" splits paragraphs. */
   quote: string;
+  /**
+   * Faithful English translation of a French `quote` (optional). Shown to EN
+   * visitors with a "Translated from French" note; FR visitors always get the
+   * original.
+   */
+  quoteEn?: string;
   /** TODO_IMG -> circular client photo at /public/work/<slug>-photo.webp */
   photo: string;
   /** TODO_LOOM -> 30s Loom embed URL (optional). */
@@ -109,10 +123,14 @@ export const clients: WorkClient[] = [
     slug: "triple-w-rentals",
     name: "Triple W Rentals",
     logo: LOGOS.tripleWRentals,
+    tag: "Rentals",
+    tagFr: "Location",
+    stat: "46x return on ad spend",
+    statFr: "Rendement publicitaire de 46x",
     result:
-      "$41,085 in 30 days from $900 in ad spend. 46x return, around $33 per qualified call.",
+      "$41,085 in 30 days from $900 in ad spend, at around $33 per qualified call.",
     resultFr:
-      "41 085 $ en 30 jours à partir de 900 $ en publicité. Rendement de 46x, environ 33 $ par appel qualifié.",
+      "41 085 $ en 30 jours à partir de 900 $ en publicité, environ 33 $ par appel qualifié.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
     span: "feature",
@@ -122,8 +140,12 @@ export const clients: WorkClient[] = [
     slug: "texas-real-estate",
     name: "Texas Real Estate",
     logo: TODO_IMG,
-    result: "From invisible to #1 in Google impression share in his market.",
-    resultFr: "D'invisible à no 1 en part d'impressions Google dans son marché.",
+    tag: "Real estate · Texas",
+    tagFr: "Immobilier · Texas",
+    stat: "#1 Google impression share",
+    statFr: "No 1 en part d'impressions Google",
+    result: "From invisible to the top of Google in his market.",
+    resultFr: "D'invisible au sommet de Google dans son marché.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
     span: "wide",
@@ -132,9 +154,12 @@ export const clients: WorkClient[] = [
     slug: "elite-barbershop",
     name: "Elite Barbershop",
     logo: LOGOS.eliteBarbershop,
-    result: "90 new clients in 90 days. Site, ads, and SEO compounding together.",
-    resultFr:
-      "90 nouveaux clients en 90 jours. Site, publicités et SEO qui s'additionnent.",
+    tag: "Barbershop",
+    tagFr: "Barbier",
+    stat: "90 clients in 90 days",
+    statFr: "90 clients en 90 jours",
+    result: "Site, ads, and SEO compounding together.",
+    resultFr: "Site, publicités et SEO qui s'additionnent.",
     liveUrl: TODO_URL,
     shot: TODO_IMG,
   },
@@ -142,6 +167,8 @@ export const clients: WorkClient[] = [
     slug: "culture-barbershop",
     name: "Culture Barbershop",
     logo: LOGOS.cultureBarbershop,
+    tag: "Barbershop",
+    tagFr: "Barbier",
     result: "A fully custom site that finally matches the quality of the cuts.",
     resultFr:
       "Un site entièrement sur mesure, enfin à la hauteur de la qualité des coupes.",
@@ -152,6 +179,8 @@ export const clients: WorkClient[] = [
     slug: "absolute-painting",
     name: "Absolute Painting",
     logo: LOGOS.absolutePainting,
+    tag: "Painting · Texas",
+    tagFr: "Peinture · Texas",
     result: "Website and Google Ads in a crowded Texas market.",
     resultFr: "Site web et Google Ads dans un marché texan saturé.",
     liveUrl: TODO_URL,
@@ -161,6 +190,8 @@ export const clients: WorkClient[] = [
     slug: "centre-dentaire-saint-elzear",
     name: "Centre Dentaire Saint-Élzéar",
     logo: LOGOS.centreDentaire,
+    tag: "Dental clinic · Quebec",
+    tagFr: "Clinique dentaire · Québec",
     result: "A clinic site built to book appointments, not just sit there.",
     resultFr:
       "Un site de clinique conçu pour prendre des rendez-vous, pas juste exister.",
@@ -182,18 +213,22 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: TODO_TEXT,
-    business: "Elite Barbershop",
+    business: "Texas Real Estate",
     quote: TODO_TEXT,
     photo: TODO_IMG,
     loom: TODO_LOOM,
     placement: "afterStats",
   },
+  // Real, verbatim quote from the founder of Elite Barbershop (in French).
+  // `quoteEn` is a faithful translation, flagged as such in the UI.
   {
-    name: TODO_TEXT,
-    business: "Texas Real Estate",
-    quote: TODO_TEXT,
+    name: "Hadi Sakr",
+    business: "Fondateur, Elite Barbershop",
+    quote:
+      "J'ai eu une excellente expérience avec la création du site web de Elite Barbershop. Le service a été professionnel, rapide et toujours à l'écoute de mes besoins.\n\nLe résultat final reflète parfaitement mon image de marque et offre une expérience simple et moderne pour mes clients. La communication a été excellente tout au long du projet, et chaque détail a été pris en compte.\n\nJe recommande sans hésitation à toute entreprise qui cherche un site web professionnel et de qualité.",
+    quoteEn:
+      "I had an excellent experience with the creation of the Elite Barbershop website. The service was professional, fast, and always attentive to my needs.\n\nThe final result perfectly reflects my brand image and offers a simple, modern experience for my clients. Communication was excellent throughout the project, and every detail was taken care of.\n\nI recommend without hesitation to any business looking for a professional, high-quality website.",
     photo: TODO_IMG,
-    loom: TODO_LOOM,
     placement: "inWork",
   },
   {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
+import Magnetic from "@/components/Magnetic";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import SpotlightField from "@/components/SpotlightField";
@@ -92,6 +93,34 @@ export default function GrowthSystem() {
 
           <Reveal className="mt-10 text-center">
             <p className="text-lg font-medium text-gold">{s.footer}</p>
+          </Reveal>
+
+          {/* Conversion block at peak interest: the visitor has just seen the
+              full machine. The button drops them onto the capture form below. */}
+          <Reveal className="mx-auto mt-20 max-w-2xl border-t border-white/10 pt-16 text-center">
+            <h3
+              className="font-display font-extrabold tracking-tight"
+              style={{ fontSize: "clamp(26px, 3.6vw, 40px)", lineHeight: 1.12 }}
+            >
+              {s.cta.headline}
+            </h3>
+            <p
+              className="mx-auto mt-4 max-w-xl text-base sm:text-lg"
+              style={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}
+            >
+              {s.cta.sub}
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Magnetic>
+                <a
+                  href="#mid-audit"
+                  className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
+                  style={{ backgroundColor: "#D4A853" }}
+                >
+                  {s.cta.button}
+                </a>
+              </Magnetic>
+            </div>
           </Reveal>
         </div>
       </SpotlightField>

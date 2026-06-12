@@ -27,20 +27,25 @@ export default function LogoBar() {
           <li
             key={`${client.name}-${i}`}
             aria-hidden={i >= logoStrip.length}
-            className="flex h-20 w-[156px] flex-none items-center justify-center overflow-hidden px-3 sm:h-24 sm:w-[176px] sm:px-4"
+            className="flex h-24 w-[156px] flex-none flex-col items-center justify-center gap-1.5 overflow-hidden px-3 sm:h-28 sm:w-[176px] sm:px-4"
           >
-            <Image
-              src={client.logo}
-              alt={`${client.name} logo`}
-              width={160}
-              height={44}
-              className="h-auto w-auto object-contain"
-              style={{
-                maxHeight: 52,
-                maxWidth: 140,
-                transform: `scale(${client.scale ?? 1})`,
-              }}
-            />
+            <span className="flex h-14 items-center justify-center">
+              <Image
+                src={client.logo}
+                alt={`${client.name} logo`}
+                width={160}
+                height={44}
+                className="h-auto w-auto object-contain"
+                style={{
+                  maxHeight: 48,
+                  maxWidth: 132,
+                  transform: `scale(${client.scale ?? 1})`,
+                }}
+              />
+            </span>
+            <span className="max-w-full truncate text-center text-[9px] font-semibold uppercase tracking-[0.14em] text-[#F5F0E8]/45">
+              {client.name}
+            </span>
           </li>
         ))}
       </ul>

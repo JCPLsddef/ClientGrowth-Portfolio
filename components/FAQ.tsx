@@ -6,9 +6,15 @@ import { useLang } from "@/components/LanguageProvider";
 
 const GOLD = "#D4A853";
 
+// Position of the "I ran Google Ads before and lost money" question, which
+// carries the "Most common objection" badge. Keep in sync with the FAQ order
+// in content/dictionary.ts (cost and speed sit above it by design).
+const MOST_COMMON_INDEX = 2;
+
 export default function FAQ() {
   const { t } = useLang();
   const faq = t.faq;
+  // Cost is the highest-intent question, so it opens by default.
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   const toggle = (i: number) => setOpenIndex((cur) => (cur === i ? -1 : i));
@@ -47,7 +53,7 @@ export default function FAQ() {
 
       <ul role="list" className="mx-auto flex max-w-2xl flex-col gap-3">
         {faq.items.map((item, i) => {
-          const featured = i === 0;
+          const featured = i === MOST_COMMON_INDEX;
           const isOpen = openIndex === i;
           const answerId = `faq-answer-${i}`;
           const borderClass = isOpen

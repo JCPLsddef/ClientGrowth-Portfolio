@@ -18,17 +18,25 @@ export default function TestimonialCard({
   testimonial,
   className = "",
 }: TestimonialCardProps) {
-  const { t } = useLang();
-  const { name, business, quote, photo } = testimonial;
+  const { t, lang } = useLang();
+  const { name, business, quote, quoteEn, photo } = testimonial;
   const hasQuote = !isTodo(quote);
   const hasName = !isTodo(name);
   const hasPhoto = !isTodo(photo);
+
+  // EN visitors get the faithful translation when one exists (flagged below);
+  // FR visitors always read the client's original words.
+  const translated = lang === "en" && hasQuote && !!quoteEn;
+  const displayQuote = translated ? quoteEn! : quote;
+  const paragraphs = hasQuote
+    ? displayQuote.split("\n\n")
+    : [t.testimonial.placeholderQuote];
 
   return (
     <figure
       className={`w-full rounded-2xl border border-[rgba(212,168,83,0.22)] bg-[rgba(13,11,9,0.6)] p-6 backdrop-blur-sm sm:p-7 ${className}`}
     >
-      {/* TODO (content/work.ts -> testimonials[]): real one-line quote, full name, and circular photo. */}
+      {/* TODO (content/work.ts -> testimonials[]): real quote, full name, and circular photo. */}
       <span
         aria-hidden="true"
         className="font-serif text-4xl leading-[0] text-[#D4A853]"
@@ -36,14 +44,22 @@ export default function TestimonialCard({
         &ldquo;
       </span>
 
-      <blockquote className="mt-2">
-        <p
-          className={`text-[15px] leading-relaxed sm:text-base ${
-            hasQuote ? "text-[#F5F0E8]/85" : "text-[#F5F0E8]/40"
-          }`}
-        >
-          {hasQuote ? quote : t.testimonial.placeholderQuote}
-        </p>
+      <blockquote className="mt-2 flex flex-col gap-3">
+        {paragraphs.map((para, i) => (
+          <p
+            key={i}
+            className={`text-[15px] leading-relaxed sm:text-base ${
+              hasQuote ? "text-[#F5F0E8]/85" : "text-[#F5F0E8]/40"
+            }`}
+          >
+            {para}
+          </p>
+        ))}
+        {translated && (
+          <p className="text-xs italic text-[#F5F0E8]/40">
+            {t.testimonial.translatedNote}
+          </p>
+        )}
       </blockquote>
 
       <figcaption className="mt-5 flex items-center gap-3.5">

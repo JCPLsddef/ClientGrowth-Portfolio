@@ -232,6 +232,9 @@ export default function AuditForm() {
       <p className="mt-4 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
         {f.disclaimer}
       </p>
+      <p className="mt-1.5 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
+        {f.privacyNote}
+      </p>
     </form>
   );
 }

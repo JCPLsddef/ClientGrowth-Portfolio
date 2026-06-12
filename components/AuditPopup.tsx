@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLang } from "@/components/LanguageProvider";
 
-// Modal pitch for the free Visibility Audit, opened by the hero's
-// "Work with me" CTA. The copy sells the audit (small problems, big impact);
+// Modal pitch for the free Visibility Audit, opened by the hero's primary
+// CTA. The copy sells the audit (small problems, big impact);
 // the button hands off to the form section (#audit) and closes the popup.
 export default function AuditPopup({
   open,
@@ -82,8 +82,12 @@ export default function AuditPopup({
               type="button"
               onClick={onClose}
               aria-label={p.close}
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors"
-              style={{ color: "rgba(255,255,255,0.6)" }}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors hover:text-white"
+              style={{
+                color: "rgba(255,255,255,0.75)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                backgroundColor: "rgba(255,255,255,0.06)",
+              }}
             >
               ×
             </button>

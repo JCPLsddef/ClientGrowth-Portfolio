@@ -14,12 +14,42 @@ const FUIHeroWithBorders = () => {
   const hero = t.hero;
   const [popupOpen, setPopupOpen] = useState(false);
 
-  // Auto-show popup after 7 seconds
+  // Auto-show the audit popup once per session, and never right away: after
+  // 35 seconds on the page, or once the visitor has scrolled half of it,
+  // whichever comes first. An early popup was hurting the mobile experience.
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const SEEN_KEY = "cg-audit-popup-seen";
+    try {
+      if (sessionStorage.getItem(SEEN_KEY)) return;
+    } catch {
+      // Storage unavailable (private mode): fall through, worst case the
+      // popup can show once per page load.
+    }
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      if (depth >= 0.5) show();
+    };
+
+    const cleanup = () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+    };
+
+    const show = () => {
+      cleanup();
+      try {
+        sessionStorage.setItem(SEEN_KEY, "1");
+      } catch {}
       setPopupOpen(true);
-    }, 7000);
-    return () => clearTimeout(timer);
+    };
+
+    timer = setTimeout(show, 35000);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return cleanup;
   }, []);
   return (
     <section
@@ -73,28 +103,45 @@ const FUIHeroWithBorders = () => {
           </div>
         </div>
 
-        {/* CTA — magnetic solid-gold pill, opens the free-audit popup */}
+        {/* CTAs — primary gold pill opens the free-audit popup; the ghost
+            secondary scrolls fence-sitters to the client results. */}
         <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
           <Reveal delay={0.55}>
-            <Magnetic>
-              <button
-                type="button"
-                onClick={() => setPopupOpen(true)}
-                className={clsx(
-                  "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
-                  "transition-transform hover:scale-[1.03]",
-                )}
-                style={{ backgroundColor: "#D4A853" }}
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+              <Magnetic>
+                <button
+                  type="button"
+                  onClick={() => setPopupOpen(true)}
+                  className={clsx(
+                    "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
+                    "transition-transform hover:scale-[1.03]",
+                  )}
+                  style={{ backgroundColor: "#D4A853" }}
+                >
+                  {hero.ctaPrimary}
+                </button>
+              </Magnetic>
+              <a
+                href="#work"
+                className="rounded-full border border-[#F5F0E8]/25 px-7 py-3.5 text-sm font-semibold text-[#F5F0E8]/90 transition-colors hover:border-[#D4A853]/60 hover:text-[#D4A853]"
               >
-                {hero.ctaPrimary}
-              </button>
-            </Magnetic>
+                {hero.ctaSecondary}
+              </a>
+            </div>
+          </Reveal>
+          <Reveal delay={0.65}>
+            <p className="text-center text-xs font-medium tracking-wide text-[#F5F0E8]/60">
+              {hero.trustLine}
+            </p>
           </Reveal>
         </div>
 
         {/* Client logo bar + proof line */}
         <div className="mx-auto w-full max-w-7xl">
-          <div className="w-full px-4 pt-8 md:px-8">
+          <p className="px-4 pt-8 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F5F0E8]/50">
+            {hero.logosLabel}
+          </p>
+          <div className="w-full px-4 pt-5 md:px-8">
             <LogoBar />
           </div>
           <p className="pb-10 pt-8 text-center text-sm text-[#F5F0E8]">

@@ -12,7 +12,7 @@ export default function MobileStickyCTA() {
 
   useEffect(() => {
     const audit = document.getElementById("audit");
-    const intro = document.getElementById("jcpl-intro");
+    const intro = document.getElementById("founder-intro");
     let pastHero = false;
     let auditVisible = false;
     let introVisible = false;
@@ -43,8 +43,8 @@ export default function MobileStickyCTA() {
       o.observe(audit);
       observers.push(o);
     }
-    // While the mobile "JCPL" intro fills the screen, keep the bar hidden so it
-    // never sits over the founder's name as the section transitions in.
+    // While the mobile founder-quote intro fills the screen, keep the bar
+    // hidden so it never sits over the quote as the section transitions in.
     if (intro) {
       const o = new IntersectionObserver(
         ([entry]) => {
