@@ -185,11 +185,15 @@ export default function AuditForm() {
             defaultValue=""
             className={`${inputClass} appearance-none`}
           >
-            <option value="" disabled>
+            <option value="" disabled style={{ color: "#6B6354", backgroundColor: "#fff" }}>
               {f.revenuePlaceholder}
             </option>
             {REVENUE_VALUES.map((value, i) => (
-              <option key={value} value={value}>
+              <option
+                key={value}
+                value={value}
+                style={{ color: "#0D0B09", backgroundColor: "#fff", fontWeight: 600 }}
+              >
                 {f.revenueOptions[i]}
               </option>
             ))}
