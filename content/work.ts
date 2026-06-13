@@ -82,17 +82,17 @@ const LOGOS = {
   eliteBarbershop:
     "https://static.wixstatic.com/media/62f926_e18d05b0a0914e6fb4269bcd04246eb5~mv2.png",
   tripleWRentals:
-    "https://static.wixstatic.com/media/62f926_cdac06309eba45679ea0ac08a402b45c~mv2.png",
+    "https://static.wixstatic.com/media/62f926_d0d13d6efa404252805cf8237b929af6~mv2.png",
   cultureBarbershop:
     "https://static.wixstatic.com/media/62f926_ca6524ec96fe4822a3da0d0481995989~mv2.png",
   centreDentaire:
     "https://static.wixstatic.com/media/62f926_46341a52a846490d8446c91d0fb56281~mv2.png",
   nancyMusselman:
-    "https://static.wixstatic.com/media/62f926_a4e8d4b1911b4aa7a3b026a0052431e7~mv2.png",
+    "https://static.wixstatic.com/media/62f926_916f9ad35f5b467da66090d9eef54de4~mv2.png",
   beamRealEstate:
     "https://static.wixstatic.com/media/62f926_9ad494fb59a64c3abe3ff5bd1941b69c~mv2.jpg",
   absolutePainting:
-    "https://static.wixstatic.com/media/62f926_cbad727efe524758927405bae7ce8c84~mv2.png",
+    "https://static.wixstatic.com/media/62f926_4fc6c1684cdb4270b7d27412c30d14b7~mv2.png",
 } as const;
 
 /**
@@ -110,7 +110,7 @@ export type StripLogo = { name: string; logo: string; scale?: number };
 // rendered strip so every logo carries equal visual weight.
 export const logoStrip: StripLogo[] = [
   { name: "Triple W Rentals", logo: LOGOS.tripleWRentals, scale: 1.08 },
-  { name: "Elite Barbershop", logo: LOGOS.eliteBarbershop, scale: 1.08 },
+  { name: "Elite Barbershop", logo: LOGOS.eliteBarbershop, scale: 1.4 },
   { name: "Nancy Musselman Real Estate", logo: LOGOS.nancyMusselman, scale: 1 },
   { name: "Centre Dentaire Saint-Élzéar", logo: LOGOS.centreDentaire, scale: 1.32 },
   { name: "Culture Barbershop", logo: LOGOS.cultureBarbershop, scale: 1.42 },
