@@ -209,7 +209,7 @@ export const en = {
       {
         question: "What does this cost?",
         answer:
-          "Two ways in. Individual builds start at $600 for a conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
+          "Two ways in. Individual builds start at $750 for a fully custom conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
       },
       {
         question: "How fast will I see results?",
@@ -596,7 +596,7 @@ export const fr: Dictionary = {
       {
         question: "Combien ça coûte ?",
         answer:
-          "Deux portes d'entrée. Les builds individuels commencent à 600 $ pour un site de conversion. Le Partenariat de croissance complet commence à 2 500 $/mois et couvre tout le système d'acquisition : site de conversion, SEO local, Google Ads et optimisation hebdomadaire. Le budget publicitaire va directement à Google, pas à moi. L'engagement initial est de 90 jours, puis de mois en mois. Aucuns frais cachés.",
+          "Deux portes d'entrée. Les builds individuels commencent à 750 $ pour un site de conversion entièrement sur mesure. Le Partenariat de croissance complet commence à 2 500 $/mois et couvre tout le système d'acquisition : site de conversion, SEO local, Google Ads et optimisation hebdomadaire. Le budget publicitaire va directement à Google, pas à moi. L'engagement initial est de 90 jours, puis de mois en mois. Aucuns frais cachés.",
       },
       {
         question: "À quelle vitesse vais-je voir des résultats ?",
