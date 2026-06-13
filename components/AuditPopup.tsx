@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLang } from "@/components/LanguageProvider";
 
-// Modal pitch for the free Visibility Audit, opened by the hero's
-// "Work with me" CTA. The copy sells the audit (small problems, big impact);
+// Modal pitch for the free Visibility Audit, opened by the hero's primary
+// CTA. The copy sells the audit (small problems, big impact);
 // the button hands off to the form section (#audit) and closes the popup.
 export default function AuditPopup({
   open,
@@ -82,8 +82,12 @@ export default function AuditPopup({
               type="button"
               onClick={onClose}
               aria-label={p.close}
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors"
-              style={{ color: "rgba(255,255,255,0.6)" }}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors hover:text-white"
+              style={{
+                color: "rgba(255,255,255,0.75)",
+                border: "1px solid rgba(255,255,255,0.25)",
+                backgroundColor: "rgba(255,255,255,0.06)",
+              }}
             >
               ×
             </button>
@@ -116,7 +120,7 @@ export default function AuditPopup({
             <a
               href="#audit"
               onClick={onClose}
-              className="cta-shine mt-8 block w-full rounded-full px-7 py-4.5 text-center text-base font-bold text-night transition-all hover:scale-[1.04] hover:shadow-lg active:scale-[0.98]"
+              className="cta-shine mt-8 flex w-full items-center justify-center rounded-full px-7 py-4 text-center text-base font-bold text-night transition-all hover:scale-[1.03] hover:shadow-lg active:scale-[0.98]"
               style={{
                 backgroundColor: "#D4A853",
                 boxShadow: "0 12px 30px rgba(212,168,83,0.35)",

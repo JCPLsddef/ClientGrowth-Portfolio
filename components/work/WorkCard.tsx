@@ -22,50 +22,71 @@ export default function WorkCard({
   const isWide = client.span === "feature" || client.span === "wide";
   const isFeature = client.span === "feature";
   const result = lang === "fr" ? client.resultFr : client.result;
+  const tag = lang === "fr" ? client.tagFr : client.tag;
+  const stat = lang === "fr" ? client.statFr : client.stat;
 
   const body = (
-    <div className="flex flex-1 flex-col justify-center gap-4 p-6 sm:p-7">
-      <div className="flex items-center gap-3">
-        {index && (
-          <span className="font-mono text-xs font-semibold tracking-[0.15em] text-gold/60">
-            {index}
-          </span>
-        )}
-        {isFeature && (
-          <span
-            className="inline-flex w-fit items-center rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
-            style={{ backgroundColor: "rgba(212,168,83,0.14)", color: "#D4A853" }}
-          >
-            {t.work.signatureResult}
-          </span>
-        )}
+    <div className="flex flex-1 flex-col gap-3 p-6 sm:p-7">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          {index && (
+            <span className="font-mono text-xs font-semibold tracking-[0.15em] text-gold/60">
+              {index}
+            </span>
+          )}
+          {isFeature && (
+            <span
+              className="inline-flex w-fit items-center rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-[0.1em]"
+              style={{ backgroundColor: "rgba(212,168,83,0.14)", color: "#D4A853" }}
+            >
+              {t.work.signatureResult}
+            </span>
+          )}
+        </div>
+        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#F5F0E8]/45">
+          {tag}
+        </span>
       </div>
-      <p
+
+      <h3
         className={`font-display font-bold leading-snug text-[#F5F0E8] ${
           isFeature ? "text-2xl" : "text-lg"
         }`}
       >
-        {result}
-      </p>
+        {client.name}
+      </h3>
+
+      {stat && (
+        <p
+          className={`font-display font-extrabold leading-tight text-[#D4A853] ${
+            isFeature ? "text-3xl" : "text-xl"
+          }`}
+        >
+          {stat}
+        </p>
+      )}
+
+      <p className="text-[15px] leading-relaxed text-[#F5F0E8]/70">{result}</p>
+
       {(hasUrl || client.caseStudyHref) && (
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-2">
+          {client.caseStudyHref && (
+            <Link
+              href={client.caseStudyHref}
+              className="text-sm font-semibold text-[#D4A853] underline-offset-4 hover:underline"
+            >
+              {t.work.seeBuild}
+            </Link>
+          )}
           {hasUrl && (
             <a
               href={client.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-[#D4A853] underline-offset-4 hover:underline"
+              className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-[#D4A853] hover:underline"
             >
               {t.work.viewLive}
             </a>
-          )}
-          {client.caseStudyHref && (
-            <Link
-              href={client.caseStudyHref}
-              className="text-sm font-semibold text-[#F5F0E8] underline-offset-4 transition-colors hover:text-azure hover:underline"
-            >
-              {t.work.seeBuild}
-            </Link>
           )}
         </div>
       )}

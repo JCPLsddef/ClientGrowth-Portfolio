@@ -13,7 +13,42 @@ type FounderCopy = {
   name2: string;
   paragraphs: readonly string[];
   photoAlt: string;
+  transitionQuote: string;
+  transitionAttribution: string;
 };
+
+// Cinematic founder pull-quote: the trust transition into the bio. Replaces
+// the old "JCPL" initials interstitial, which read as a private monogram to
+// anyone who did not already know the founder.
+function FounderQuote({ f }: { f: FounderCopy }) {
+  return (
+    <blockquote className="mx-auto max-w-3xl px-2 text-center">
+      <p
+        className="font-serif"
+        style={{
+          fontSize: "clamp(26px, 4.6vw, 52px)",
+          lineHeight: 1.3,
+          color: "var(--ink)",
+        }}
+      >
+        <span aria-hidden="true" style={{ color: "#B8893B" }}>
+          &ldquo;
+        </span>
+        {f.transitionQuote}
+        <span aria-hidden="true" style={{ color: "#B8893B" }}>
+          &rdquo;
+        </span>
+      </p>
+      <footer className="mt-7 flex items-center justify-center gap-3">
+        <span aria-hidden="true" className="h-px w-8 bg-gold-deep/60" />
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
+          {f.transitionAttribution}
+        </span>
+        <span aria-hidden="true" className="h-px w-8 bg-gold-deep/60" />
+      </footer>
+    </blockquote>
+  );
+}
 
 // The founder card (name, story, photo). Shared by every layout, so the heavy
 // UnicornScene only ever mounts once: exactly one layout is rendered at a time.
@@ -67,16 +102,16 @@ function FounderStatic({ f }: { f: FounderCopy }) {
   );
 }
 
-// Mobile: keep the JCPL name intro, but as a self-contained first screen that
-// spreads, lifts and fades as you scroll past it — then the full card follows in
-// normal flow, so the full name is always visible and nothing is ever clipped.
+// Mobile: the founder quote as a self-contained first screen that lifts and
+// fades as you scroll past it — then the full card follows in normal flow, so
+// the full name is always visible and nothing is ever clipped.
 function FounderMobile({ f }: { f: FounderCopy }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const monoRef = useRef<HTMLSpanElement>(null);
+  const monoRef = useRef<HTMLDivElement>(null);
 
-  // Drive the pinned monogram straight from layout: each frame (while the track
-  // is on screen) we read its real position and map it to spread/shrink/lift/
-  // fade. This does not depend on framer's useScroll, which was not updating
+  // Drive the pinned quote straight from layout: each frame (while the track
+  // is on screen) we read its real position and map it to shrink/lift/fade.
+  // This does not depend on framer's useScroll, which was not updating
   // under Lenis on touch — so the animation now plays reliably on mobile.
   useEffect(() => {
     const track = trackRef.current;
@@ -103,14 +138,12 @@ function FounderMobile({ f }: { f: FounderCopy }) {
       const p =
         distance > 0 ? Math.min(Math.max(-rect.top / distance, 0), 1) : 0;
 
-      // Cinematic: holds briefly, then the letters separate and the word lifts
-      // and fades, finishing right as the pin ends so the card slides in.
-      const spread = 0.02 + 0.46 * ease(0.12, 0.92, p); // letters pull apart
-      const scale = 1 - 0.3 * ease(0.12, 0.95, p);
+      // Cinematic: holds briefly, then the quote lifts, shrinks slightly and
+      // fades, finishing right as the pin ends so the card slides in.
+      const scale = 1 - 0.12 * ease(0.12, 0.95, p);
       const ty = -10 * ease(0.12, 0.95, p); // vh, gentle lift
       const opacity = 1 - ease(0.5, 1, p);
 
-      mono.style.letterSpacing = `${spread}em`;
       mono.style.transform = `translateY(${ty}vh) scale(${scale})`;
       mono.style.opacity = `${opacity}`;
     };
@@ -145,34 +178,22 @@ function FounderMobile({ f }: { f: FounderCopy }) {
 
   return (
     <section id="founder" className="relative bg-marble">
-      {/* Act 1 — JCPL intro: pinned while it spreads, lifts and fades out. */}
+      {/* Act 1 — founder quote: pinned while it lifts and fades out. */}
       <div ref={trackRef} style={{ position: "relative", height: "190svh" }}>
         <div
-          id="jcpl-intro"
+          id="founder-intro"
           className="sticky top-0 flex items-center justify-center overflow-hidden px-6"
           style={{ height: "100svh" }}
         >
-          <span
-            ref={monoRef}
-            aria-hidden="true"
-            style={{
-              display: "inline-block",
-              fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
-              fontSize: "clamp(64px, 27vw, 150px)",
-              lineHeight: 1,
-              color: "var(--ink)",
-              letterSpacing: "0.02em",
-              willChange: "transform, opacity",
-            }}
-          >
-            JCPL
-          </span>
+          <div ref={monoRef} style={{ willChange: "transform, opacity" }}>
+            <FounderQuote f={f} />
+          </div>
         </div>
       </div>
 
       {/* Act 2 — the full card, in flow: never clipped, full name visible.
-          Pulled up so the text starts a bit higher as it slides in (JCPL has
-          faded to ~0 by then, so there is no visual overlap). */}
+          Pulled up so the text starts a bit higher as it slides in (the quote
+          has faded to ~0 by then, so there is no visual overlap). */}
       <div className="px-6 pb-24" style={{ marginTop: "-10vh" }}>
         <Reveal className="mx-auto max-w-5xl">
           <FounderCard f={f} />
@@ -182,7 +203,7 @@ function FounderMobile({ f }: { f: FounderCopy }) {
   );
 }
 
-// Desktop: the JCPL monogram spreads and lifts away as the founder card rises in,
+// Desktop: the founder quote lifts away as the founder card rises in,
 // both inside one pinned viewport (there is room for the full card here).
 function FounderDesktop({ f }: { f: FounderCopy }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -191,8 +212,7 @@ function FounderDesktop({ f }: { f: FounderCopy }) {
     offset: ["start start", "end end"],
   });
 
-  const monoSpacing = useTransform(scrollYProgress, [0, 0.5], ["0.02em", "0.28em"]);
-  const monoScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
+  const monoScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.88]);
   const monoY = useTransform(scrollYProgress, [0, 0.5], ["0vh", "-22vh"]);
   const monoOpacity = useTransform(scrollYProgress, [0, 0.32, 0.5], [1, 1, 0]);
   const revealOpacity = useTransform(scrollYProgress, [0.42, 0.66], [0, 1]);
@@ -206,25 +226,13 @@ function FounderDesktop({ f }: { f: FounderCopy }) {
       style={{ height: "230vh" }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Layer 1: JCPL monogram */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.span
-            aria-hidden="true"
-            style={{
-              display: "inline-block",
-              fontFamily: "var(--font-anton), Impact, 'Arial Narrow', sans-serif",
-              fontSize: "clamp(72px, 15vw, 210px)",
-              lineHeight: 1,
-              color: "var(--ink)",
-              letterSpacing: monoSpacing,
-              scale: monoScale,
-              y: monoY,
-              opacity: monoOpacity,
-            }}
-          >
-            JCPL
-          </motion.span>
-        </div>
+        {/* Layer 1: founder pull quote */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center px-6"
+          style={{ scale: monoScale, y: monoY, opacity: monoOpacity }}
+        >
+          <FounderQuote f={f} />
+        </motion.div>
 
         {/* Layer 2: reveal */}
         <motion.div

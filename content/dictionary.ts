@@ -19,7 +19,7 @@ export const en = {
     links: [
       { href: "#work", label: "Work" },
       { href: "#system", label: "System" },
-      { href: "#how-i-think", label: "For hiring teams" },
+      { href: "#how-i-think", label: "How I work" },
     ],
     ctaShort: "Free Audit",
     ctaLong: "Free Visibility Audit",
@@ -34,9 +34,9 @@ export const en = {
     highlight: ["obvious", "choice"],
     subhead:
       "You built a business worth choosing. Online, a weaker competitor still looks easier to trust. I fix that.",
-    ctaPrimary: "Work with me",
-    proofPrefix: "$41,085 in 30 days, from $900 in ad spend. ",
-    proofStrong: "46x return.",
+    ctaPrimary: "Get my free Visibility Audit",
+    ctaSecondary: "See client results →",
+    logosLabel: "Businesses that trusted the system",
   },
 
   auditPopup: {
@@ -94,9 +94,9 @@ export const en = {
   },
 
   howIThink: {
-    label: "For hiring teams",
-    headline: "How I think.",
-    sub: "Hiring me, or hiring my system. Either way, this is how I work.",
+    label: "How I work",
+    headline: "The four moves behind every result.",
+    sub: "Research, build, prove, optimize. This is how every system I ship gets built.",
     steps: [
       {
         title: "Research",
@@ -146,6 +146,22 @@ export const en = {
     ],
     footer:
       "Built once. Improved every month. The last marketing system you will need to think about.",
+    cta: {
+      headline: "This is the machine. Ready to build yours?",
+      sub: "Tell me about your business. I'll show you exactly where your visibility, website, ads, and follow-up system can improve.",
+      button: "Get my free Visibility Audit →",
+    },
+  },
+
+  midCta: {
+    headline: "Want to see what your business is missing?",
+    sub: "Get a free Visibility Audit. I'll show you where your website, visibility, ads, and follow-up system can improve.",
+    name: "Your name",
+    email: "Email",
+    website: "Your website (optional)",
+    challenge: "Your biggest challenge right now",
+    submit: "Show me where I'm losing customers →",
+    note: "No cost, no obligation. Your information stays private.",
   },
 
   howItWorks: {
@@ -179,14 +195,27 @@ export const en = {
       "I hold myself to a single number: qualified calls on your calendar. If it is not climbing, I am not done. Your growth is the only scoreboard I keep.",
     ],
     photoAlt: "Juan-Carlos Portillo-Laflamme, founder of Client Growth",
+    transitionQuote:
+      "In the land of the blind, the one-eyed man is king.",
+    transitionAttribution: "Erasmus",
   },
 
   faq: {
     label: "Questions",
     headline: "Questions Serious Buyers Ask.",
     sub: "I would rather answer the hard ones here than waste your time on a call.",
-    mostCommon: "Most common objection",
+    mostCommon: "Most asked question",
     items: [
+      {
+        question: "What does this cost?",
+        answer:
+          "Two ways in. Individual builds start at $750 for a fully custom conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
+      },
+      {
+        question: "How fast will I see results?",
+        answer:
+          "Fast build from signed agreement to live system. That includes the diagnostic audit, full website build, and campaign setup. Most clients see their first inbound call within weeks of going live. The full system reaches peak efficiency at 60 to 90 days as the SEO compounds and the ad campaigns optimize. The tracking dashboard shows you every call, every cost, and every source from day one.",
+      },
       {
         question:
           "I ran Google Ads before and lost money. Why would this be different?",
@@ -194,14 +223,19 @@ export const en = {
           "Because ads without a conversion system are just expensive traffic. You got clicks. The website that received them was not built to close. The targeting was not built around purchase intent. The landing page was probably your home page.\n\nI have seen this exact story more times than I can count. A business owner spends $500 to $1,000, gets clicks, gets zero calls, and concludes ads do not work in their industry.\n\nThe clicks were real. Everything behind them was not built. I build it first. Then the ads run. When the funnel exists before the traffic, the calls come. The difference between losing money on ads and 46x return on ad spend is the infrastructure that receives the traffic.",
       },
       {
+        question: "Who is NOT a good fit?",
+        answer:
+          "Businesses under $5K per month in revenue. Businesses wanting a logo, a brochure site, or a one-off project. Anyone not ready to commit to a 90-day initial run. Anyone who wants to test the waters with no real system behind it.",
+      },
+      {
+        question: "Who is this built for?",
+        answer:
+          "Service businesses generating $5K or more per month that rely too heavily on referrals and want a predictable, scalable way to get new clients from the internet. Painters, barbershops, RV rental companies, dental clinics, and any local service where the phone needs to ring with qualified buyers.",
+      },
+      {
         question: "What exactly is the Growth Architecture?",
         answer:
           "It's a complete acquisition system. Not just a website, not just ads. All of it, built together so each part makes the others stronger. Positioning, conversion website, Google Ads, AI automation, lead qualification, monthly optimization. Built once. Improved every month. It's the last marketing system you will need to think about.",
-      },
-      {
-        question: "How fast will I see results?",
-        answer:
-          "Fast build from signed agreement to live system. That includes the diagnostic audit, full website build, and campaign setup. Most clients see their first inbound call within weeks of going live. The full system reaches peak efficiency at 60 to 90 days as the SEO compounds and the ad campaigns optimize. The tracking dashboard shows you every call, every cost, and every source from day one.",
       },
       {
         question: "What happens if I already have a website?",
@@ -222,21 +256,6 @@ export const en = {
         question: "What if it does not work?",
         answer:
           "If I do not produce a measurable result in the first 90 days, you stop paying and I keep working until I do. You keep every asset I have built for you, and you can ask for improvements anytime, free.\n\nI do not take clients I do not believe I can help. That is why there is an application. I review your business before agreeing to work with you, not after you have paid.",
-      },
-      {
-        question: "What does this cost?",
-        answer:
-          "Two ways in. Individual builds start at $600 for a conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
-      },
-      {
-        question: "Who is NOT a good fit?",
-        answer:
-          "Businesses under $5K per month in revenue. Businesses wanting a logo, a brochure site, or a one-off project. Anyone not ready to commit to a 90-day initial run. Anyone who wants to test the waters with no real system behind it.",
-      },
-      {
-        question: "Who is this built for?",
-        answer:
-          "Service businesses generating $5K or more per month that rely too heavily on referrals and want a predictable, scalable way to get new clients from the internet. Painters, barbershops, RV rental companies, dental clinics, and any local service where the phone needs to ring with qualified buyers.",
       },
     ],
     footerNote: "Still have a question I did not answer? Let us talk.",
@@ -260,7 +279,7 @@ export const en = {
     website: "Your website (optional)",
     revenueLabel: "Monthly revenue (optional)",
     revenuePlaceholder:
-      "Roughly what does your business do per month? (optional)",
+      "Monthly revenue range — helps me personalize your audit (optional)",
     revenueOptions: [
       "Under $5K / month",
       "$5K – $15K / month",
@@ -268,9 +287,11 @@ export const en = {
       "$50K+ / month",
     ],
     message: "What do you want to fix? (optional)",
-    submit: "Get my free Visibility Audit",
+    submit: "Show me where I'm losing customers →",
     sending: "Sending...",
     disclaimer: "No cost, no obligation. I review every business personally.",
+    privacyNote:
+      "Your information stays private. I personally review every request.",
     successTitle: "Request received.",
     successBody:
       "Got it. I'll review your business myself and get back to you personally. Talk soon.",
@@ -284,7 +305,7 @@ export const en = {
     navLinks: [
       { label: "How it works", href: "/#system" },
       { label: "Work", href: "/#work" },
-      { label: "For hiring teams", href: "/#how-i-think" },
+      { label: "How I work", href: "/#how-i-think" },
       { label: "Free audit", href: "/#audit" },
     ],
     legalHeading: "Legal",
@@ -311,6 +332,7 @@ export const en = {
     verifiedClient: "Verified client",
     watchClip: "Watch the 30s clip",
     inTheirWords: "in their words",
+    translatedNote: "Translated from French.",
   },
 
   videoModal: {
@@ -385,7 +407,7 @@ export const fr: Dictionary = {
     links: [
       { href: "#work", label: "Réalisations" },
       { href: "#system", label: "Système" },
-      { href: "#how-i-think", label: "Pour les recruteurs" },
+      { href: "#how-i-think", label: "Comment je travaille" },
     ],
     ctaShort: "Audit gratuit",
     ctaLong: "Audit de visibilité gratuit",
@@ -400,9 +422,9 @@ export const fr: Dictionary = {
     highlight: ["choix", "évident"],
     subhead:
       "Vous avez bâti une entreprise qui mérite d'être choisie. En ligne, un concurrent plus faible a pourtant l'air plus facile à choisir. Je corrige ça.",
-    ctaPrimary: "Travaillez avec moi",
-    proofPrefix: "41 085 $ en 30 jours, à partir de 900 $ en publicité. ",
-    proofStrong: "Rendement de 46x.",
+    ctaPrimary: "Obtenir mon audit de visibilité gratuit",
+    ctaSecondary: "Voir les résultats clients →",
+    logosLabel: "Des entreprises qui ont fait confiance au système",
   },
 
   auditPopup: {
@@ -459,9 +481,9 @@ export const fr: Dictionary = {
   },
 
   howIThink: {
-    label: "Pour les recruteurs",
-    headline: "Comment je pense.",
-    sub: "Que vous m'engagiez, moi ou mon système. Dans les deux cas, voici comment je travaille.",
+    label: "Comment je travaille",
+    headline: "Les quatre étapes derrière chaque résultat.",
+    sub: "Recherche, construction, preuve, optimisation. C'est ainsi que chaque système que je livre est construit.",
     steps: [
       {
         title: "Recherche",
@@ -511,6 +533,22 @@ export const fr: Dictionary = {
     ],
     footer:
       "Construit une fois. Amélioré chaque mois. Le dernier système marketing auquel vous aurez à penser.",
+    cta: {
+      headline: "Voici la machine. Prêt à bâtir la vôtre ?",
+      sub: "Parlez-moi de votre entreprise. Je vous montre exactement où votre visibilité, votre site, vos publicités et votre système de suivi peuvent s'améliorer.",
+      button: "Obtenir mon audit de visibilité gratuit →",
+    },
+  },
+
+  midCta: {
+    headline: "Envie de voir ce qui manque à votre entreprise ?",
+    sub: "Obtenez un audit de visibilité gratuit. Je vous montre où votre site, votre visibilité, vos publicités et votre système de suivi peuvent s'améliorer.",
+    name: "Votre nom",
+    email: "Courriel",
+    website: "Votre site web (optionnel)",
+    challenge: "Votre plus grand défi en ce moment",
+    submit: "Montrez-moi où je perds des clients →",
+    note: "Sans frais, sans obligation. Vos informations restent privées.",
   },
 
   howItWorks: {
@@ -544,14 +582,27 @@ export const fr: Dictionary = {
       "Je me tiens à un seul chiffre : les appels qualifiés à votre calendrier. S'il n'augmente pas, je n'ai pas fini. Votre croissance, c'est le seul résultat qui compte pour moi.",
     ],
     photoAlt: "Juan-Carlos Portillo-Laflamme, fondateur de Client Growth",
+    transitionQuote:
+      "Au pays des aveugles, le borgne est roi.",
+    transitionAttribution: "Érasme",
   },
 
   faq: {
     label: "Questions",
     headline: "Les questions que posent les acheteurs sérieux.",
     sub: "Je préfère répondre aux plus difficiles ici plutôt que de gaspiller votre temps au téléphone.",
-    mostCommon: "Objection la plus fréquente",
+    mostCommon: "Question la plus fréquente",
     items: [
+      {
+        question: "Combien ça coûte ?",
+        answer:
+          "Deux portes d'entrée. Les builds individuels commencent à 750 $ pour un site de conversion entièrement sur mesure. Le Partenariat de croissance complet commence à 2 500 $/mois et couvre tout le système d'acquisition : site de conversion, SEO local, Google Ads et optimisation hebdomadaire. Le budget publicitaire va directement à Google, pas à moi. L'engagement initial est de 90 jours, puis de mois en mois. Aucuns frais cachés.",
+      },
+      {
+        question: "À quelle vitesse vais-je voir des résultats ?",
+        answer:
+          "Un build rapide, de la signature jusqu'au système en ligne. Ça inclut l'audit diagnostic, la construction complète du site et la configuration des campagnes. La plupart des clients reçoivent leur premier appel entrant quelques semaines après la mise en ligne. Le système complet atteint son efficacité maximale entre 60 et 90 jours, à mesure que le SEO s'accumule et que les campagnes s'optimisent. Le tableau de bord vous montre chaque appel, chaque coût et chaque source dès le premier jour.",
+      },
       {
         question:
           "J'ai déjà fait des Google Ads et j'ai perdu de l'argent. Pourquoi ce serait différent ?",
@@ -559,14 +610,19 @@ export const fr: Dictionary = {
           "Parce que des publicités sans système de conversion, ce n'est que du trafic coûteux. Vous avez eu des clics. Le site qui les recevait n'était pas bâti pour conclure. Le ciblage n'était pas construit autour de l'intention d'achat. La page d'arrivée était probablement votre page d'accueil.\n\nJ'ai vu cette histoire exacte plus de fois que je peux compter. Un propriétaire dépense 500 $ à 1 000 $, obtient des clics, zéro appel, et conclut que la publicité ne fonctionne pas dans son domaine.\n\nLes clics étaient réels. Tout ce qu'il y avait derrière n'avait pas été construit. Moi, je le construis d'abord. Ensuite, les publicités roulent. Quand l'entonnoir existe avant le trafic, les appels arrivent. La différence entre perdre de l'argent en publicité et un rendement de 46x, c'est l'infrastructure qui reçoit le trafic.",
       },
       {
+        question: "Pour qui ce n'est PAS un bon match ?",
+        answer:
+          "Les entreprises avec moins de 5 000 $ de revenus par mois. Celles qui veulent un logo, un site vitrine ou un projet ponctuel. Quiconque n'est pas prêt à s'engager pour une période initiale de 90 jours. Quiconque veut juste tâter le terrain sans vrai système derrière.",
+      },
+      {
+        question: "Pour qui est-ce conçu ?",
+        answer:
+          "Les entreprises de services qui génèrent 5 000 $ ou plus par mois, qui dépendent trop du bouche-à-oreille et qui veulent une façon prévisible et évolutive d'attirer de nouveaux clients par Internet. Peintres, barbiers, compagnies de location de VR, cliniques dentaires, et tout service local où le téléphone doit sonner avec des acheteurs qualifiés.",
+      },
+      {
         question: "C'est quoi exactement l'Architecture de croissance ?",
         answer:
           "C'est un système d'acquisition complet. Pas juste un site, pas juste des publicités. Tout, construit ensemble pour que chaque partie renforce les autres. Positionnement, site de conversion, Google Ads, automatisation par IA, qualification des prospects, optimisation mensuelle. Construit une fois. Amélioré chaque mois. C'est le dernier système marketing auquel vous aurez à penser.",
-      },
-      {
-        question: "À quelle vitesse vais-je voir des résultats ?",
-        answer:
-          "Un build rapide, de la signature jusqu'au système en ligne. Ça inclut l'audit diagnostic, la construction complète du site et la configuration des campagnes. La plupart des clients reçoivent leur premier appel entrant quelques semaines après la mise en ligne. Le système complet atteint son efficacité maximale entre 60 et 90 jours, à mesure que le SEO s'accumule et que les campagnes s'optimisent. Le tableau de bord vous montre chaque appel, chaque coût et chaque source dès le premier jour.",
       },
       {
         question: "Que se passe-t-il si j'ai déjà un site web ?",
@@ -587,21 +643,6 @@ export const fr: Dictionary = {
         question: "Et si ça ne fonctionne pas ?",
         answer:
           "Si je ne produis pas un résultat mesurable durant les 90 premiers jours, vous arrêtez de payer et je continue de travailler jusqu'à ce que j'y arrive. Vous gardez tous les actifs que j'ai bâtis pour vous, et vous pouvez demander des améliorations en tout temps, gratuitement.\n\nJe ne prends pas de clients que je ne crois pas pouvoir aider. C'est pour ça qu'il y a une candidature. J'évalue votre entreprise avant d'accepter de travailler avec vous, pas après que vous ayez payé.",
-      },
-      {
-        question: "Combien ça coûte ?",
-        answer:
-          "Deux portes d'entrée. Les builds individuels commencent à 600 $ pour un site de conversion. Le Partenariat de croissance complet commence à 2 500 $/mois et couvre tout le système d'acquisition : site de conversion, SEO local, Google Ads et optimisation hebdomadaire. Le budget publicitaire va directement à Google, pas à moi. L'engagement initial est de 90 jours, puis de mois en mois. Aucuns frais cachés.",
-      },
-      {
-        question: "Pour qui ce n'est PAS un bon match ?",
-        answer:
-          "Les entreprises avec moins de 5 000 $ de revenus par mois. Celles qui veulent un logo, un site vitrine ou un projet ponctuel. Quiconque n'est pas prêt à s'engager pour une période initiale de 90 jours. Quiconque veut juste tâter le terrain sans vrai système derrière.",
-      },
-      {
-        question: "Pour qui est-ce conçu ?",
-        answer:
-          "Les entreprises de services qui génèrent 5 000 $ ou plus par mois, qui dépendent trop du bouche-à-oreille et qui veulent une façon prévisible et évolutive d'attirer de nouveaux clients par Internet. Peintres, barbiers, compagnies de location de VR, cliniques dentaires, et tout service local où le téléphone doit sonner avec des acheteurs qualifiés.",
       },
     ],
     footerNote: "Une question sans réponse ? Parlons-en.",
@@ -625,7 +666,7 @@ export const fr: Dictionary = {
     website: "Votre site web (optionnel)",
     revenueLabel: "Revenus mensuels (optionnel)",
     revenuePlaceholder:
-      "Environ combien votre entreprise génère-t-elle par mois ? (optionnel)",
+      "Fourchette de revenus mensuels — m'aide à personnaliser votre audit (optionnel)",
     revenueOptions: [
       "Moins de 5 000 $ / mois",
       "5 000 $ – 15 000 $ / mois",
@@ -633,10 +674,12 @@ export const fr: Dictionary = {
       "50 000 $+ / mois",
     ],
     message: "Qu'aimeriez-vous corriger ? (optionnel)",
-    submit: "Obtenir mon audit de visibilité gratuit",
+    submit: "Montrez-moi où je perds des clients →",
     sending: "Envoi...",
     disclaimer:
       "Sans frais, sans obligation. J'évalue chaque entreprise personnellement.",
+    privacyNote:
+      "Vos informations restent privées. J'examine personnellement chaque demande.",
     successTitle: "Demande reçue.",
     successBody:
       "C'est noté. Je vais évaluer votre entreprise moi-même et vous revenir personnellement. À bientôt.",
@@ -650,7 +693,7 @@ export const fr: Dictionary = {
     navLinks: [
       { label: "Comment ça marche", href: "/#system" },
       { label: "Réalisations", href: "/#work" },
-      { label: "Pour les recruteurs", href: "/#how-i-think" },
+      { label: "Comment je travaille", href: "/#how-i-think" },
       { label: "Audit gratuit", href: "/#audit" },
     ],
     legalHeading: "Légal",
@@ -677,6 +720,7 @@ export const fr: Dictionary = {
     verifiedClient: "Client vérifié",
     watchClip: "Regarder le clip de 30 s",
     inTheirWords: "en ses mots",
+    translatedNote: "Traduit du français.",
   },
 
   videoModal: {

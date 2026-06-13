@@ -14,12 +14,42 @@ const FUIHeroWithBorders = () => {
   const hero = t.hero;
   const [popupOpen, setPopupOpen] = useState(false);
 
-  // Auto-show popup after 7 seconds
+  // Auto-show the audit popup once per session, and never right away: after
+  // 35 seconds on the page, or once the visitor has scrolled half of it,
+  // whichever comes first. An early popup was hurting the mobile experience.
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const SEEN_KEY = "cg-audit-popup-seen";
+    try {
+      if (sessionStorage.getItem(SEEN_KEY)) return;
+    } catch {
+      // Storage unavailable (private mode): fall through, worst case the
+      // popup can show once per page load.
+    }
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight;
+      if (depth >= 0.5) show();
+    };
+
+    const cleanup = () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
+    };
+
+    const show = () => {
+      cleanup();
+      try {
+        sessionStorage.setItem(SEEN_KEY, "1");
+      } catch {}
       setPopupOpen(true);
-    }, 7000);
-    return () => clearTimeout(timer);
+    };
+
+    timer = setTimeout(show, 35000);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return cleanup;
   }, []);
   return (
     <section
@@ -42,19 +72,9 @@ const FUIHeroWithBorders = () => {
       <figure className="pointer-events-none absolute bottom-[-50px] right-[7vw] z-20 hidden aspect-square w-[30vw] rounded-full bg-[#D4A853]/15 opacity-60 blur-[100px] md:block" />
 
       <div className="relative z-10 flex flex-col divide-y divide-white/10 pt-[35px]">
-        {/* Eyebrow */}
-        <div className="flex flex-col items-center justify-end">
-          <div className="flex max-w-[88vw] items-center gap-2 !border !border-b-0 border-white/10 px-4 py-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#D4A853]" aria-hidden="true" />
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A853] sm:text-xs">
-              {hero.eyebrow}
-            </p>
-          </div>
-        </div>
-
         {/* Headline + subheadline */}
         <div>
-          <div className="mx-auto flex min-h-[220px] max-w-[80vw] shrink-0 flex-col items-center justify-center gap-5 px-2 py-10 sm:min-h-[288px] sm:px-10 lg:px-24">
+          <div className="mx-auto flex min-h-[220px] max-w-[80vw] shrink-0 flex-col items-center justify-center gap-5 px-2 py-14 sm:min-h-[288px] sm:px-10 lg:px-24">
             <h1
               className="font-display text-pretty text-center font-extrabold leading-[0.95] tracking-[-0.02em] text-[#F5F0E8] md:max-w-screen-lg"
               style={{ fontSize: "clamp(44px, 8vw, 92px)" }}
@@ -73,34 +93,42 @@ const FUIHeroWithBorders = () => {
           </div>
         </div>
 
-        {/* CTA — magnetic solid-gold pill, opens the free-audit popup */}
+        {/* CTAs — primary gold pill opens the free-audit popup; the ghost
+            secondary scrolls fence-sitters to the client results. */}
         <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
           <Reveal delay={0.55}>
-            <Magnetic>
-              <button
-                type="button"
-                onClick={() => setPopupOpen(true)}
-                className={clsx(
-                  "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
-                  "transition-transform hover:scale-[1.03]",
-                )}
-                style={{ backgroundColor: "#D4A853" }}
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+              <Magnetic>
+                <button
+                  type="button"
+                  onClick={() => setPopupOpen(true)}
+                  className={clsx(
+                    "cta-shine block rounded-full px-9 py-4 text-base font-bold text-night",
+                    "transition-transform hover:scale-[1.03]",
+                  )}
+                  style={{ backgroundColor: "#D4A853" }}
+                >
+                  {hero.ctaPrimary}
+                </button>
+              </Magnetic>
+              <a
+                href="#work"
+                className="rounded-full border border-[#F5F0E8]/25 px-7 py-3.5 text-sm font-semibold text-[#F5F0E8]/90 transition-colors hover:border-[#D4A853]/60 hover:text-[#D4A853]"
               >
-                {hero.ctaPrimary}
-              </button>
-            </Magnetic>
+                {hero.ctaSecondary}
+              </a>
+            </div>
           </Reveal>
         </div>
 
-        {/* Client logo bar + proof line */}
+        {/* Client logo bar */}
         <div className="mx-auto w-full max-w-7xl">
-          <div className="w-full px-4 pt-8 md:px-8">
+          <p className="px-4 pt-8 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F5F0E8]/50">
+            {hero.logosLabel}
+          </p>
+          <div className="w-full px-4 pt-5 pb-10 md:px-8">
             <LogoBar />
           </div>
-          <p className="pb-10 pt-8 text-center text-sm text-[#F5F0E8]">
-            {hero.proofPrefix}
-            <strong className="font-semibold">{hero.proofStrong}</strong>
-          </p>
         </div>
       </div>
 

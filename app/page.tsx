@@ -24,9 +24,11 @@ export default function Home() {
       <Proof />
       <HowIThink />
       <GrowthSystem />
+      {/* Full audit form right after the system reveal: peak interest. */}
+      <FinalCTA />
       <HowItWorks />
       <Founder />
-      <FinalCTA />
+      {/* FAQ before the final form so objections are handled before the ask. */}
       <FAQ />
       <Footer />
       <MobileStickyCTA />
