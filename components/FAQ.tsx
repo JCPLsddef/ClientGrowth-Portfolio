@@ -6,10 +6,10 @@ import { useLang } from "@/components/LanguageProvider";
 
 const GOLD = "#D4A853";
 
-// Position of the "I ran Google Ads before and lost money" question, which
-// carries the "Most common objection" badge. Keep in sync with the FAQ order
-// in content/dictionary.ts (cost and speed sit above it by design).
-const MOST_COMMON_INDEX = 2;
+// Position of the "How fast will I see results?" question, which carries the
+// "Most asked question" badge. Keep in sync with the FAQ order in
+// content/dictionary.ts (cost sits first and opens by default).
+const MOST_COMMON_INDEX = 1;
 
 export default function FAQ() {
   const { t } = useLang();

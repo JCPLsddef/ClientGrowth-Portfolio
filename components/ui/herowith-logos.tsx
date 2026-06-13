@@ -72,19 +72,9 @@ const FUIHeroWithBorders = () => {
       <figure className="pointer-events-none absolute bottom-[-50px] right-[7vw] z-20 hidden aspect-square w-[30vw] rounded-full bg-[#D4A853]/15 opacity-60 blur-[100px] md:block" />
 
       <div className="relative z-10 flex flex-col divide-y divide-white/10 pt-[35px]">
-        {/* Eyebrow */}
-        <div className="flex flex-col items-center justify-end">
-          <div className="flex max-w-[88vw] items-center gap-2 !border !border-b-0 border-white/10 px-4 py-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#D4A853]" aria-hidden="true" />
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D4A853] sm:text-xs">
-              {hero.eyebrow}
-            </p>
-          </div>
-        </div>
-
         {/* Headline + subheadline */}
         <div>
-          <div className="mx-auto flex min-h-[220px] max-w-[80vw] shrink-0 flex-col items-center justify-center gap-5 px-2 py-10 sm:min-h-[288px] sm:px-10 lg:px-24">
+          <div className="mx-auto flex min-h-[220px] max-w-[80vw] shrink-0 flex-col items-center justify-center gap-5 px-2 py-14 sm:min-h-[288px] sm:px-10 lg:px-24">
             <h1
               className="font-display text-pretty text-center font-extrabold leading-[0.95] tracking-[-0.02em] text-[#F5F0E8] md:max-w-screen-lg"
               style={{ fontSize: "clamp(44px, 8vw, 92px)" }}

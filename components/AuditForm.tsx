@@ -220,19 +220,21 @@ export default function AuditForm() {
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="cta-shine mt-6 w-full rounded-full px-7 py-4 text-sm font-semibold text-night transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-        style={{ backgroundColor: "#D4A853" }}
-      >
-        {pending ? f.sending : f.submit}
-      </button>
+      <div className="mt-8 flex justify-center">
+        <button
+          type="submit"
+          disabled={pending}
+          className="cta-shine w-full rounded-full px-10 py-[18px] text-base font-bold text-night shadow-[0_12px_30px_rgba(212,168,83,0.35)] transition-transform hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          style={{ backgroundColor: "#D4A853" }}
+        >
+          {pending ? f.sending : f.submit}
+        </button>
+      </div>
 
-      <p className="mt-4 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
+      <p className="mt-5 text-center text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
         {f.disclaimer}
       </p>
-      <p className="mt-1.5 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
+      <p className="mt-1.5 text-center text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
         {f.privacyNote}
       </p>
     </form>

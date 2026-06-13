@@ -204,7 +204,7 @@ export const en = {
     label: "Questions",
     headline: "Questions Serious Buyers Ask.",
     sub: "I would rather answer the hard ones here than waste your time on a call.",
-    mostCommon: "Most common objection",
+    mostCommon: "Most asked question",
     items: [
       {
         question: "What does this cost?",
@@ -591,7 +591,7 @@ export const fr: Dictionary = {
     label: "Questions",
     headline: "Les questions que posent les acheteurs sérieux.",
     sub: "Je préfère répondre aux plus difficiles ici plutôt que de gaspiller votre temps au téléphone.",
-    mostCommon: "Objection la plus fréquente",
+    mostCommon: "Question la plus fréquente",
     items: [
       {
         question: "Combien ça coûte ?",
