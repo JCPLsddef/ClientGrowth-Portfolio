@@ -196,8 +196,8 @@ export const en = {
     ],
     photoAlt: "Juan-Carlos Portillo-Laflamme, founder of Client Growth",
     transitionQuote:
-      "I only work with a few businesses at a time, because growth systems need focus, not volume.",
-    transitionAttribution: "Juan-Carlos PL, founder of Client Growth",
+      "In the land of the blind, the one-eyed man is king.",
+    transitionAttribution: "Erasmus",
   },
 
   faq: {
@@ -583,8 +583,8 @@ export const fr: Dictionary = {
     ],
     photoAlt: "Juan-Carlos Portillo-Laflamme, fondateur de Client Growth",
     transitionQuote:
-      "Je travaille avec quelques entreprises à la fois seulement, parce qu'un système de croissance demande du focus, pas du volume.",
-    transitionAttribution: "Juan-Carlos PL, fondateur de Client Growth",
+      "Au pays des aveugles, le borgne est roi.",
+    transitionAttribution: "Érasme",
   },
 
   faq: {
