@@ -6,7 +6,6 @@ import Reframe from "@/components/Reframe";
 import Proof from "@/components/Proof";
 import HowIThink from "@/components/HowIThink";
 import GrowthSystem from "@/components/GrowthSystem";
-import MidCTA from "@/components/MidCTA";
 import HowItWorks from "@/components/HowItWorks";
 import Founder from "@/components/Founder";
 import FAQ from "@/components/FAQ";
@@ -25,13 +24,12 @@ export default function Home() {
       <Proof />
       <HowIThink />
       <GrowthSystem />
-      {/* Mid-page capture right after the system reveal: peak interest. */}
-      <MidCTA />
+      {/* Full audit form right after the system reveal: peak interest. */}
+      <FinalCTA />
       <HowItWorks />
       <Founder />
       {/* FAQ before the final form so objections are handled before the ask. */}
       <FAQ />
-      <FinalCTA />
       <Footer />
       <MobileStickyCTA />
     </main>

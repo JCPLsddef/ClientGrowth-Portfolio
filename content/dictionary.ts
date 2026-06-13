@@ -36,11 +36,7 @@ export const en = {
       "You built a business worth choosing. Online, a weaker competitor still looks easier to trust. I fix that.",
     ctaPrimary: "Get my free Visibility Audit",
     ctaSecondary: "See client results →",
-    trustLine:
-      "Founder-led growth systems. Limited to 3 active clients at a time.",
     logosLabel: "Businesses that trusted the system",
-    proofPrefix: "$41,085 in 30 days, from $900 in ad spend. ",
-    proofStrong: "46x return.",
   },
 
   auditPopup: {
@@ -428,11 +424,7 @@ export const fr: Dictionary = {
       "Vous avez bâti une entreprise qui mérite d'être choisie. En ligne, un concurrent plus faible a pourtant l'air plus facile à choisir. Je corrige ça.",
     ctaPrimary: "Obtenir mon audit de visibilité gratuit",
     ctaSecondary: "Voir les résultats clients →",
-    trustLine:
-      "Systèmes de croissance dirigés par le fondateur. Limité à 3 clients actifs à la fois.",
     logosLabel: "Des entreprises qui ont fait confiance au système",
-    proofPrefix: "41 085 $ en 30 jours, à partir de 900 $ en publicité. ",
-    proofStrong: "Rendement de 46x.",
   },
 
   auditPopup: {

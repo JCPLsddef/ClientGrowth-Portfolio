@@ -113,7 +113,7 @@ const FUIHeroWithBorders = () => {
                   type="button"
                   onClick={() => setPopupOpen(true)}
                   className={clsx(
-                    "cta-shine block rounded-full px-7 py-3.5 text-sm font-semibold text-night",
+                    "cta-shine block rounded-full px-9 py-4 text-base font-bold text-night",
                     "transition-transform hover:scale-[1.03]",
                   )}
                   style={{ backgroundColor: "#D4A853" }}
@@ -129,25 +129,16 @@ const FUIHeroWithBorders = () => {
               </a>
             </div>
           </Reveal>
-          <Reveal delay={0.65}>
-            <p className="text-center text-xs font-medium tracking-wide text-[#F5F0E8]/60">
-              {hero.trustLine}
-            </p>
-          </Reveal>
         </div>
 
-        {/* Client logo bar + proof line */}
+        {/* Client logo bar */}
         <div className="mx-auto w-full max-w-7xl">
           <p className="px-4 pt-8 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F5F0E8]/50">
             {hero.logosLabel}
           </p>
-          <div className="w-full px-4 pt-5 md:px-8">
+          <div className="w-full px-4 pt-5 pb-10 md:px-8">
             <LogoBar />
           </div>
-          <p className="pb-10 pt-8 text-center text-sm text-[#F5F0E8]">
-            {hero.proofPrefix}
-            <strong className="font-semibold">{hero.proofStrong}</strong>
-          </p>
         </div>
       </div>
 

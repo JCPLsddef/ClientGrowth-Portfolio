@@ -113,7 +113,7 @@ export default function GrowthSystem() {
             <div className="mt-8 flex justify-center">
               <Magnetic>
                 <a
-                  href="#mid-audit"
+                  href="#audit"
                   className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
                   style={{ backgroundColor: "#D4A853" }}
                 >
