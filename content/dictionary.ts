@@ -133,7 +133,7 @@ export const en = {
       },
       {
         title: "Google Ads",
-        body: "Qualified buyers in front of you the day we go live. The same system that returned 46x for Triple W.",
+        body: "Qualified buyers in front of you the day we go live. A proven system that delivers results.",
       },
       {
         title: "AI follow-up and receptionist",
@@ -207,11 +207,6 @@ export const en = {
     mostCommon: "Most asked question",
     items: [
       {
-        question: "What does this cost?",
-        answer:
-          "Two ways in. Individual builds start at $750 for a fully custom conversion website. The full Growth Partnership starts at $2,500/month and covers the complete acquisition system: conversion website, local SEO, Google Ads, and weekly optimization. Ad spend goes directly to Google, not to me. The initial term is 90 days, then month-to-month. No hidden fees.",
-      },
-      {
         question: "How fast will I see results?",
         answer:
           "Fast build from signed agreement to live system. That includes the diagnostic audit, full website build, and campaign setup. Most clients see their first inbound call within weeks of going live. The full system reaches peak efficiency at 60 to 90 days as the SEO compounds and the ad campaigns optimize. The tracking dashboard shows you every call, every cost, and every source from day one.",
@@ -220,17 +215,17 @@ export const en = {
         question:
           "I ran Google Ads before and lost money. Why would this be different?",
         answer:
-          "Because ads without a conversion system are just expensive traffic. You got clicks. The website that received them was not built to close. The targeting was not built around purchase intent. The landing page was probably your home page.\n\nI have seen this exact story more times than I can count. A business owner spends $500 to $1,000, gets clicks, gets zero calls, and concludes ads do not work in their industry.\n\nThe clicks were real. Everything behind them was not built. I build it first. Then the ads run. When the funnel exists before the traffic, the calls come. The difference between losing money on ads and 46x return on ad spend is the infrastructure that receives the traffic.",
+          "Because ads without a conversion system are just expensive traffic. You got clicks. The website that received them was not built to close. The targeting was not built around purchase intent. The landing page was probably your home page.\n\nI have seen this exact story more times than I can count. A business owner invests money, gets clicks, gets zero calls, and concludes ads do not work in their industry.\n\nThe clicks were real. Everything behind them was not built. I build it first. Then the ads run. When the funnel exists before the traffic, the calls come. The difference between unprofitable ads and successful return on ad spend is the infrastructure that receives the traffic.",
       },
       {
         question: "Who is NOT a good fit?",
         answer:
-          "Businesses under $5K per month in revenue. Businesses wanting a logo, a brochure site, or a one-off project. Anyone not ready to commit to a 90-day initial run. Anyone who wants to test the waters with no real system behind it.",
+          "Small businesses just starting out. Businesses wanting a logo, a brochure site, or a one-off project. Anyone not ready to commit to a 90-day initial run. Anyone who wants to test the waters with no real system behind it.",
       },
       {
         question: "Who is this built for?",
         answer:
-          "Service businesses generating $5K or more per month that rely too heavily on referrals and want a predictable, scalable way to get new clients from the internet. Painters, barbershops, RV rental companies, dental clinics, and any local service where the phone needs to ring with qualified buyers.",
+          "Service businesses that rely too heavily on referrals and want a predictable, scalable way to get new clients from the internet. Painters, barbershops, RV rental companies, dental clinics, and any local service where the phone needs to ring with qualified buyers.",
       },
       {
         question: "What exactly is the Growth Architecture?",
@@ -241,11 +236,6 @@ export const en = {
         question: "What happens if I already have a website?",
         answer:
           "If it converts, I keep it. If it does not, I rebuild it around one goal: booking calls.",
-      },
-      {
-        question: "What is the minimum I need to invest in ads?",
-        answer:
-          "I recommend starting at $500 per month. At $33 per qualified call, that is roughly 15 calls. One closed job usually covers the entire system cost.",
       },
       {
         question: "How is this different from hiring a regular agency?",
@@ -281,10 +271,10 @@ export const en = {
     revenuePlaceholder:
       "Monthly revenue range — helps me personalize your audit (optional)",
     revenueOptions: [
-      "Under $5K / month",
-      "$5K – $15K / month",
-      "$15K – $50K / month",
-      "$50K+ / month",
+      "Startup",
+      "Growing",
+      "Established",
+      "Thriving",
     ],
     message: "What do you want to fix? (optional)",
     submit: "Show me where I'm losing customers →",
@@ -347,7 +337,7 @@ export const en = {
     eyebrow: "Case study",
     title: "Triple W Rentals",
     intro:
-      "$900 in ad spend became $41,085 in 30 days. A 46x return, at around $33 per qualified call. Here is exactly how I built it.",
+      "A successful case study demonstrating the system in action. Here is exactly how I built it.",
     problemLabel: "The problem",
     problemHeadline: "Good business. Invisible at the moment that mattered.",
     problemParagraphs: [
@@ -380,14 +370,14 @@ export const en = {
     builtClosing:
       "Each piece made the next one stronger. The ads converted because the site was built to close. The spend stayed efficient because the tracking showed exactly where every dollar went.",
     resultLabel: "The result",
-    resultHeadline: "$900 in. $41,085 out. In 30 days.",
+    resultHeadline: "Significant results delivered in 30 days.",
     resultStats: [
       "Revenue in 30 days",
       "Return on ad spend",
       "Per qualified call",
     ],
     resultNote:
-      "From $900 in ad spend. Same business, same owner, a system that finally matched how good the work already was.",
+      "Same business, same owner, a system that finally matched how good the work already was.",
     before: "Before",
     after: "After",
     wordsLabel: "In his words",
@@ -520,7 +510,7 @@ export const fr: Dictionary = {
       },
       {
         title: "Google Ads",
-        body: "Des acheteurs qualifiés devant vous dès la mise en ligne. Le même système qui a rapporté 46x à Triple W.",
+        body: "Des acheteurs qualifiés devant vous dès la mise en ligne. Un système éprouvé qui livre des résultats.",
       },
       {
         title: "Suivi et réceptionniste IA",
@@ -594,11 +584,6 @@ export const fr: Dictionary = {
     mostCommon: "Question la plus fréquente",
     items: [
       {
-        question: "Combien ça coûte ?",
-        answer:
-          "Deux portes d'entrée. Les builds individuels commencent à 750 $ pour un site de conversion entièrement sur mesure. Le Partenariat de croissance complet commence à 2 500 $/mois et couvre tout le système d'acquisition : site de conversion, SEO local, Google Ads et optimisation hebdomadaire. Le budget publicitaire va directement à Google, pas à moi. L'engagement initial est de 90 jours, puis de mois en mois. Aucuns frais cachés.",
-      },
-      {
         question: "À quelle vitesse vais-je voir des résultats ?",
         answer:
           "Un build rapide, de la signature jusqu'au système en ligne. Ça inclut l'audit diagnostic, la construction complète du site et la configuration des campagnes. La plupart des clients reçoivent leur premier appel entrant quelques semaines après la mise en ligne. Le système complet atteint son efficacité maximale entre 60 et 90 jours, à mesure que le SEO s'accumule et que les campagnes s'optimisent. Le tableau de bord vous montre chaque appel, chaque coût et chaque source dès le premier jour.",
@@ -607,17 +592,17 @@ export const fr: Dictionary = {
         question:
           "J'ai déjà fait des Google Ads et j'ai perdu de l'argent. Pourquoi ce serait différent ?",
         answer:
-          "Parce que des publicités sans système de conversion, ce n'est que du trafic coûteux. Vous avez eu des clics. Le site qui les recevait n'était pas bâti pour conclure. Le ciblage n'était pas construit autour de l'intention d'achat. La page d'arrivée était probablement votre page d'accueil.\n\nJ'ai vu cette histoire exacte plus de fois que je peux compter. Un propriétaire dépense 500 $ à 1 000 $, obtient des clics, zéro appel, et conclut que la publicité ne fonctionne pas dans son domaine.\n\nLes clics étaient réels. Tout ce qu'il y avait derrière n'avait pas été construit. Moi, je le construis d'abord. Ensuite, les publicités roulent. Quand l'entonnoir existe avant le trafic, les appels arrivent. La différence entre perdre de l'argent en publicité et un rendement de 46x, c'est l'infrastructure qui reçoit le trafic.",
+          "Parce que des publicités sans système de conversion, ce n'est que du trafic coûteux. Vous avez eu des clics. Le site qui les recevait n'était pas bâti pour conclure. Le ciblage n'était pas construit autour de l'intention d'achat. La page d'arrivée était probablement votre page d'accueil.\n\nJ'ai vu cette histoire exacte plus de fois que je peux compter. Un propriétaire investit de l'argent, obtient des clics, zéro appel, et conclut que la publicité ne fonctionne pas dans son domaine.\n\nLes clics étaient réels. Tout ce qu'il y avait derrière n'avait pas été construit. Moi, je le construis d'abord. Ensuite, les publicités roulent. Quand l'entonnoir existe avant le trafic, les appels arrivent. La différence entre les publicités non rentables et un bon rendement publicitaire, c'est l'infrastructure qui reçoit le trafic.",
       },
       {
         question: "Pour qui ce n'est PAS un bon match ?",
         answer:
-          "Les entreprises avec moins de 5 000 $ de revenus par mois. Celles qui veulent un logo, un site vitrine ou un projet ponctuel. Quiconque n'est pas prêt à s'engager pour une période initiale de 90 jours. Quiconque veut juste tâter le terrain sans vrai système derrière.",
+          "Les petites entreprises qui commencent à peine. Celles qui veulent un logo, un site vitrine ou un projet ponctuel. Quiconque n'est pas prêt à s'engager pour une période initiale de 90 jours. Quiconque veut juste tâter le terrain sans vrai système derrière.",
       },
       {
         question: "Pour qui est-ce conçu ?",
         answer:
-          "Les entreprises de services qui génèrent 5 000 $ ou plus par mois, qui dépendent trop du bouche-à-oreille et qui veulent une façon prévisible et évolutive d'attirer de nouveaux clients par Internet. Peintres, barbiers, compagnies de location de VR, cliniques dentaires, et tout service local où le téléphone doit sonner avec des acheteurs qualifiés.",
+          "Les entreprises de services qui dépendent trop du bouche-à-oreille et qui veulent une façon prévisible et évolutive d'attirer de nouveaux clients par Internet. Peintres, barbiers, compagnies de location de VR, cliniques dentaires, et tout service local où le téléphone doit sonner avec des acheteurs qualifiés.",
       },
       {
         question: "C'est quoi exactement l'Architecture de croissance ?",
@@ -628,11 +613,6 @@ export const fr: Dictionary = {
         question: "Que se passe-t-il si j'ai déjà un site web ?",
         answer:
           "S'il convertit, je le garde. Sinon, je le reconstruis autour d'un seul objectif : réserver des appels.",
-      },
-      {
-        question: "Quel est le minimum à investir en publicité ?",
-        answer:
-          "Je recommande de commencer à 500 $ par mois. À 33 $ par appel qualifié, ça fait environ 15 appels. Un seul contrat conclu couvre généralement le coût complet du système.",
       },
       {
         question: "En quoi est-ce différent d'engager une agence ordinaire ?",
@@ -668,10 +648,10 @@ export const fr: Dictionary = {
     revenuePlaceholder:
       "Fourchette de revenus mensuels — m'aide à personnaliser votre audit (optionnel)",
     revenueOptions: [
-      "Moins de 5 000 $ / mois",
-      "5 000 $ – 15 000 $ / mois",
-      "15 000 $ – 50 000 $ / mois",
-      "50 000 $+ / mois",
+      "Démarrage",
+      "En croissance",
+      "Établi",
+      "Prospère",
     ],
     message: "Qu'aimeriez-vous corriger ? (optionnel)",
     submit: "Montrez-moi où je perds des clients →",
@@ -735,7 +715,7 @@ export const fr: Dictionary = {
     eyebrow: "Étude de cas",
     title: "Triple W Rentals",
     intro:
-      "900 $ en publicité sont devenus 41 085 $ en 30 jours. Un rendement de 46x, à environ 33 $ par appel qualifié. Voici exactement comment je l'ai bâti.",
+      "Une étude de cas réussie montrant le système en action. Voici exactement comment je l'ai bâti.",
     problemLabel: "Le problème",
     problemHeadline: "Bonne entreprise. Invisible au moment qui comptait.",
     problemParagraphs: [
@@ -768,14 +748,14 @@ export const fr: Dictionary = {
     builtClosing:
       "Chaque morceau renforçait le suivant. Les publicités convertissaient parce que le site était bâti pour conclure. Le budget restait efficace parce que le suivi montrait exactement où allait chaque dollar.",
     resultLabel: "Le résultat",
-    resultHeadline: "900 $ investis. 41 085 $ générés. En 30 jours.",
+    resultHeadline: "Résultats significatifs livrés en 30 jours.",
     resultStats: [
       "Revenus en 30 jours",
       "Rendement publicitaire",
       "Par appel qualifié",
     ],
     resultNote:
-      "À partir de 900 $ en publicité. Même entreprise, même propriétaire, un système enfin à la hauteur de la qualité du travail.",
+      "Même entreprise, même propriétaire, un système enfin à la hauteur de la qualité du travail.",
     before: "Avant",
     after: "Après",
     wordsLabel: "En ses mots",
