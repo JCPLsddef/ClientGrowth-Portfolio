@@ -1,56 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/WordReveal";
 import Magnetic from "@/components/Magnetic";
-import AuditPopup from "@/components/AuditPopup";
 import { useLang } from "@/components/LanguageProvider";
 
 const FUIHeroWithBorders = () => {
   const { t } = useLang();
   const hero = t.hero;
-  const [popupOpen, setPopupOpen] = useState(false);
-
-  // Auto-show the audit popup once per session, and never right away: after
-  // 35 seconds on the page, or once the visitor has scrolled half of it,
-  // whichever comes first. An early popup was hurting the mobile experience.
-  useEffect(() => {
-    const SEEN_KEY = "cg-audit-popup-seen";
-    try {
-      if (sessionStorage.getItem(SEEN_KEY)) return;
-    } catch {
-      // Storage unavailable (private mode): fall through, worst case the
-      // popup can show once per page load.
-    }
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const depth = (window.scrollY + window.innerHeight) / doc.scrollHeight;
-      if (depth >= 0.5) show();
-    };
-
-    const cleanup = () => {
-      if (timer) clearTimeout(timer);
-      window.removeEventListener("scroll", onScroll);
-    };
-
-    const show = () => {
-      cleanup();
-      try {
-        sessionStorage.setItem(SEEN_KEY, "1");
-      } catch {}
-      setPopupOpen(true);
-    };
-
-    timer = setTimeout(show, 35000);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return cleanup;
-  }, []);
   return (
     <section
       id="top"
@@ -93,27 +52,26 @@ const FUIHeroWithBorders = () => {
           </div>
         </div>
 
-        {/* CTAs — primary gold pill opens the free-audit popup; the ghost
-            secondary scrolls fence-sitters to the client results. */}
-        <div className="flex flex-col items-center justify-center gap-4 px-8 py-8 sm:px-24">
+        {/* CTAs — primary gold pill scrolls to the audit form; the ghost
+            secondary scrolls to the client results. */}
+        <div className="flex flex-col items-center justify-center gap-4 px-5 py-8 sm:px-24">
           <Reveal delay={0.55}>
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+            <div className="w-full flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
               <Magnetic>
-                <button
-                  type="button"
-                  onClick={() => setPopupOpen(true)}
+                <a
+                  href="#audit"
                   className={clsx(
-                    "cta-shine block rounded-full px-9 py-4 text-base font-bold text-night",
+                    "cta-shine flex items-center justify-center rounded-full px-9 py-4 text-base font-bold text-night",
                     "transition-transform hover:scale-[1.03]",
                   )}
                   style={{ backgroundColor: "#D4A853" }}
                 >
                   {hero.ctaPrimary}
-                </button>
+                </a>
               </Magnetic>
               <a
                 href="#work"
-                className="rounded-full border border-[#F5F0E8]/25 px-7 py-3.5 text-sm font-semibold text-[#F5F0E8]/90 transition-colors hover:border-[#D4A853]/60 hover:text-[#D4A853]"
+                className="flex items-center justify-center rounded-full border border-[#F5F0E8]/25 px-7 py-3.5 text-sm font-semibold text-[#F5F0E8]/90 transition-colors hover:border-[#D4A853]/60 hover:text-[#D4A853]"
               >
                 {hero.ctaSecondary}
               </a>
@@ -132,7 +90,6 @@ const FUIHeroWithBorders = () => {
         </div>
       </div>
 
-      <AuditPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
     </section>
   );
 };
