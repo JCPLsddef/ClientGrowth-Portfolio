@@ -1,7 +1,6 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import Magnetic from "@/components/Magnetic";
 import Reveal from "@/components/Reveal";
 import SectionLabel from "@/components/SectionLabel";
 import SpotlightField from "@/components/SpotlightField";
@@ -111,15 +110,13 @@ export default function GrowthSystem() {
               {s.cta.sub}
             </p>
             <div className="mt-8 flex justify-center">
-              <Magnetic>
-                <a
-                  href="#audit"
-                  className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-transform hover:scale-[1.03]"
-                  style={{ backgroundColor: "#D4A853" }}
-                >
-                  {s.cta.button}
-                </a>
-              </Magnetic>
+              <a
+                href="#audit"
+                className="cta-shine inline-block rounded-full px-7 py-3.5 text-sm font-semibold text-night transition-[transform,filter] duration-200 hover:scale-[1.01] hover:brightness-[1.04]"
+                style={{ backgroundColor: "#D4A853" }}
+              >
+                {s.cta.button}
+              </a>
             </div>
           </Reveal>
         </div>

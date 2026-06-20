@@ -4,7 +4,6 @@ import clsx from "clsx";
 import LogoBar from "@/components/work/LogoBar";
 import Reveal from "@/components/Reveal";
 import WordReveal from "@/components/WordReveal";
-import Magnetic from "@/components/Magnetic";
 import { useLang } from "@/components/LanguageProvider";
 
 const FUIHeroWithBorders = () => {
@@ -57,18 +56,16 @@ const FUIHeroWithBorders = () => {
         <div className="flex flex-col items-center justify-center gap-4 px-5 py-8 sm:px-24">
           <Reveal delay={0.55}>
             <div className="w-full flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-              <Magnetic>
-                <a
-                  href="#audit"
-                  className={clsx(
-                    "cta-shine flex items-center justify-center rounded-full px-9 py-4 text-base font-bold text-night",
-                    "transition-transform hover:scale-[1.03]",
-                  )}
-                  style={{ backgroundColor: "#D4A853" }}
-                >
-                  {hero.ctaPrimary}
-                </a>
-              </Magnetic>
+              <a
+                href="#audit"
+                className={clsx(
+                  "cta-shine flex items-center justify-center rounded-full px-9 py-4 text-base font-bold text-night",
+                  "transition-[transform,filter] duration-200 hover:scale-[1.01] hover:brightness-[1.04]",
+                )}
+                style={{ backgroundColor: "#D4A853" }}
+              >
+                {hero.ctaPrimary}
+              </a>
               <a
                 href="#work"
                 className="flex items-center justify-center rounded-full border border-[#F5F0E8]/25 px-7 py-3.5 text-sm font-semibold text-[#F5F0E8]/90 transition-colors hover:border-[#D4A853]/60 hover:text-[#D4A853]"
