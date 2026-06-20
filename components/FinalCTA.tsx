@@ -1,10 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { useScroll, useTransform, useReducedMotion } from "motion/react";
 import Reveal from "@/components/Reveal";
 import AuditForm from "@/components/AuditForm";
-import Lightfall from "@/components/Lightfall";
 import TestimonialCard from "@/components/work/TestimonialCard";
 import { testimonialFor } from "@/content/work";
 import { useLang } from "@/components/LanguageProvider";
@@ -13,47 +10,21 @@ export default function FinalCTA() {
   const { t } = useLang();
   const c = t.finalCta;
   const finalCta = testimonialFor("finalCta");
-  const reduce = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  // Ramp the effect in as the section enters, hold, then ease back near exit.
-  const intensity = useTransform(
-    scrollYProgress,
-    [0, 0.35, 0.85, 1],
-    [0, 1, 1, 0.55]
-  );
 
   return (
     <section
-      ref={sectionRef}
       id="audit"
       style={{ backgroundColor: "#0D0B09", color: "#ffffff" }}
       className="relative overflow-hidden px-6 py-28 sm:py-36"
     >
-      {/* Scroll-linked falling-light backdrop (Lightfall), gold on charcoal. */}
-      {!reduce && (
-        <Lightfall
-          scrollIntensity={intensity}
-          opacity={0.85}
-          className="pointer-events-none"
-        />
-      )}
-      {/* Scrim: keep the headline and form crisp over the streaks. */}
+      {/* Calm static backdrop: a single soft gold glow rising from the base.
+          No motion here — this is the conversion moment, the form is the
+          only thing competing for attention. */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(62% 55% at 50% 42%, rgba(13,11,9,0.72), rgba(13,11,9,0.18) 75%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(50% 60% at 50% 100%, rgba(212,168,83,0.16), rgba(13,11,9,0) 70%)",
+            "radial-gradient(55% 60% at 50% 100%, rgba(212,168,83,0.14), rgba(13,11,9,0) 70%)",
         }}
       />
       <div className="relative z-10 mx-auto max-w-2xl text-center">

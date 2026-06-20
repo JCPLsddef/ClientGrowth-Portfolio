@@ -120,7 +120,7 @@ export default function AuditPopup({
             <a
               href="#audit"
               onClick={onClose}
-              className="cta-shine mt-8 flex w-full items-center justify-center rounded-full px-7 py-4 text-center text-base font-bold text-night transition-all hover:scale-[1.03] hover:shadow-lg active:scale-[0.98]"
+              className="cta-shine mt-8 flex w-full items-center justify-center rounded-full px-7 py-4 text-center text-base font-bold text-night transition-[transform,filter] duration-200 hover:scale-[1.01] hover:brightness-[1.04] active:scale-[0.99]"
               style={{
                 backgroundColor: "#D4A853",
                 boxShadow: "0 12px 30px rgba(212,168,83,0.35)",

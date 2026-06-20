@@ -109,7 +109,7 @@ body {
   background: linear-gradient(
     110deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.22) 50%,
     transparent 100%
   );
   transform: skewX(-20deg);
@@ -117,7 +117,7 @@ body {
 }
 .cta-shine:hover::after {
   left: 160%;
-  transition: left 0.7s ease;
+  transition: left 0.9s ease;
 }
 @media (prefers-reduced-motion: reduce) {
   .cta-shine:hover::after {
